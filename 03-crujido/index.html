@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+  CRUJIDO · design contract
+  World   A 1950s Gran Vía picture palace, painted like its billboards. The Canvas2D cinema is the
+          source of truth (street, facade, hall, film, people, your hands); the DOM only adds the
+          cinema's own paperwork and fittings: the letter board of today's sessions, the booth's
+          ticket, the intermission slide, the film-strip result.
+  Type    Limelight for the marquee and the logo; Shrikhand for poster titles and rubber stamps;
+          Oswald for everything printed or slotted (letter board, ticket, labels, numbers);
+          Caveat Brush for people talking in the room; Atkinson Hyperlegible for captions and body.
+  Colour  night navy #0b1020, velvet #8e1520 / #5a0a12, bulb amber #ffb347, gold #ffd98a,
+          cream card #fbf3df, heard red #e8252f, strike red #ff3b30, caption yellow #ffd35e.
+  Shape   the letter board is cream rails with black slotted letters; the ticket is printed paper
+          with a perforated stub; round buttons are brass bezels; results are a strip of film.
+  Motion  one material per surface: posters flip like louvres, the stub tears along its
+          perforation, the house lights go down, stars light like bulbs. Reduced motion keeps
+          the information and removes the movement.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="color-scheme" content="dark">
+<title>CRUJIDO · Come sin que te oigan</title>
+<meta name="description" content="Estás en el cine con tu merienda y la sala en silencio. Muerde solo cuando la película suene lo bastante fuerte para tapar tu crujido. Al tercer «chsst», el acomodador te echa.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CRUJIDO · Come sin que te oigan">
+<meta property="og:description" content="Seis películas, una merienda y una sala llena de gente que te chista. Juega con el oído: la película tapa tu ruido… si eliges bien el momento.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/03-crujido/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El rótulo de bombillas de CRUJIDO junto a una partida: una explosión en pantalla, el medidor de luces encendido y unas palomitas que crujen sin que nadie las oiga.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%8D%BF%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Limelight-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Oswald-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Shrikhand-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/manifest.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Sala de cine"></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">CRUJIDO necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

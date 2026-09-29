@@ -1,0 +1,870 @@
+{
+ "version": 1,
+ "voices": {
+  "es": {
+   "t01": {
+    "file": "assets/audio/es/t01.mp3",
+    "text": "Bueno, empezamos, que vamos con retraso. Esto será rapidito.",
+    "dur": 6.075,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t02": {
+    "file": "assets/audio/es/t02.mp3",
+    "text": "Como veis en el gráfico, los números están... ahí.",
+    "dur": 4.566,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t03": {
+    "file": "assets/audio/es/t03.mp3",
+    "text": "Vamos a alinear sinergias para maximizar el engagement transversal.",
+    "dur": 7.563,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t04": {
+    "file": "assets/audio/es/t04.mp3",
+    "text": "Esto lo hablamos offline, pero lo comento aquí igualmente.",
+    "dur": 5.681,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t05": {
+    "file": "assets/audio/es/t05.mp3",
+    "text": "Os voy a leer la diapositiva entera. Palabra por palabra.",
+    "dur": 4.992,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t06": {
+    "file": "assets/audio/es/t06.mp3",
+    "text": "El KPI del KPI es, básicamente... otro KPI.",
+    "dur": 6.116,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t07": {
+    "file": "assets/audio/es/t07.mp3",
+    "text": "Hay que pensar fuera de la caja. Pero dentro del presupuesto.",
+    "dur": 4.962,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t08": {
+    "file": "assets/audio/es/t08.mp3",
+    "text": "Si miráis la columna B... no, la otra B.",
+    "dur": 4.218,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t09": {
+    "file": "assets/audio/es/t09.mp3",
+    "text": "Esto es un quick win. Bueno, quick... en el cuarto trimestre.",
+    "dur": 6.77,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t10": {
+    "file": "assets/audio/es/t10.mp3",
+    "text": "Tenemos que ser más proactivos... en la reactividad.",
+    "dur": 4.874,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t11": {
+    "file": "assets/audio/es/t11.mp3",
+    "text": "Os mando las diapositivas. Y luego un resumen de las diapositivas.",
+    "dur": 7.228,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t12": {
+    "file": "assets/audio/es/t12.mp3",
+    "text": "Recordad: no hay preguntas tontas. Pero no preguntéis.",
+    "dur": 5.131,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t13": {
+    "file": "assets/audio/es/t13.mp3",
+    "text": "Esto conecta con la reunión sobre la reunión del martes.",
+    "dur": 4.668,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t14": {
+    "file": "assets/audio/es/t14.mp3",
+    "text": "Vamos a poner el foco... en el foco.",
+    "dur": 3.958,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t15": {
+    "file": "assets/audio/es/t15.mp3",
+    "text": "Aquí tenemos un gráfico de tarta. Una tarta... de datos.",
+    "dur": 5.03,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t16": {
+    "file": "assets/audio/es/t16.mp3",
+    "text": "Me voy a detener un momento en esta tabla. Un buen rato.",
+    "dur": 6.463,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t17": {
+    "file": "assets/audio/es/t17.mp3",
+    "text": "Esto es disruptivo. Pero disruptivo de verdad, ¿eh?",
+    "dur": 6.099,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t18": {
+    "file": "assets/audio/es/t18.mp3",
+    "text": "Y ahora, lo más importante: la agenda de la próxima reunión.",
+    "dur": 5.175,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "s01": {
+    "file": "assets/audio/es/s01.mp3",
+    "text": "Punto uno: alineamiento estratégico.",
+    "dur": 3.064,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s02": {
+    "file": "assets/audio/es/s02.mp3",
+    "text": "Punto dos: la hoja de ruta... de la hoja de ruta.",
+    "dur": 4.29,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s03": {
+    "file": "assets/audio/es/s03.mp3",
+    "text": "Siguiente diapositiva... ah, no, es la misma.",
+    "dur": 4.294,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s04": {
+    "file": "assets/audio/es/s04.mp3",
+    "text": "Punto tres: sinergias. Sinergias por todas partes.",
+    "dur": 4.954,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s05": {
+    "file": "assets/audio/es/s05.mp3",
+    "text": "Como pone aquí... y os lo leo...",
+    "dur": 2.6,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s06": {
+    "file": "assets/audio/es/s06.mp3",
+    "text": "Esto está en letra pequeña, pero es importante.",
+    "dur": 3.81,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s07": {
+    "file": "assets/audio/es/s07.mp3",
+    "text": "Apartado cuatro. Subapartado B. Punto siete.",
+    "dur": 4.886,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s08": {
+    "file": "assets/audio/es/s08.mp3",
+    "text": "Anexo tres. Son solo cuarenta páginas.",
+    "dur": 3.62,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "b01": {
+    "file": "assets/audio/es/b01.mp3",
+    "text": "Bieeen...",
+    "dur": 2.796,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "b02": {
+    "file": "assets/audio/es/b02.mp3",
+    "text": "¿Me seguís?",
+    "dur": 0.819,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "b03": {
+    "file": "assets/audio/es/b03.mp3",
+    "text": "¿Alguna pregunta? ...¿No? Perfecto.",
+    "dur": 3.122,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "b04": {
+    "file": "assets/audio/es/b04.mp3",
+    "text": "Y esto... ¿qué significa?",
+    "dur": 2.244,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "q01": {
+    "file": "assets/audio/es/q01.mp3",
+    "text": "¿Mmm?",
+    "dur": 0.501,
+    "cat": "sus",
+    "who": "boss"
+   },
+   "q02": {
+    "file": "assets/audio/es/q02.mp3",
+    "text": "¿Alguien ha dicho algo?",
+    "dur": 1.604,
+    "cat": "sus",
+    "who": "boss"
+   },
+   "q03": {
+    "file": "assets/audio/es/q03.mp3",
+    "text": "Os estoy vigilando...",
+    "dur": 1.597,
+    "cat": "sus",
+    "who": "boss"
+   },
+   "c01": {
+    "file": "assets/audio/es/c01.mp3",
+    "text": "¿Te aburro, Martínez?",
+    "dur": 1.776,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c02": {
+    "file": "assets/audio/es/c02.mp3",
+    "text": "¡Martínez! ¿Quieres compartir algo con la clase?",
+    "dur": 3.618,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c03": {
+    "file": "assets/audio/es/c03.mp3",
+    "text": "¿López? ¿Estamos cansaditos?",
+    "dur": 2.988,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c04": {
+    "file": "assets/audio/es/c04.mp3",
+    "text": "García, esto también va por ti.",
+    "dur": 2.955,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c05": {
+    "file": "assets/audio/es/c05.mp3",
+    "text": "Fernández, ¿te pillo en mal momento?",
+    "dur": 2.332,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c06": {
+    "file": "assets/audio/es/c06.mp3",
+    "text": "¿Os aburro? ¿Eh? ¿Os aburro?",
+    "dur": 4.338,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c07": {
+    "file": "assets/audio/es/c07.mp3",
+    "text": "¡Aquí se viene a trabajar!",
+    "dur": 1.861,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "d01": {
+    "file": "assets/audio/es/d01.mp3",
+    "text": "Bueno... como iba diciendo...",
+    "dur": 3.246,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d02": {
+    "file": "assets/audio/es/d02.mp3",
+    "text": "Perdón... ¿por dónde iba?",
+    "dur": 1.833,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d03": {
+    "file": "assets/audio/es/d03.mp3",
+    "text": "Uf... qué calor hace aquí, ¿no?",
+    "dur": 3.617,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d04": {
+    "file": "assets/audio/es/d04.mp3",
+    "text": "Esto... esto es... muy... importante...",
+    "dur": 4.625,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d05": {
+    "file": "assets/audio/es/d05.mp3",
+    "text": "¿Alguien más tiene sueño? Yo no, ¿eh?",
+    "dur": 3.493,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "w01": {
+    "file": "assets/audio/es/w01.mp3",
+    "text": "Bueno... lo dejamos aquí... por hoy...",
+    "dur": 3.739,
+    "cat": "win",
+    "who": "boss"
+   },
+   "w02": {
+    "file": "assets/audio/es/w02.mp3",
+    "text": "Esta reunión... podría haber sido un email.",
+    "dur": 3.923,
+    "cat": "win",
+    "who": "boss"
+   },
+   "l01": {
+    "file": "assets/audio/es/l01.mp3",
+    "text": "Martínez. A mi despacho. Ahora.",
+    "dur": 3.292,
+    "cat": "lose",
+    "who": "boss"
+   },
+   "l02": {
+    "file": "assets/audio/es/l02.mp3",
+    "text": "Como vamos tan bien de tiempo... alargamos otra horita.",
+    "dur": 4.785,
+    "cat": "lose2",
+    "who": "boss"
+   },
+   "p01": {
+    "file": "assets/audio/es/p01.mp3",
+    "text": "¡Jefe! ¡Martínez está bostezando!",
+    "dur": 3.224,
+    "cat": "pelota",
+    "who": "pelota"
+   },
+   "p02": {
+    "file": "assets/audio/es/p02.mp3",
+    "text": "¡Qué diapositiva más buena, jefe!",
+    "dur": 3.091,
+    "cat": "pelota",
+    "who": "pelota"
+   },
+   "p03": {
+    "file": "assets/audio/es/p03.mp3",
+    "text": "¡Jefe! ¡Aquí alguien no presta atención!",
+    "dur": 2.896,
+    "cat": "pelota",
+    "who": "pelota"
+   },
+   "z01": {
+    "file": "assets/audio/es/z01.mp3",
+    "text": "Cinco minutitos más, mamá...",
+    "dur": 3.155,
+    "cat": "sleeper",
+    "who": "sleeper"
+   }
+  },
+  "en": {
+   "t01": {
+    "file": "assets/audio/en/t01.mp3",
+    "text": "Okay, let's get started, we're running late. This'll be quick.",
+    "dur": 4.346,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t02": {
+    "file": "assets/audio/en/t02.mp3",
+    "text": "As you can see in the chart, the numbers are... there.",
+    "dur": 4.857,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t03": {
+    "file": "assets/audio/en/t03.mp3",
+    "text": "We need to align synergies to maximize cross-functional engagement.",
+    "dur": 5.511,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t04": {
+    "file": "assets/audio/en/t04.mp3",
+    "text": "We'll take this offline, but I'll go over it here anyway.",
+    "dur": 5.181,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t05": {
+    "file": "assets/audio/en/t05.mp3",
+    "text": "I'm going to read you the whole slide. Word for word.",
+    "dur": 3.85,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t06": {
+    "file": "assets/audio/en/t06.mp3",
+    "text": "The KPI of the KPI is, basically... another KPI.",
+    "dur": 5.551,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t07": {
+    "file": "assets/audio/en/t07.mp3",
+    "text": "Think outside the box. But inside the budget.",
+    "dur": 4.898,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t08": {
+    "file": "assets/audio/en/t08.mp3",
+    "text": "If you look at column B... no, the other B.",
+    "dur": 4.095,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t09": {
+    "file": "assets/audio/en/t09.mp3",
+    "text": "This is a quick win. Well, quick... by Q4.",
+    "dur": 6.309,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t10": {
+    "file": "assets/audio/en/t10.mp3",
+    "text": "We need to be more proactive... about our reactivity.",
+    "dur": 4.526,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t11": {
+    "file": "assets/audio/en/t11.mp3",
+    "text": "I'll send you the slides. And then a summary of the slides.",
+    "dur": 4.265,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t12": {
+    "file": "assets/audio/en/t12.mp3",
+    "text": "Remember: there are no stupid questions. But don't ask.",
+    "dur": 4.586,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t13": {
+    "file": "assets/audio/en/t13.mp3",
+    "text": "This ties back to the meeting about Tuesday's meeting.",
+    "dur": 3.622,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t14": {
+    "file": "assets/audio/en/t14.mp3",
+    "text": "Let's put the focus... on the focus.",
+    "dur": 3.063,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t15": {
+    "file": "assets/audio/en/t15.mp3",
+    "text": "Here we have a pie chart. A pie... of data.",
+    "dur": 4.314,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t16": {
+    "file": "assets/audio/en/t16.mp3",
+    "text": "I'm going to pause on this table for a moment. A long moment.",
+    "dur": 5.01,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t17": {
+    "file": "assets/audio/en/t17.mp3",
+    "text": "This is disruptive. I mean truly disruptive.",
+    "dur": 4.42,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "t18": {
+    "file": "assets/audio/en/t18.mp3",
+    "text": "And now, the most important part: the agenda for our next meeting.",
+    "dur": 5.743,
+    "cat": "talk",
+    "who": "boss"
+   },
+   "s01": {
+    "file": "assets/audio/en/s01.mp3",
+    "text": "Point one: strategic alignment.",
+    "dur": 2.92,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s02": {
+    "file": "assets/audio/en/s02.mp3",
+    "text": "Point two: the roadmap... for the roadmap.",
+    "dur": 3.411,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s03": {
+    "file": "assets/audio/en/s03.mp3",
+    "text": "Next slide... oh, no, it's the same one.",
+    "dur": 4.912,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s04": {
+    "file": "assets/audio/en/s04.mp3",
+    "text": "Point three: synergies. Synergies everywhere.",
+    "dur": 4.5,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s05": {
+    "file": "assets/audio/en/s05.mp3",
+    "text": "As it says here... and I'll read it to you...",
+    "dur": 3.793,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s06": {
+    "file": "assets/audio/en/s06.mp3",
+    "text": "This is in the fine print, but it's important.",
+    "dur": 3.886,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s07": {
+    "file": "assets/audio/en/s07.mp3",
+    "text": "Section four. Subsection B. Item seven.",
+    "dur": 5.079,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "s08": {
+    "file": "assets/audio/en/s08.mp3",
+    "text": "Appendix three. It's only forty pages.",
+    "dur": 4.041,
+    "cat": "slide",
+    "who": "boss"
+   },
+   "b01": {
+    "file": "assets/audio/en/b01.mp3",
+    "text": "Riiight...",
+    "dur": 1.901,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "b02": {
+    "file": "assets/audio/en/b02.mp3",
+    "text": "Are you following me?",
+    "dur": 1.487,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "b03": {
+    "file": "assets/audio/en/b03.mp3",
+    "text": "Any questions? ...No? Perfect.",
+    "dur": 3.473,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "b04": {
+    "file": "assets/audio/en/b04.mp3",
+    "text": "And this... what does it mean?",
+    "dur": 2.463,
+    "cat": "cue",
+    "who": "boss"
+   },
+   "q01": {
+    "file": "assets/audio/en/q01.mp3",
+    "text": "Hmm?",
+    "dur": 0.427,
+    "cat": "sus",
+    "who": "boss"
+   },
+   "q02": {
+    "file": "assets/audio/en/q02.mp3",
+    "text": "Did somebody say something?",
+    "dur": 2.25,
+    "cat": "sus",
+    "who": "boss"
+   },
+   "q03": {
+    "file": "assets/audio/en/q03.mp3",
+    "text": "I'm watching you...",
+    "dur": 1.394,
+    "cat": "sus",
+    "who": "boss"
+   },
+   "c01": {
+    "file": "assets/audio/en/c01.mp3",
+    "text": "Am I boring you, Martínez?",
+    "dur": 2.534,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c02": {
+    "file": "assets/audio/en/c02.mp3",
+    "text": "Martínez! Care to share something with the class?",
+    "dur": 2.897,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c03": {
+    "file": "assets/audio/en/c03.mp3",
+    "text": "López? Are we a little tired?",
+    "dur": 2.555,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c04": {
+    "file": "assets/audio/en/c04.mp3",
+    "text": "García, this goes for you too.",
+    "dur": 2.567,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c05": {
+    "file": "assets/audio/en/c05.mp3",
+    "text": "Fernández, is this a bad time?",
+    "dur": 2.485,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c06": {
+    "file": "assets/audio/en/c06.mp3",
+    "text": "Am I boring you? Hm? Am I boring you?",
+    "dur": 3.371,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "c07": {
+    "file": "assets/audio/en/c07.mp3",
+    "text": "We come here to work!",
+    "dur": 2.227,
+    "cat": "callout",
+    "who": "boss"
+   },
+   "d01": {
+    "file": "assets/audio/en/d01.mp3",
+    "text": "So... as I was saying...",
+    "dur": 2.133,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d02": {
+    "file": "assets/audio/en/d02.mp3",
+    "text": "Sorry... where was I?",
+    "dur": 2.156,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d03": {
+    "file": "assets/audio/en/d03.mp3",
+    "text": "Phew... it's warm in here, isn't it?",
+    "dur": 3.16,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d04": {
+    "file": "assets/audio/en/d04.mp3",
+    "text": "This... this is... very... important...",
+    "dur": 4.085,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "d05": {
+    "file": "assets/audio/en/d05.mp3",
+    "text": "Is anyone else sleepy? Not me, huh?",
+    "dur": 2.82,
+    "cat": "drowsy",
+    "who": "boss"
+   },
+   "w01": {
+    "file": "assets/audio/en/w01.mp3",
+    "text": "Okay... let's leave it there... for today...",
+    "dur": 4.534,
+    "cat": "win",
+    "who": "boss"
+   },
+   "w02": {
+    "file": "assets/audio/en/w02.mp3",
+    "text": "This meeting... could have been an email.",
+    "dur": 3.017,
+    "cat": "win",
+    "who": "boss"
+   },
+   "l01": {
+    "file": "assets/audio/en/l01.mp3",
+    "text": "Martínez. My office. Now.",
+    "dur": 3.339,
+    "cat": "lose",
+    "who": "boss"
+   },
+   "l02": {
+    "file": "assets/audio/en/l02.mp3",
+    "text": "Since we're doing so well on time... let's go another hour.",
+    "dur": 4.573,
+    "cat": "lose2",
+    "who": "boss"
+   },
+   "p01": {
+    "file": "assets/audio/en/p01.mp3",
+    "text": "Boss! Martínez is yawning!",
+    "dur": 2.415,
+    "cat": "pelota",
+    "who": "pelota"
+   },
+   "p02": {
+    "file": "assets/audio/en/p02.mp3",
+    "text": "What a great slide, boss!",
+    "dur": 1.891,
+    "cat": "pelota",
+    "who": "pelota"
+   },
+   "p03": {
+    "file": "assets/audio/en/p03.mp3",
+    "text": "Boss! Someone here isn't paying attention!",
+    "dur": 3.302,
+    "cat": "pelota",
+    "who": "pelota"
+   },
+   "z01": {
+    "file": "assets/audio/en/z01.mp3",
+    "text": "Five more minutes, mom...",
+    "dur": 2.004,
+    "cat": "sleeper",
+    "who": "sleeper"
+   }
+  }
+ },
+ "yawns": [
+  {
+   "id": "y01",
+   "file": "assets/audio/yawn/y01.mp3",
+   "voice": "ash",
+   "gender": "m",
+   "dur": 4.395
+  },
+  {
+   "id": "y02",
+   "file": "assets/audio/yawn/y02.mp3",
+   "voice": "onyx",
+   "gender": "m",
+   "dur": 4.437
+  },
+  {
+   "id": "y03",
+   "file": "assets/audio/yawn/y03.mp3",
+   "voice": "echo",
+   "gender": "m",
+   "dur": 2.774
+  },
+  {
+   "id": "y04",
+   "file": "assets/audio/yawn/y04.mp3",
+   "voice": "verse",
+   "gender": "m",
+   "dur": 3.052
+  },
+  {
+   "id": "y05",
+   "file": "assets/audio/yawn/y05.mp3",
+   "voice": "ballad",
+   "gender": "m",
+   "dur": 2.061
+  },
+  {
+   "id": "y06",
+   "file": "assets/audio/yawn/y06.mp3",
+   "voice": "fable",
+   "gender": "m",
+   "dur": 4.478
+  },
+  {
+   "id": "y07",
+   "file": "assets/audio/yawn/y07.mp3",
+   "voice": "coral",
+   "gender": "f",
+   "dur": 3.56
+  },
+  {
+   "id": "y08",
+   "file": "assets/audio/yawn/y08.mp3",
+   "voice": "shimmer",
+   "gender": "f",
+   "dur": 4.442
+  },
+  {
+   "id": "y09",
+   "file": "assets/audio/yawn/y09.mp3",
+   "voice": "sage",
+   "gender": "f",
+   "dur": 2.519
+  },
+  {
+   "id": "y10",
+   "file": "assets/audio/yawn/y10.mp3",
+   "voice": "nova",
+   "gender": "f",
+   "dur": 2.822
+  },
+  {
+   "id": "y11",
+   "file": "assets/audio/yawn/y11.mp3",
+   "voice": "alloy",
+   "gender": "f",
+   "dur": 3.079
+  },
+  {
+   "id": "y12",
+   "file": "assets/audio/yawn/y12.mp3",
+   "voice": "coral",
+   "gender": "f",
+   "dur": 3.51
+  }
+ ],
+ "fx": {
+  "boss_yawn": {
+   "file": "assets/audio/fx/boss_yawn.mp3",
+   "dur": 5.102
+  },
+  "intern_yawn": {
+   "file": "assets/audio/fx/intern_yawn.mp3",
+   "dur": 2.683
+  },
+  "sleeper_yawn": {
+   "file": "assets/audio/fx/sleeper_yawn.mp3",
+   "dur": 3.125
+  },
+  "stifle": {
+   "file": "assets/audio/fx/stifle.mp3",
+   "dur": 2.236
+  },
+  "psst": {
+   "file": "assets/audio/fx/psst.mp3",
+   "dur": 1.723
+  },
+  "snore": {
+   "file": "assets/audio/fx/snore.mp3",
+   "dur": 2.515
+  }
+ },
+ "images": {
+  "room_small": "assets/img/room_small.jpg",
+  "room_evening": "assets/img/room_evening.jpg",
+  "room_training": "assets/img/room_training.jpg",
+  "room_auditorium": "assets/img/room_auditorium.jpg",
+  "room_keynote": "assets/img/room_keynote.jpg"
+ }
+}

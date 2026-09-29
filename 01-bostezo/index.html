@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+  BOSTEZO · design contract
+  World   The Canvas2D office cartoon is the source of truth; the DOM only extends it.
+  Type    Fredoka for everything that belongs to the game; system-ui for the office paperwork
+          (invite, minutes, HR letter, auto-reply) so corporate documents look corporate.
+  Colour  ink #1d1733, cream #fff8ec, lavender #b9acdf, plus the game's own accents: yawn lilac
+          #c3b3ff / #9d7bff / #6b4fd8, you-yellow #ffd166, HR red #ff5a4f.
+  Shape   chunky ink-outlined pills with a solid drop (the yawn button's grammar) for controls;
+          paper sheets with a soft offset shadow, slightly tilted, for documents.
+  Motion  one material: paper. Sheets land with an expo ease-out, the HR stamp slams once, the
+          logo yawns letter by letter like the contagion. Reduced motion removes all of it.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1d1733">
+<meta name="color-scheme" content="dark">
+<title>BOSTEZO · Haz bostezar a tu jefe</title>
+<meta name="description" content="Los bostezos se contagian. Úsalo: haz que media reunión bostece a la vez y duerme a tu jefe sin que te pille.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BOSTEZO · Haz bostezar a tu jefe">
+<meta property="og:description" content="Los bostezos se contagian. Úsalo. Ocho reuniones, una semana y un jefe que no se duerme solo.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/01-bostezo/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Un jefe bostezando delante de un auditorio lleno de gente que bosteza con él">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%A5%B1%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Fredoka.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/manifest.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Sala de reuniones"></canvas>
+<div id="caption" role="status" aria-live="polite" hidden></div>
+<main id="ui"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">BOSTEZO necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

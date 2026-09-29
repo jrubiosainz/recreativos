@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+  FIESTAS DE LOS JUEGOS VIRALES · direction contract
+  THESIS  A village fiesta programme, «del 1 al 10»: each game is one day's act with hour, place and photo;
+          a biro marks the ones you have been to. Refuses the portal grid of equal tiles.
+  OWN-WORLD  Four-ink offset print: red cover, fat-slab Ultra in yellow over an ink shadow, paper bunting,
+          day ribbons in red, blue, green, yellow; white inner pages in Archivo; ballpoint-blue handwriting;
+          stamp red; joke adverts each in its shop's type.
+  STORY   Visitors read a programme, learn in one line these are ten free browser games, tap «¡Allá voy!»;
+          back, the pen has marked it.
+  FIRST VIEWPORT  Bunting, FIESTAS huge on the red cover, the blurb; then Lunes 1, BOSTEZO's photo and
+          pennant. Desktop: sticky cover page with the contents on the left.
+  FORM    Programa de fiestas, 4th of 7, seed 0e190a29; staging: interstitial labels (day ribbons, adverts,
+          the mayor's letter).
+-->
+<html lang="es" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E3262B">
+<meta name="color-scheme" content="light">
+<title>FIESTAS DE LOS JUEGOS VIRALES · Programa de actos</title>
+<meta name="description" content="Diez juegos cortos para el navegador, uno por día: bostezos contagiosos, el metro de Tokio, un gato con tostada… Gratis, en el móvil o en el ordenador.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FIESTAS DE LOS JUEGOS VIRALES · Programa de actos">
+<meta property="og:description" content="Diez juegos cortos para el navegador, uno por día. Gratis y sin instalar nada, en el móvil o en el ordenador.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/hub/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La portada roja de un programa de fiestas con banderines y la palabra FIESTAS en amarillo, junto al primer acto: BOSTEZO, el lunes 1 a las 09:00.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="hub/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="hub/fonts/Ultra.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="hub/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="hub/hub.css">
+</head>
+<body>
+<a class="skip" href="#programa" data-t="skip">Saltar al programa</a>
+<div class="booklet">
+  <header class="cover" id="portada">
+    <svg class="bunting" aria-hidden="true" focusable="false"></svg>
+    <div class="cover-in">
+      <div class="cover-top">
+        <a class="to-salon" id="salon" href="./"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 12H6m5-6-6 6 6 6"/></svg><span data-t="salon">Salón recreativo</span></a>
+        <button class="lang" type="button" id="lang" lang="en">English edition</button>
+      </div>
+      <h1 class="mast">
+        <span class="mast-big" data-t="fiestas">Fiestas</span>
+        <span class="mast-de" data-t="de">de los juegos virales</span>
+      </h1>
+      <p class="dates"><span data-t="dates">Del 1 al 10</span></p>
+      <p class="blurb" data-t="blurb">Diez juegos cortos para el navegador, uno por día. Gratis y sin instalar nada, en el móvil o en el ordenador.</p>
+      <nav class="index" id="index" aria-label="Índice del programa"><ol></ol></nav>
+    </div>
+  </header>
+  <main class="pages" id="programa" tabindex="-1">
+    <div class="prog-h">
+      <h2 data-t="programme">Programa de actos</h2>
+      <p class="biro been" id="been" hidden></p>
+      <nav class="strip" id="strip" aria-label="Índice del programa"><ol></ol></nav>
+    </div>
+    <div class="days" id="days"></div>
+    <footer class="back" id="back"></footer>
+  </main>
+</div>
+<noscript>
+  <style>html.js body { opacity: 1; animation: none; } .days, .strip { display: none; }</style>
+  <div class="nojs">
+    <p>Este programa necesita JavaScript para marcar los actos. Los juegos, también. Aquí están los diez:</p>
+    <ol>
+      <li><a href="01-bostezo/">BOSTEZO</a></li>
+      <li><a href="02-que-cierran/">¡QUE CIERRAN!</a></li>
+      <li><a href="03-crujido/">CRUJIDO</a></li>
+      <li><a href="04-patata/">¡PATATA!</a></li>
+      <li><a href="05-perdon/">PERDÓN, PERDÓN</a></li>
+      <li><a href="06-un-solo-viaje/">UN SOLO VIAJE</a></li>
+      <li><a href="07-hipo/">HIPO</a></li>
+      <li><a href="08-la-ola/">LA OLA</a></li>
+      <li><a href="09-la-gota/">LA GOTA</a></li>
+      <li><a href="10-gato-con-tostada/">GATO CON TOSTADA</a></li>
+    </ol>
+  </div>
+</noscript>
+<script type="module" src="hub/main.js"></script>
+</body>
+</html>

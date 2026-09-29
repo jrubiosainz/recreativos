@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+  HIPO · design contract
+  World   A municipal pool in high summer, seen as a sun-faded poster from the 80s: painted tiles,
+          parasols, deck chairs, a lifeguard on his stool and grannies in folding chairs. The Canvas2D
+          pool is the source of truth (tiles, water, props, people, the hippo and his hiccups). The DOM
+          is only what the poster prints: the title is the poster itself, taped to the tile wall; the
+          HUD is its red roundels and PREMIO sticks; the result is the poster's yellow bottom band.
+  Type    Gluten 850 for every letter that shouts (HIPO, level names, ¡BOMBA!); Kanit 600/700 for
+          the small print, Kanit 800 italic for what the lifeguard yells.
+  Colour  navy #1D2F6F, blue #2B4FA3, sky #9FD3E8, pool #3BB7D8, yellow #F6D34A, pink #F06A8E,
+          red #D8322A, paper #F3E6C4, tile #A9C6DA, key line #2A2150, wood #D9B274 / #8A5A2B.
+  Shape   bubble letters with a blue extrusion; red roundels with a white inner ring; ice-lolly
+          PREMIO sticks as stars; masking tape on the corners; «AGOTADO» tape across locked levels.
+  Motion  the hiccup carries the motion: the mascot jolts on the title, the HUD roundel pops, the
+          band's waltz lands its downbeat on each «¡HIP!». Reduced motion keeps every reading and
+          drops the travel (no hit-stop slow motion, no jolts).
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#3BB7D8">
+<meta name="color-scheme" content="light">
+<title>HIPO · Aguanta el hipo. Haz la bomba.</title>
+<meta name="description" content="Hipólito es un hipopótamo bebé con hipo en la piscina municipal. Cada hipo es un salto: aguanta la respiración para guardarlo y saltar más alto, sube al trampolín de diez metros y tírate hecho una bola. Bomba o planchazo.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HIPO · Aguanta el hipo. Haz la bomba.">
+<meta property="og:description" content="Un hipopótamo bebé con hipo, una piscina municipal y un trampolín de diez metros. Cada hipo es un salto; aguanta la respiración y el siguiente será más grande.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/07-hipo/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hipólito, el hipopótamo, hecho una bola en plena bomba sobre la piscina, con el cartel de HIPO.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233BB7D8'/%3E%3Cellipse cx='32' cy='36' rx='20' ry='17' fill='%239C8FD6' stroke='%232A2150' stroke-width='3'/%3E%3Cellipse cx='32' cy='41' rx='13' ry='9' fill='%23F06A8E' stroke='%232A2150' stroke-width='3'/%3E%3Ccircle cx='27' cy='40' r='2' fill='%232A2150'/%3E%3Ccircle cx='37' cy='40' r='2' fill='%232A2150'/%3E%3Ccircle cx='24' cy='26' r='2.6' fill='%232A2150'/%3E%3Ccircle cx='40' cy='26' r='2.6' fill='%232A2150'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Gluten-850-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Kanit-600-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Kanit-700-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/bg_pool.jpg" as="image">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Hipólito, un hipopótamo bebé con hipo, en la piscina municipal"></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">HIPO necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

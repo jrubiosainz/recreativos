@@ -1,0 +1,1482 @@
+{
+ "version": 1,
+ "voices": {
+  "es": {
+   "call_e": {
+    "file": "assets/audio/es/call_e.mp3",
+    "text": "¡Venga, todos juntos! ¡Decid patata!",
+    "dur": 2.927,
+    "we": 2.867,
+    "env": "331huqkggdglje6310010005xztg4kg344bnonj44ie932331111101111146ooj736nmk8316sqd2hpl83gd7300",
+    "cat": "call",
+    "who": "you"
+   },
+   "call_n": {
+    "file": "assets/audio/es/call_n.mp3",
+    "text": "¡Decid patata!",
+    "dur": 1.355,
+    "we": 1.3,
+    "env": "799avwqn7432ipqrqcb2101rzwp71lvupb1hlhc40",
+    "cat": "call",
+    "who": "you"
+   },
+   "call_b": {
+    "file": "assets/audio/es/call_b.mp3",
+    "text": "Venga, que es la última… ¡Decid patata!",
+    "dur": 3.498,
+    "we": 3.433,
+    "env": "43puspjichgb8731111110006ipjkmqun58mvvutzytn92dlhcca85221000000000000000599ptolb35urqb3211iwql4nssj3ff8400",
+    "cat": "callb",
+    "who": "you"
+   },
+   "call_t": {
+    "file": "assets/audio/es/call_t.mp3",
+    "text": "¡Que salta, que salta! ¡Decid patata!",
+    "dur": 3.26,
+    "we": 3.2,
+    "env": "fxrl9443ixvmgf93aqke95211100004kzsd444qvrlic41lpjd621111110000000178usm511lxxs8531dvsj2gzyl2blia500",
+    "cat": "call",
+    "who": "you"
+   },
+   "run": {
+    "file": "assets/audio/es/run.mp3",
+    "text": "¡Voy, voy, voy!",
+    "dur": 1.508,
+    "we": 1.433,
+    "env": "658urnmec9631110375ptnkhhc841100044czytnhhc520",
+    "cat": "run",
+    "who": "you"
+   },
+   "pat_mama_e": {
+    "file": "assets/audio/es/pat_mama_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 1.057,
+    "we": 1.0,
+    "env": "yzpg214ruqk311lrqonljihgedcb8630",
+    "cat": "pat_e",
+    "who": "mama"
+   },
+   "pat_mama_n": {
+    "file": "assets/audio/es/pat_mama_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.612,
+    "we": 0.567,
+    "env": "zxto51pzyyc16rqme30",
+    "cat": "pat_n",
+    "who": "mama"
+   },
+   "pat_mama_b": {
+    "file": "assets/audio/es/pat_mama_b.mp3",
+    "text": "Patata…",
+    "dur": 0.619,
+    "we": 0.567,
+    "env": "zuql513vxup31fqjc40",
+    "cat": "pat_b",
+    "who": "mama"
+   },
+   "pat_papa_e": {
+    "file": "assets/audio/es/pat_papa_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 1.07,
+    "we": 1.0,
+    "env": "wxxvi3102zzsqk31008xvtqoomjfb8500",
+    "cat": "pat_e",
+    "who": "papa"
+   },
+   "pat_papa_n": {
+    "file": "assets/audio/es/pat_papa_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.642,
+    "we": 0.567,
+    "env": "mxti31oyzm31fid96510",
+    "cat": "pat_n",
+    "who": "papa"
+   },
+   "pat_papa_b": {
+    "file": "assets/audio/es/pat_papa_b.mp3",
+    "text": "Patata…",
+    "dur": 0.679,
+    "we": 0.633,
+    "env": "rrmi931pyzxr52mnic930",
+    "cat": "pat_b",
+    "who": "papa"
+   },
+   "pat_lucia_e": {
+    "file": "assets/audio/es/pat_lucia_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 0.965,
+    "we": 0.9,
+    "env": "wzzr421pwxp511fqolkigfedcb9500",
+    "cat": "pat_e",
+    "who": "lucia"
+   },
+   "pat_lucia_n": {
+    "file": "assets/audio/es/pat_lucia_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.476,
+    "we": 0.4,
+    "env": "zwm3ivrc1eha520",
+    "cat": "pat_n",
+    "who": "lucia"
+   },
+   "pat_lucia_b": {
+    "file": "assets/audio/es/pat_lucia_b.mp3",
+    "text": "Patata…",
+    "dur": 0.538,
+    "we": 0.467,
+    "env": "uzs44uvq61egda500",
+    "cat": "pat_b",
+    "who": "lucia"
+   },
+   "pat_abuela_e": {
+    "file": "assets/audio/es/pat_abuela_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 1.186,
+    "we": 1.133,
+    "env": "ptomg81108mjfd5111cjgedbadouyzwpe740",
+    "cat": "pat_e",
+    "who": "abuela"
+   },
+   "pat_abuela_n": {
+    "file": "assets/audio/es/pat_abuela_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.716,
+    "we": 0.7,
+    "env": "ysmg72117zvsj321kljf80",
+    "cat": "pat_n",
+    "who": "abuela"
+   },
+   "pat_abuela_b": {
+    "file": "assets/audio/es/pat_abuela_b.mp3",
+    "text": "Patata, hijo…",
+    "dur": 1.596,
+    "we": 1.567,
+    "env": "vzmd32aqtne31cea9631221211111122211jqnd8787cig90",
+    "cat": "pat_b",
+    "who": "abuela"
+   },
+   "pat_abuelo_e": {
+    "file": "assets/audio/es/pat_abuelo_e.mp3",
+    "text": "¿Eh? ¡Ah! ¡Patataaa!",
+    "dur": 2.819,
+    "we": 2.767,
+    "env": "gjlmmqqld3111111111111111111118mrusqmhb84222211111111111dxvpf3erpmc28qppruyzyurlfda40",
+    "cat": "pat_e",
+    "who": "abuelo"
+   },
+   "pat_abuelo_n": {
+    "file": "assets/audio/es/pat_abuelo_n.mp3",
+    "text": "¿Qué? ¡Ah, patata!",
+    "dur": 2.561,
+    "we": 2.5,
+    "env": "6tvwph921111111111111111111111111dsxzzyvsmd942110111111111ouqk37wyuo53ghc97300",
+    "cat": "pat_n",
+    "who": "abuelo"
+   },
+   "pat_abuelo_b": {
+    "file": "assets/audio/es/pat_abuelo_b.mp3",
+    "text": "¿Otra vez? Patata.",
+    "dur": 1.687,
+    "we": 1.6,
+    "env": "mvp7dnvwskryyvj422222211111111111ctth3bzzud3cfa8430",
+    "cat": "pat_b",
+    "who": "abuelo"
+   },
+   "pat_paco_e": {
+    "file": "assets/audio/es/pat_paco_e.mp3",
+    "text": "¡Patataaaaa!",
+    "dur": 1.923,
+    "we": 1.8,
+    "env": "ztne119wtre217wwsttttttttssstttttttstrsqpnnmmkigfdcba85430",
+    "cat": "pat_e",
+    "who": "paco"
+   },
+   "pat_paco_n": {
+    "file": "assets/audio/es/pat_paco_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.581,
+    "we": 0.533,
+    "env": "zzue14wyte13hgb830",
+    "cat": "pat_n",
+    "who": "paco"
+   },
+   "pat_paco_b": {
+    "file": "assets/audio/es/pat_paco_b.mp3",
+    "text": "Patatita…",
+    "dur": 0.715,
+    "we": 0.633,
+    "env": "uzsi36mnf2bnlh41cc8520",
+    "cat": "pat_b",
+    "who": "paco"
+   },
+   "pat_mari_e": {
+    "file": "assets/audio/es/pat_mari_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 0.727,
+    "we": 0.7,
+    "env": "xzwn41nvuo517xwwxyzq80",
+    "cat": "pat_e",
+    "who": "mari"
+   },
+   "pat_mari_n": {
+    "file": "assets/audio/es/pat_mari_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.542,
+    "we": 0.5,
+    "env": "zwr83sxri3eoe9620",
+    "cat": "pat_n",
+    "who": "mari"
+   },
+   "pat_mari_b": {
+    "file": "assets/audio/es/pat_mari_b.mp3",
+    "text": "Patata…",
+    "dur": 0.509,
+    "we": 0.433,
+    "env": "zxn47uvm61iha520",
+    "cat": "pat_b",
+    "who": "mari"
+   },
+   "pat_toni_e": {
+    "file": "assets/audio/es/pat_toni_e.mp3",
+    "text": "¡Patata, patata, patataaa!",
+    "dur": 2.939,
+    "we": 2.9,
+    "env": "wvsod31jsvxsc44stplgb41111111ptqkd34ptuqe32musoie7111111lwvqj52jvwwm82gwzuj411mxywskf9730",
+    "cat": "pat_e",
+    "who": "toni"
+   },
+   "pat_toni_n": {
+    "file": "assets/audio/es/pat_toni_n.mp3",
+    "text": "¡Patata, patata!",
+    "dur": 1.472,
+    "we": 1.433,
+    "env": "ptqnj728qtoa2hrnid61111101102wzvg2nsnb2698710",
+    "cat": "pat_n",
+    "who": "toni"
+   },
+   "pat_toni_b": {
+    "file": "assets/audio/es/pat_toni_b.mp3",
+    "text": "Patata, venga.",
+    "dur": 1.606,
+    "we": 1.567,
+    "env": "omh72hrmh52db97311111111111111111168ezwnjidcd9720",
+    "cat": "pat_b",
+    "who": "toni"
+   },
+   "pat_kiko_e": {
+    "file": "assets/audio/es/pat_kiko_e.mp3",
+    "text": "¡Patataaaaa!",
+    "dur": 1.775,
+    "we": 1.733,
+    "env": "xxyvl4115trpnj31115wvuuuvvwwvvvwzyxyzyyxxyxvwvwvuph620",
+    "cat": "pat_e",
+    "who": "kiko"
+   },
+   "pat_kiko_n": {
+    "file": "assets/audio/es/pat_kiko_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.737,
+    "we": 0.667,
+    "env": "ttvud2114zxtk41cnfb8500",
+    "cat": "pat_n",
+    "who": "kiko"
+   },
+   "pat_kiko_b": {
+    "file": "assets/audio/es/pat_kiko_b.mp3",
+    "text": "Pataaata…",
+    "dur": 1.059,
+    "we": 1.0,
+    "env": "ywuk217wxyyzyzyxvwuusi316iheda40",
+    "cat": "pat_b",
+    "who": "kiko"
+   },
+   "pat_encarna_e": {
+    "file": "assets/audio/es/pat_encarna_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 1.168,
+    "we": 1.1,
+    "env": "kpmh318npoj54oto52pzyvvvspomlifb8500",
+    "cat": "pat_e",
+    "who": "encarna"
+   },
+   "pat_encarna_n": {
+    "file": "assets/audio/es/pat_encarna_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.658,
+    "we": 0.6,
+    "env": "oxpic15qzyk25rrme950",
+    "cat": "pat_n",
+    "who": "encarna"
+   },
+   "pat_encarna_b": {
+    "file": "assets/audio/es/pat_encarna_b.mp3",
+    "text": "Patata…",
+    "dur": 0.528,
+    "we": 0.5,
+    "env": "zvkb25pqoa1efb60",
+    "cat": "pat_b",
+    "who": "encarna"
+   },
+   "pat_raul_e": {
+    "file": "assets/audio/es/pat_raul_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 0.734,
+    "we": 0.7,
+    "env": "tzsn811kxsmh21eqomkh900",
+    "cat": "pat_e",
+    "who": "raul"
+   },
+   "pat_raul_n": {
+    "file": "assets/audio/es/pat_raul_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.725,
+    "we": 0.667,
+    "env": "zzslhd2224rywqa2emgb40",
+    "cat": "pat_n",
+    "who": "raul"
+   },
+   "pat_raul_b": {
+    "file": "assets/audio/es/pat_raul_b.mp3",
+    "text": "Patata, tío.",
+    "dur": 1.122,
+    "we": 1.067,
+    "env": "oqnh21knnh22gb753100006hiimwzuk940",
+    "cat": "pat_b",
+    "who": "raul"
+   },
+   "pat_you_e": {
+    "file": "assets/audio/es/pat_you_e.mp3",
+    "text": "¡Patataaa!",
+    "dur": 1.049,
+    "we": 1.0,
+    "env": "lxwso5111fsporg25muyzzxxxspkb740",
+    "cat": "pat_e",
+    "who": "you"
+   },
+   "pat_you_n": {
+    "file": "assets/audio/es/pat_you_n.mp3",
+    "text": "¡Patata!",
+    "dur": 0.66,
+    "we": 0.6,
+    "env": "vwsjb21qzzre2bjdb730",
+    "cat": "pat_n",
+    "who": "you"
+   },
+   "pat_you_b": {
+    "file": "assets/audio/es/pat_you_b.mp3",
+    "text": "Patata…",
+    "dur": 1.043,
+    "we": 1.0,
+    "env": "xyzzxwutqc2111ovussl5117jgeca730",
+    "cat": "pat_b",
+    "who": "you"
+   },
+   "r_ya": {
+    "file": "assets/audio/es/r_ya.mp3",
+    "text": "¿Ya está?",
+    "dur": 0.63,
+    "we": 0.6,
+    "env": "84nusttm3225wzwpg80",
+    "cat": "react",
+    "who": "mama"
+   },
+   "r_salido": {
+    "file": "assets/audio/es/r_salido.mp3",
+    "text": "¿Ha salido bien?",
+    "dur": 1.224,
+    "we": 1.2,
+    "env": "zyzrma54344ruopoorrpcsusaeiipollqzwf0",
+    "cat": "react",
+    "who": "abuela"
+   },
+   "r_otra": {
+    "file": "assets/audio/es/r_otra.mp3",
+    "text": "¡Otra, otra!",
+    "dur": 1.195,
+    "we": 1.133,
+    "env": "swxe5oloke8211111111111gwzr46orslc50",
+    "cat": "react",
+    "who": "kiko"
+   },
+   "r_paco": {
+    "file": "assets/audio/es/r_paco.mp3",
+    "text": "Uy… creo que he parpadeado.",
+    "dur": 2.367,
+    "we": 2.333,
+    "env": "enturlfb85311111011110111111004cksuyzys913cjlptk3kspj51lmkcjkjmoqefgb700",
+    "cat": "react",
+    "who": "paco"
+   },
+   "r_cara": {
+    "file": "assets/audio/es/r_cara.mp3",
+    "text": "Me duele la cara de sonreír.",
+    "dur": 2.138,
+    "we": 2.067,
+    "env": "lvxzxwvoclmnttspmpnf41000boqmrrj41kwuoqrpoong545rqrpjklrpnmnme420",
+    "cat": "react",
+    "who": "mari"
+   },
+   "r_flash": {
+    "file": "assets/audio/es/r_flash.mp3",
+    "text": "¡Qué fogonazo! No veo nada.",
+    "dur": 2.556,
+    "we": 2.5,
+    "env": "botvwo7229vwqhnpmjorsi522gid9421111101111111111115dkpwyyomzxxsrqquvxvmqlga630",
+    "cat": "react",
+    "who": "abuelo"
+   },
+   "r_sol": {
+    "file": "assets/audio/es/r_sol.mp3",
+    "text": "¡Que nos achicharramos!",
+    "dur": 1.654,
+    "we": 1.433,
+    "env": "4nrpmihkmmf423illb135gid446iigbdlxzxniida973334420",
+    "cat": "react",
+    "who": "papa"
+   },
+   "r_paella": {
+    "file": "assets/audio/es/r_paella.mp3",
+    "text": "¡Venga, que se enfría la paella!",
+    "dur": 2.269,
+    "we": 2.233,
+    "env": "32ozxogfafga641111000000006hqsh324rqjje4339kmrqqspjrrf5kqnlkjf7chb710",
+    "cat": "react",
+    "who": "encarna"
+   },
+   "r_toni": {
+    "file": "assets/audio/es/r_toni.mp3",
+    "text": "¡Esa ha salido fenomenal, seguro!",
+    "dur": 2.263,
+    "we": 2.2,
+    "env": "qzuc43fqpib4100jrmh53enijpogol82dolqonqolnjd876411111123trnnvxqhg9400",
+    "cat": "react",
+    "who": "toni"
+   },
+   "r_movil": {
+    "file": "assets/audio/es/r_movil.mp3",
+    "text": "¿Me puedo mover ya?",
+    "dur": 1.282,
+    "we": 1.233,
+    "env": "epvvl411dxzvtglwuqqrtsmjuuskliaewxyum50",
+    "cat": "react",
+    "who": "lucia"
+   },
+   "c_donde": {
+    "file": "assets/audio/es/c_donde.mp3",
+    "text": "¿Dónde me pongo yo?",
+    "dur": 1.61,
+    "we": 1.6,
+    "env": "776qzxttrmjklklbptoilmnh32eornnopphqxskcgpqpqpj70",
+    "cat": "chat",
+    "who": "abuela"
+   },
+   "c_barriga": {
+    "file": "assets/audio/es/c_barriga.mp3",
+    "text": "Juan, mete la barriga.",
+    "dur": 2.102,
+    "we": 2.033,
+    "env": "56544ftvsnjffdb51111111111111111dnquzxvm24qsrwykpurghrtqifkf9400",
+    "cat": "chat",
+    "who": "mama"
+   },
+   "c_pelo": {
+    "file": "assets/audio/es/c_pelo.mp3",
+    "text": "¿Se me ve bien el pelo?",
+    "dur": 1.666,
+    "we": 1.633,
+    "env": "12223ovuutqoorrrspfnvuspfsvwrruuuuxq521dzwtqrvywe00",
+    "cat": "chat",
+    "who": "mari"
+   },
+   "c_vestido": {
+    "file": "assets/audio/es/c_vestido.mp3",
+    "text": "¡Que se vea el vestido!",
+    "dur": 1.563,
+    "we": 1.5,
+    "env": "mzsg433eonhapsrtusme5106rysqbgsl94321luujdkd850",
+    "cat": "chat",
+    "who": "lucia"
+   },
+   "c_bajita": {
+    "file": "assets/audio/es/c_bajita.mp3",
+    "text": "Mamá, ponte delante, que eres bajita.",
+    "dur": 3.416,
+    "we": 3.367,
+    "env": "7corpjmvwvuohc821101100001htsusrrh4axyokwtpsstqpof44hhec83211111111116fhhikrtvnzxre8awxh45cqsl45lie9640",
+    "cat": "chat",
+    "who": "papa"
+   },
+   "c_gafas": {
+    "file": "assets/audio/es/c_gafas.mp3",
+    "text": "¿Me quito las gafas o qué?",
+    "dur": 1.487,
+    "we": 1.433,
+    "env": "eknoo96iuh4pzusutrjeirxwk34utpe34oo816ppplh50",
+    "cat": "chat",
+    "who": "abuelo"
+   },
+   "c_calor": {
+    "file": "assets/audio/es/c_calor.mp3",
+    "text": "Qué calor, por Dios.",
+    "dur": 1.635,
+    "we": 1.433,
+    "env": "exxt714hookmqtsrh97511110001irslkh9hqxzvpkf4344300",
+    "cat": "chat",
+    "who": "paco"
+   },
+   "c_tarta": {
+    "file": "assets/audio/es/c_tarta.mp3",
+    "text": "¿Cuándo nos comemos la tarta?",
+    "dur": 1.502,
+    "we": 1.467,
+    "env": "buutqqkzzwxxka42guqqvutuwqdjpog2cpqgl41ntpnc00",
+    "cat": "chat",
+    "who": "kiko"
+   },
+   "c_pajarito": {
+    "file": "assets/audio/es/c_pajarito.mp3",
+    "text": "Tú mira al pajarito, ¿eh?",
+    "dur": 1.675,
+    "we": 1.633,
+    "env": "iuwtoi92111111115hmsyzpsxupi93vt857qmjpoc19khhjjd40",
+    "cat": "chat",
+    "who": "toni"
+   },
+   "c_nino": {
+    "file": "assets/audio/es/c_nino.mp3",
+    "text": "Chsss, que se me duerme el niño.",
+    "dur": 3.333,
+    "we": 3.3,
+    "env": "8afffedbbccaaaa9a878776655443321200000000000109suof4334uxqrssqkertvzwvlsswvutqrstwxxwwwuuusssrqomja20",
+    "cat": "chat",
+    "who": "mari"
+   },
+   "c_movil": {
+    "file": "assets/audio/es/c_movil.mp3",
+    "text": "Un segundo, que estoy escribiendo.",
+    "dur": 2.143,
+    "we": 2.1,
+    "env": "kuzwf224nf5jnljhbeca621100000006kld3211kooqql9225cdjegiffffc9a720",
+    "cat": "chat",
+    "who": "lucia"
+   },
+   "c_perro": {
+    "file": "assets/audio/es/c_perro.mp3",
+    "text": "¡Bolita, quieta!",
+    "dur": 1.412,
+    "we": 1.367,
+    "env": "43qzxwmlto913nnd4211111000000037jxxue1cic30",
+    "cat": "chat",
+    "who": "raul"
+   },
+   "c_turron": {
+    "file": "assets/audio/es/c_turron.mp3",
+    "text": "¿Alguien quiere más turrón?",
+    "dur": 1.777,
+    "we": 1.767,
+    "env": "emosrlielxzwug344kqwxpxpnooooqsrppc33313myvnmntsprum80",
+    "cat": "chat",
+    "who": "encarna"
+   },
+   "c_arena": {
+    "file": "assets/audio/es/c_arena.mp3",
+    "text": "Se me mete arena en los zapatos.",
+    "dur": 2.399,
+    "we": 2.333,
+    "env": "2345btsniijihgghjpqti23ozvtrqhruvtrtwtrf31aiiikni9648ln94ptqi35eda5667500",
+    "cat": "chat",
+    "who": "papa"
+   },
+   "c_ojos": {
+    "file": "assets/audio/es/c_ojos.mp3",
+    "text": "Esta vez no parpadeo, ya verás.",
+    "dur": 3.053,
+    "we": 2.867,
+    "env": "pyzsb4320nsmfgmpql5221111110001ckswyzzwq40ooif31oomdllkieb721100000000365bxyundqofjgd9433320",
+    "cat": "chat",
+    "who": "paco"
+   },
+   "c_prisa": {
+    "file": "assets/audio/es/c_prisa.mp3",
+    "text": "Date prisa, que se me cansa la sonrisa.",
+    "dur": 3.384,
+    "we": 3.367,
+    "env": "55eztlnj210ftti211fjmkjd5433agfc852100000007lun73333ttoonmh317ptnmope333brmgfjg423dpmnojhiloka4337da60",
+    "cat": "chat",
+    "who": "abuela"
+   },
+   "t1": {
+    "file": "assets/audio/es/t1.mp3",
+    "text": "Pues como le decía yo a tu primo…",
+    "dur": 2.14,
+    "we": 2.1,
+    "env": "jtxzxtqnld3223411frljlokrrgklb38rzvtlarrrpe311emf26ph5hjoigec9620",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t2": {
+    "file": "assets/audio/es/t2.mp3",
+    "text": "Esta cámara es buenísima, ¿eh?",
+    "dur": 2.34,
+    "we": 2.3,
+    "env": "pxzxh43211ooe417oqonrtrisqka21110cuxym434hhemrxvqjprtg434glfedbbcjpqh20",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t3": {
+    "file": "assets/audio/es/t3.mp3",
+    "text": "Que se vea bien al niño, ¿eh?",
+    "dur": 1.813,
+    "we": 1.767,
+    "env": "fyvh54enohnqvwuvtjpqsrnqtronnruuvtplkgc72111111jwzush40",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t4": {
+    "file": "assets/audio/es/t4.mp3",
+    "text": "Yo en las fotos siempre salgo bien.",
+    "dur": 1.863,
+    "we": 1.8,
+    "env": "89ozyuqokklj8424mng46iic3236konnk8ilk73imjgejhdhhec976400",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t5": {
+    "file": "assets/audio/es/t5.mp3",
+    "text": "Venga, que no tenemos todo el día.",
+    "dur": 2.351,
+    "we": 2.267,
+    "env": "akzrlhiia52100011000000000000000broltra5romplntqa42119yykqupmf7gfd86420",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t6": {
+    "file": "assets/audio/es/t6.mp3",
+    "text": "¿Ya? ¿Ya ha disparado?",
+    "dur": 1.71,
+    "we": 1.667,
+    "env": "edqupqne6211111111111111hdgvsvwysnvr841runrtujyzl620",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "l_hala": {
+    "file": "assets/audio/es/l_hala.mp3",
+    "text": "¡Hala, se acabó! ¡A comer!",
+    "dur": 2.751,
+    "we": 2.733,
+    "env": "qzzngig8421011111111111122333hkjik816hibfqrf311111111111111011111ipk519osiimpnmcb60",
+    "cat": "leave",
+    "who": "abuela"
+   },
+   "l_basta": {
+    "file": "assets/audio/es/l_basta.mp3",
+    "text": "Ya está bien de fotos, hombre.",
+    "dur": 2.436,
+    "we": 2.367,
+    "env": "769tzwwusoa4219xwskakkqtsoojdpj42bold2398766664211111111110frwqmlgdddb8510",
+    "cat": "leave",
+    "who": "papa"
+   },
+   "w_1": {
+    "file": "assets/audio/es/w_1.mp3",
+    "text": "¡Ay, qué foto más bonita!",
+    "dur": 3.07,
+    "we": 3.033,
+    "env": "feeghihfea31000018gkjkkd865444eqqo911lwvtph7123212122217lopqturqtxs975348e7uzvtqqqopn91fkca40",
+    "cat": "win",
+    "who": "abuela"
+   },
+   "w_2": {
+    "file": "assets/audio/es/w_2.mp3",
+    "text": "¡Esta la enmarcamos!",
+    "dur": 1.865,
+    "we": 1.633,
+    "env": "oxzyj33210bplg92111013cioqpmljkknqogg211hrroihhfb42221100",
+    "cat": "win",
+    "who": "mama"
+   },
+   "w_3": {
+    "file": "assets/audio/es/w_3.mp3",
+    "text": "¡Por fin salgo con los ojos abiertos!",
+    "dur": 2.828,
+    "we": 2.633,
+    "env": "pxzxtnkc53222lpoonnnmf3222ptrlljgisun715jqolkimoe323psrh32lsn72jrpcjnqpfg623fb95212100",
+    "cat": "win",
+    "who": "paco"
+   },
+   "f_1": {
+    "file": "assets/audio/es/f_1.mp3",
+    "text": "¡Otra vez yo con los ojos cerrados!",
+    "dur": 2.158,
+    "we": 2.033,
+    "env": "rzp44qosnhtti667asyuka11100eplkjmmb33grrg6ipi432iqhddihf8cb973320",
+    "cat": "fail",
+    "who": "paco"
+   },
+   "f_2": {
+    "file": "assets/audio/es/f_2.mp3",
+    "text": "Pues vaya… habrá que repetirla.",
+    "dur": 3.002,
+    "we": 2.967,
+    "env": "bqvwqoh433229c988syyzsqb5jfa65420000000000006ekmonhcjjnuyutpc11cttgcfruk2dts43kuwqhhjjije40",
+    "cat": "fail",
+    "who": "abuela"
+   },
+   "f_3": {
+    "file": "assets/audio/es/f_3.mp3",
+    "text": "¡Si es que no os estáis quietos!",
+    "dur": 2.952,
+    "we": 2.767,
+    "env": "12236pqoonmd111apssl423306mlkkklmnpuwzywuspld225jg722211mpqstuk32321043muvvn10bheb7323220",
+    "cat": "fail",
+    "who": "mama"
+   }
+  },
+  "en": {
+   "call_e": {
+    "file": "assets/audio/en/call_e.mp3",
+    "text": "Okay, everybody together! Say cheese!",
+    "dur": 3.199,
+    "we": 3.033,
+    "env": "ltn969onlgb621000fpulefppnifqmniolf44mjcosonbef952111111111111112228urrtxopd4359bzyusrrnfca433300",
+    "cat": "call",
+    "who": "you"
+   },
+   "call_n": {
+    "file": "assets/audio/en/call_n.mp3",
+    "text": "Say cheese!",
+    "dur": 1.266,
+    "we": 1.067,
+    "env": "24455dxqomlhe62adbdzxuutrqpnnomg5445400",
+    "cat": "call",
+    "who": "you"
+   },
+   "call_b": {
+    "file": "assets/audio/en/call_b.mp3",
+    "text": "Come on, last one… Say cheese!",
+    "dur": 2.936,
+    "we": 2.733,
+    "env": "afqzloxssroiea97210100038acflnpook7439fhlpoic888521110000123433hsponlb269cnnljhea85223210",
+    "cat": "callb",
+    "who": "you"
+   },
+   "call_t": {
+    "file": "assets/audio/en/call_t.mp3",
+    "text": "It's about to go! Say cheese!",
+    "dur": 2.901,
+    "we": 2.733,
+    "env": "nuzn5332261bjkb8536oooolb2133jiba7puspmhfc96422111111233333pomnonf7259bemnnidcb996333200",
+    "cat": "call",
+    "who": "you"
+   },
+   "run": {
+    "file": "assets/audio/en/run.mp3",
+    "text": "Coming, coming!",
+    "dur": 1.177,
+    "we": 1.133,
+    "env": "abszvlnrpnjjg5111000089kzylpsqnlkd40",
+    "cat": "run",
+    "who": "you"
+   },
+   "pat_mama_e": {
+    "file": "assets/audio/en/pat_mama_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 1.517,
+    "we": 1.333,
+    "env": "8hhkgduwwyzyyyzyyyzyyxwvutuvxxxxwxvutog7333220",
+    "cat": "pat_e",
+    "who": "mama"
+   },
+   "pat_mama_n": {
+    "file": "assets/audio/en/pat_mama_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.724,
+    "we": 0.533,
+    "env": "7besyzywtsrrqqpj522220",
+    "cat": "pat_n",
+    "who": "mama"
+   },
+   "pat_mama_b": {
+    "file": "assets/audio/en/pat_mama_b.mp3",
+    "text": "Cheese…",
+    "dur": 0.797,
+    "we": 0.6,
+    "env": "6afecqzwwutqomjfc8432210",
+    "cat": "pat_b",
+    "who": "mama"
+   },
+   "pat_papa_e": {
+    "file": "assets/audio/en/pat_papa_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 1.805,
+    "we": 1.5,
+    "env": "agmpoilkjighhiiiifffgegvzzxwvwwwxvvtrqokkhda85533444410",
+    "cat": "pat_e",
+    "who": "papa"
+   },
+   "pat_papa_n": {
+    "file": "assets/audio/en/pat_papa_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.821,
+    "we": 0.6,
+    "env": "7iklpyuuwxzxvsnhea5344530",
+    "cat": "pat_n",
+    "who": "papa"
+   },
+   "pat_papa_b": {
+    "file": "assets/audio/en/pat_papa_b.mp3",
+    "text": "Cheese…",
+    "dur": 0.748,
+    "we": 0.533,
+    "env": "aimizywyuqhfdba74455420",
+    "cat": "pat_b",
+    "who": "papa"
+   },
+   "pat_lucia_e": {
+    "file": "assets/audio/en/pat_lucia_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 0.843,
+    "we": 0.7,
+    "env": "ellizuvwvuttutqpoolhc43310",
+    "cat": "pat_e",
+    "who": "lucia"
+   },
+   "pat_lucia_n": {
+    "file": "assets/audio/en/pat_lucia_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.643,
+    "we": 0.467,
+    "env": "8dfkwttuxzzzpf543310",
+    "cat": "pat_n",
+    "who": "lucia"
+   },
+   "pat_lucia_b": {
+    "file": "assets/audio/en/pat_lucia_b.mp3",
+    "text": "Cheese…",
+    "dur": 0.765,
+    "we": 0.6,
+    "env": "chjmkrzwvtsqnmkjg9333300",
+    "cat": "pat_b",
+    "who": "lucia"
+   },
+   "pat_abuela_e": {
+    "file": "assets/audio/en/pat_abuela_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 1.117,
+    "we": 0.967,
+    "env": "accddgkwzxusqppprssssrsrqpqm933430",
+    "cat": "pat_e",
+    "who": "abuela"
+   },
+   "pat_abuela_n": {
+    "file": "assets/audio/en/pat_abuela_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.872,
+    "we": 0.7,
+    "env": "9chifuzxutsssqolieca7443310",
+    "cat": "pat_n",
+    "who": "abuela"
+   },
+   "pat_abuela_b": {
+    "file": "assets/audio/en/pat_abuela_b.mp3",
+    "text": "Cheese, dear…",
+    "dur": 1.207,
+    "we": 1.167,
+    "env": "abccdwzxvrpoljihhd432224jomlkkkjhhh50",
+    "cat": "pat_b",
+    "who": "abuela"
+   },
+   "pat_abuelo_e": {
+    "file": "assets/audio/en/pat_abuelo_e.mp3",
+    "text": "Eh? Oh! Cheeeese!",
+    "dur": 2.515,
+    "we": 2.333,
+    "env": "ossutusqk622111111111lyzyxxwvtrl5111111111111111117fhhejwzzzzwxutqlkd9333330",
+    "cat": "pat_e",
+    "who": "abuelo"
+   },
+   "pat_abuelo_n": {
+    "file": "assets/audio/en/pat_abuelo_n.mp3",
+    "text": "What? Oh, cheese!",
+    "dur": 2.293,
+    "we": 2.167,
+    "env": "7enxwxtf21111111111111111111jssoje952111111111111114bhgkzzuqokke62230",
+    "cat": "pat_n",
+    "who": "abuelo"
+   },
+   "pat_abuelo_b": {
+    "file": "assets/audio/en/pat_abuelo_b.mp3",
+    "text": "Again? Cheese.",
+    "dur": 1.98,
+    "we": 1.833,
+    "env": "nhb9nwxvvtnnkd8321111111111111111111111115cejyzyvrmkgc644320",
+    "cat": "pat_b",
+    "who": "abuelo"
+   },
+   "pat_paco_e": {
+    "file": "assets/audio/en/pat_paco_e.mp3",
+    "text": "Cheeeeeese!",
+    "dur": 1.621,
+    "we": 1.433,
+    "env": "4789brvvzxzywwvttutrrstuvssropmmmlkjhffecb7322210",
+    "cat": "pat_e",
+    "who": "paco"
+   },
+   "pat_paco_n": {
+    "file": "assets/audio/en/pat_paco_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.606,
+    "we": 0.467,
+    "env": "akhtzxvsroolj723310",
+    "cat": "pat_n",
+    "who": "paco"
+   },
+   "pat_paco_b": {
+    "file": "assets/audio/en/pat_paco_b.mp3",
+    "text": "Cheesy…",
+    "dur": 0.629,
+    "we": 0.6,
+    "env": "6achuvvzujcgkhfdd90",
+    "cat": "pat_b",
+    "who": "paco"
+   },
+   "pat_mari_e": {
+    "file": "assets/audio/en/pat_mari_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 0.899,
+    "we": 0.733,
+    "env": "56adczzvvvrpqrststsoh7333300",
+    "cat": "pat_e",
+    "who": "mari"
+   },
+   "pat_mari_n": {
+    "file": "assets/audio/en/pat_mari_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.562,
+    "we": 0.367,
+    "env": "7bozvrpjgeb422320",
+    "cat": "pat_n",
+    "who": "mari"
+   },
+   "pat_mari_b": {
+    "file": "assets/audio/en/pat_mari_b.mp3",
+    "text": "Cheese…",
+    "dur": 0.706,
+    "we": 0.533,
+    "env": "8gkldzyxyzyutsoe333520",
+    "cat": "pat_b",
+    "who": "mari"
+   },
+   "pat_toni_e": {
+    "file": "assets/audio/en/pat_toni_e.mp3",
+    "text": "Cheese, cheese, cheeeese!",
+    "dur": 2.682,
+    "we": 2.567,
+    "env": "beeooopppppppog4321111111116fcqqqqrrrrrttm9421111111111dhgxzutuuttsttttpmkjfa4320",
+    "cat": "pat_e",
+    "who": "toni"
+   },
+   "pat_toni_n": {
+    "file": "assets/audio/en/pat_toni_n.mp3",
+    "text": "Cheese, cheese!",
+    "dur": 1.453,
+    "we": 1.333,
+    "env": "bgjssvoida9422111111111111116giyxxzrgdba3220",
+    "cat": "pat_n",
+    "who": "toni"
+   },
+   "pat_toni_b": {
+    "file": "assets/audio/en/pat_toni_b.mp3",
+    "text": "Cheese, come on.",
+    "dur": 1.247,
+    "we": 1.2,
+    "env": "8bjzyzxvurnf735155lwwxyxyywvtqnkige940",
+    "cat": "pat_b",
+    "who": "toni"
+   },
+   "pat_kiko_e": {
+    "file": "assets/audio/en/pat_kiko_e.mp3",
+    "text": "Cheeeeeese!",
+    "dur": 1.338,
+    "we": 1.3,
+    "env": "bmlpomwzxxyzzyxwvwwwyyxvutsrqnmi745433720",
+    "cat": "pat_e",
+    "who": "kiko"
+   },
+   "pat_kiko_n": {
+    "file": "assets/audio/en/pat_kiko_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.636,
+    "we": 0.467,
+    "env": "cllrvwyzvpkfa7222200",
+    "cat": "pat_n",
+    "who": "kiko"
+   },
+   "pat_kiko_b": {
+    "file": "assets/audio/en/pat_kiko_b.mp3",
+    "text": "Cheeese…",
+    "dur": 0.999,
+    "we": 0.767,
+    "env": "djfd9xxxzzyxywwvuutrqlg52332200",
+    "cat": "pat_b",
+    "who": "kiko"
+   },
+   "pat_encarna_e": {
+    "file": "assets/audio/en/pat_encarna_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 1.405,
+    "we": 1.367,
+    "env": "9nrrljtzvusstuutttsttsuutrpoomnnmlig8433620",
+    "cat": "pat_e",
+    "who": "encarna"
+   },
+   "pat_encarna_n": {
+    "file": "assets/audio/en/pat_encarna_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.633,
+    "we": 0.467,
+    "env": "bgiqzromkhec97222200",
+    "cat": "pat_n",
+    "who": "encarna"
+   },
+   "pat_encarna_b": {
+    "file": "assets/audio/en/pat_encarna_b.mp3",
+    "text": "Cheese…",
+    "dur": 0.654,
+    "we": 0.467,
+    "env": "ahkhzzvrlkheb8222220",
+    "cat": "pat_b",
+    "who": "encarna"
+   },
+   "pat_raul_e": {
+    "file": "assets/audio/en/pat_raul_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 1.175,
+    "we": 1.0,
+    "env": "7dffhghyzvvuttsrrrsromkiihggfa333320",
+    "cat": "pat_e",
+    "who": "raul"
+   },
+   "pat_raul_n": {
+    "file": "assets/audio/en/pat_raul_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.707,
+    "we": 0.533,
+    "env": "ellqxzwusrqpmhfd544420",
+    "cat": "pat_n",
+    "who": "raul"
+   },
+   "pat_raul_b": {
+    "file": "assets/audio/en/pat_raul_b.mp3",
+    "text": "Cheese, man.",
+    "dur": 1.943,
+    "we": 1.933,
+    "env": "cilnmjxzzyywvtrpollhhfd93344332220112216aegjjjjjkjjkjjklf60",
+    "cat": "pat_b",
+    "who": "raul"
+   },
+   "pat_you_e": {
+    "file": "assets/audio/en/pat_you_e.mp3",
+    "text": "Cheeeese!",
+    "dur": 0.93,
+    "we": 0.733,
+    "env": "abceyxwyyzwttsqponkhe9334320",
+    "cat": "pat_e",
+    "who": "you"
+   },
+   "pat_you_n": {
+    "file": "assets/audio/en/pat_you_n.mp3",
+    "text": "Cheese!",
+    "dur": 0.655,
+    "we": 0.5,
+    "env": "cfdlvutttuwwzqb54420",
+    "cat": "pat_n",
+    "who": "you"
+   },
+   "pat_you_b": {
+    "file": "assets/audio/en/pat_you_b.mp3",
+    "text": "Cheese…",
+    "dur": 1.094,
+    "we": 1.0,
+    "env": "9fhijxzxwxxwwuvuuttutsuttto856540",
+    "cat": "pat_b",
+    "who": "you"
+   },
+   "r_ya": {
+    "file": "assets/audio/en/r_ya.mp3",
+    "text": "Done?",
+    "dur": 0.521,
+    "we": 0.5,
+    "env": "ih5gzxvsqqsuvm60",
+    "cat": "react",
+    "who": "mama"
+   },
+   "r_salido": {
+    "file": "assets/audio/en/r_salido.mp3",
+    "text": "Did it come out all right?",
+    "dur": 1.443,
+    "we": 1.4,
+    "env": "a61fzvhnrg219befrpppqppprjsspnqmlrsporr64740",
+    "cat": "react",
+    "who": "abuela"
+   },
+   "r_otra": {
+    "file": "assets/audio/en/r_otra.mp3",
+    "text": "Again, again!",
+    "dur": 1.232,
+    "we": 1.2,
+    "env": "npg9kyvtuuvyzug2110000bqldfwtrmhccfd00",
+    "cat": "react",
+    "who": "kiko"
+   },
+   "r_paco": {
+    "file": "assets/audio/en/r_paco.mp3",
+    "text": "Oops… I think I blinked.",
+    "dur": 2.268,
+    "we": 2.033,
+    "env": "rzxg21b532332101110000bgg92111swuse4211001000dikkhb73lhhjhda614214400",
+    "cat": "react",
+    "who": "paco"
+   },
+   "r_cara": {
+    "file": "assets/audio/en/r_cara.mp3",
+    "text": "My face hurts from smiling.",
+    "dur": 3.02,
+    "we": 3.0,
+    "env": "lrtusrrpnokg32221104vssrpgd532222221111112344hzztg711222322111111113hwwve334kxvtpmjhffcdga0",
+    "cat": "react",
+    "who": "mari"
+   },
+   "r_flash": {
+    "file": "assets/audio/en/r_flash.mp3",
+    "text": "What a flash! I can't see a thing.",
+    "dur": 2.31,
+    "we": 2.267,
+    "env": "dnzsok83325bfjkkjgd984443211111111113fmb15glijd322eiife6111alkjhfc9720",
+    "cat": "react",
+    "who": "abuelo"
+   },
+   "r_sol": {
+    "file": "assets/audio/en/r_sol.mp3",
+    "text": "We're roasting out here!",
+    "dur": 2.067,
+    "we": 2.033,
+    "env": "8bmvzzwwxwsplihfityxxspc6652dgeb88331000000dorrnj977djiheba9600",
+    "cat": "react",
+    "who": "papa"
+   },
+   "r_paella": {
+    "file": "assets/audio/en/r_paella.mp3",
+    "text": "Come on, the paella's getting cold!",
+    "dur": 2.883,
+    "we": 2.8,
+    "env": "6897hqrpmhihjkllljkjjighhb31000000003su30n76hzwrjklysjjntqf362hsobigcd655dlnifdba987320",
+    "cat": "react",
+    "who": "encarna"
+   },
+   "r_toni": {
+    "file": "assets/audio/en/r_toni.mp3",
+    "text": "That one's perfect, for sure!",
+    "dur": 1.789,
+    "we": 1.767,
+    "env": "efutmghlspmmd5256uzo62eb2113211111111115tnbcdexvslea60",
+    "cat": "react",
+    "who": "toni"
+   },
+   "r_movil": {
+    "file": "assets/audio/en/r_movil.mp3",
+    "text": "Can I move now?",
+    "dur": 0.786,
+    "we": 0.733,
+    "env": "7httywwxztvsn84kxtsrqi40",
+    "cat": "react",
+    "who": "lucia"
+   },
+   "c_donde": {
+    "file": "assets/audio/en/c_donde.mp3",
+    "text": "Where do I stand?",
+    "dur": 1.388,
+    "we": 1.3,
+    "env": "88fwzwqnkjhgea5ekijkhffd443329jigfdb987530",
+    "cat": "chat",
+    "who": "abuela"
+   },
+   "c_barriga": {
+    "file": "assets/audio/en/c_barriga.mp3",
+    "text": "Juan, suck your tummy in.",
+    "dur": 1.89,
+    "we": 1.867,
+    "env": "dhkqstsoopqpma2101111112444445xzk104ixw757sutuvutrpmhff90",
+    "cat": "chat",
+    "who": "mama"
+   },
+   "c_pelo": {
+    "file": "assets/audio/en/c_pelo.mp3",
+    "text": "Does my hair look all right?",
+    "dur": 1.419,
+    "we": 1.367,
+    "env": "97nzwsj6mtuqnkfelpnooolimuo49luttpnstqnle50",
+    "cat": "chat",
+    "who": "mari"
+   },
+   "c_vestido": {
+    "file": "assets/audio/en/c_vestido.mp3",
+    "text": "Make sure you get my dress!",
+    "dur": 2.024,
+    "we": 1.7,
+    "env": "fmryzth25ddccbtwusrplgdiljb6116vxr61ktrmnomc55aimgb5322222110",
+    "cat": "chat",
+    "who": "lucia"
+   },
+   "c_bajita": {
+    "file": "assets/audio/en/c_bajita.mp3",
+    "text": "Mum, go in front, you're short.",
+    "dur": 2.802,
+    "we": 2.633,
+    "env": "6cgprrqmia976521101101111324jrxzwttomg333annnic7232111111111126ahkoqmcbabdomhc7413310",
+    "cat": "chat",
+    "who": "papa"
+   },
+   "c_gafas": {
+    "file": "assets/audio/en/c_gafas.mp3",
+    "text": "Should I take my glasses off?",
+    "dur": 1.633,
+    "we": 1.533,
+    "env": "bectzqurpoa279prj48stsqk8bnrqqql83iojirrsrrrma3200",
+    "cat": "chat",
+    "who": "abuelo"
+   },
+   "c_calor": {
+    "file": "assets/audio/en/c_calor.mp3",
+    "text": "Good Lord, it's hot.",
+    "dur": 1.777,
+    "we": 1.633,
+    "env": "gtwyzzxuicgigloqoljgea9833110100irtl3345555ciid9631320",
+    "cat": "chat",
+    "who": "paco"
+   },
+   "c_tarta": {
+    "file": "assets/audio/en/c_tarta.mp3",
+    "text": "When do we get the cake?",
+    "dur": 1.605,
+    "we": 1.367,
+    "env": "5fyzzwutppqqrm9prlkole96ovo7111fh2788eplf41145410",
+    "cat": "chat",
+    "who": "kiko"
+   },
+   "c_pajarito": {
+    "file": "assets/audio/en/c_pajarito.mp3",
+    "text": "Just watch the birdie, okay?",
+    "dur": 2.125,
+    "we": 2.1,
+    "env": "a99fozsj93413bdoqjhjc2a62dsc73kqppldbc963211111111004fg65kqqnf70",
+    "cat": "chat",
+    "who": "toni"
+   },
+   "c_nino": {
+    "file": "assets/audio/en/c_nino.mp3",
+    "text": "Shh, the baby's dropping off.",
+    "dur": 2.604,
+    "we": 2.367,
+    "env": "7beggdeedc941111111111010010113qpa31lyzvtq9lssuoe87148nwtni29wrrruqme9643333310",
+    "cat": "chat",
+    "who": "mari"
+   },
+   "c_movil": {
+    "file": "assets/audio/en/c_movil.mp3",
+    "text": "One sec, I'm texting.",
+    "dur": 1.58,
+    "we": 1.533,
+    "env": "ahzzprj326mng91142111011110ilqj5ert83421afdc9610",
+    "cat": "chat",
+    "who": "lucia"
+   },
+   "c_perro": {
+    "file": "assets/audio/en/c_perro.mp3",
+    "text": "Bolita, stay!",
+    "dur": 1.457,
+    "we": 1.4,
+    "env": "322uyxqkplf32akg72111111111000122218zyphb950",
+    "cat": "chat",
+    "who": "raul"
+   },
+   "c_turron": {
+    "file": "assets/audio/en/c_turron.mp3",
+    "text": "Anyone want more turrón?",
+    "dur": 1.787,
+    "we": 1.767,
+    "env": "glnptsqhnqomjlifmjiif31eijjkihkjh3147nzphmtnkklnmgeda0",
+    "cat": "chat",
+    "who": "encarna"
+   },
+   "c_arena": {
+    "file": "assets/audio/en/c_arena.mp3",
+    "text": "I've got sand in my shoes.",
+    "dur": 2.19,
+    "we": 2.033,
+    "env": "ruwyzzzxg967punljd2234444otstsstrpnhnjhihlorrplcccbenmjgdb99645540",
+    "cat": "chat",
+    "who": "papa"
+   },
+   "c_ojos": {
+    "file": "assets/audio/en/c_ojos.mp3",
+    "text": "I won't blink this time, you'll see.",
+    "dur": 2.067,
+    "we": 2.0,
+    "env": "ltsnjuyvm6377flptsna316llb2214jifda7666210005cpzyuj433ioib76400",
+    "cat": "chat",
+    "who": "paco"
+   },
+   "c_prisa": {
+    "file": "assets/audio/en/c_prisa.mp3",
+    "text": "Hurry up, my smile's getting tired.",
+    "dur": 2.345,
+    "we": 2.333,
+    "env": "9bjuzxvsmjkjhe6329l83322ejlh63333gtqonpqrroe645jljdiikj6897cfffffddcc80",
+    "cat": "chat",
+    "who": "abuela"
+   },
+   "t1": {
+    "file": "assets/audio/en/t1.mp3",
+    "text": "So like I was telling your cousin…",
+    "dur": 1.637,
+    "we": 1.6,
+    "env": "34nzxspnmpxyn45uxxspvi324hsqnrqrnnk656ozvheiedb810",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t2": {
+    "file": "assets/audio/en/t2.mp3",
+    "text": "That camera's a good one, you know?",
+    "dur": 1.99,
+    "we": 1.967,
+    "env": "7ozum71456hqpsnnrqoe8lmb8756jvvidfgheb9653100112cjrtpsutqj80",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t3": {
+    "file": "assets/audio/en/t3.mp3",
+    "text": "Make sure you get the baby in, yeah?",
+    "dur": 2.485,
+    "we": 2.467,
+    "env": "gqyzr67eebipqrqqiceinnmfeamupj7211krdc84nsrqqdmpppqpnjgec62111111fnsstnhb60",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t4": {
+    "file": "assets/audio/en/t4.mp3",
+    "text": "I always look good in photos.",
+    "dur": 2.007,
+    "we": 1.933,
+    "env": "msquttstk85nwzwwvtsuttqfbghoph8416qurqrgpnlla3appmgdhfdba6210",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t5": {
+    "file": "assets/audio/en/t5.mp3",
+    "text": "Come on, we haven't got all day.",
+    "dur": 2.205,
+    "we": 2.133,
+    "env": "9fzpjnqlmrsqmea864210000001101etxvurqqdjkke7nnpqnnqqnlc8fponljc7520",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "t6": {
+    "file": "assets/audio/en/t6.mp3",
+    "text": "Done? Did it go off?",
+    "dur": 1.607,
+    "we": 1.467,
+    "env": "5gvzspohhfb41111111111113lrcpmc56rvtstxutrka22210",
+    "cat": "talk",
+    "who": "toni"
+   },
+   "l_hala": {
+    "file": "assets/audio/en/l_hala.mp3",
+    "text": "That's it! Time to eat!",
+    "dur": 2.196,
+    "we": 2.033,
+    "env": "fjgeb21233ozurh1044210000000000000000269dllnnlnopg47pm98onic8214500",
+    "cat": "leave",
+    "who": "abuela"
+   },
+   "l_basta": {
+    "file": "assets/audio/en/l_basta.mp3",
+    "text": "That's enough photos, come on.",
+    "dur": 2.334,
+    "we": 2.267,
+    "env": "8nzzys62339gedffipvue4432gvutskuxwssqf4442111111111169csxspqtolhc887510",
+    "cat": "leave",
+    "who": "papa"
+   },
+   "w_1": {
+    "file": "assets/audio/en/w_1.mp3",
+    "text": "Oh, what a lovely photo!",
+    "dur": 2.89,
+    "we": 2.867,
+    "env": "gqtuvxyxwurpolkigfda9889878cmtutn94216cefdcbbbcddddgmtxztg87hioqmlmb4332ixtpolegedbb970",
+    "cat": "win",
+    "who": "abuela"
+   },
+   "w_2": {
+    "file": "assets/audio/en/w_2.mp3",
+    "text": "We're framing this one!",
+    "dur": 1.418,
+    "we": 1.367,
+    "env": "fhpzxyvsma33333honppnnpllkkkh5357jmlkihda40",
+    "cat": "win",
+    "who": "mama"
+   },
+   "w_3": {
+    "file": "assets/audio/en/w_3.mp3",
+    "text": "Finally, a photo with my eyes open!",
+    "dur": 2.958,
+    "we": 2.9,
+    "env": "12utpqnligc876421011111111103kh4211szzztispmliopf13efdca2115nqsttroopnb6610isupc14da76740",
+    "cat": "win",
+    "who": "paco"
+   },
+   "f_1": {
+    "file": "assets/audio/en/f_1.mp3",
+    "text": "Me with my eyes shut, again!",
+    "dur": 2.866,
+    "we": 2.833,
+    "env": "chnvywurpmifa3101101105nvd6kkpmlf311ityvxvwo9aaaanqlh81231111100011103uynhdzwsnica68600",
+    "cat": "fail",
+    "who": "paco"
+   },
+   "f_2": {
+    "file": "assets/audio/en/f_2.mp3",
+    "text": "Oh dear… we'll have to do it again.",
+    "dur": 2.979,
+    "we": 2.967,
+    "env": "pxzyzyuuuumb65iomlkihgffc85423100000100012222annljhc8bbdgixvh757a2bm87ptrtvmopb6lnkiighf90",
+    "cat": "fail",
+    "who": "abuela"
+   },
+   "f_3": {
+    "file": "assets/audio/en/f_3.mp3",
+    "text": "You just can't keep still, can you!",
+    "dur": 1.939,
+    "we": 1.9,
+    "env": "fojb4fpzwwj342376qwtj43664gqh2334422mwrmkf3455qsrrqolidb820",
+    "cat": "fail",
+    "who": "mama"
+   }
+  }
+ },
+ "fx": {},
+ "images": {
+  "bg_comunion_h": "assets/img/bg_comunion_h.jpg",
+  "bg_comunion_v": "assets/img/bg_comunion_v.jpg",
+  "bg_patio_h": "assets/img/bg_patio_h.jpg",
+  "bg_patio_v": "assets/img/bg_patio_v.jpg",
+  "bg_playa_h": "assets/img/bg_playa_h.jpg",
+  "bg_playa_v": "assets/img/bg_playa_v.jpg",
+  "bg_salon_h": "assets/img/bg_salon_h.jpg",
+  "bg_salon_v": "assets/img/bg_salon_v.jpg",
+  "bg_bautizo_h": "assets/img/bg_bautizo_h.jpg",
+  "bg_bautizo_v": "assets/img/bg_bautizo_v.jpg",
+  "bg_plaza_h": "assets/img/bg_plaza_h.jpg",
+  "bg_plaza_v": "assets/img/bg_plaza_v.jpg"
+ }
+}

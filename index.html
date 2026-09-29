@@ -1,0 +1,123 @@
+<!doctype html>
+<!--
+  RECREATIVOS · direction contract
+  THESIS  The ten games live inside the machines of a barrio salón recreativo in 1992: you walk in, pick a
+          cabinet, drop a 25-peseta coin and the camera goes into the tube. Refuses the launcher grid of
+          thumbnails and the synthwave-neon «retro arcade» cliché.
+  OWN-WORLD  Terrazzo floor, walnut wainscot, nicotine-cream plaster, fluorescent tubes that catch, one red
+          neon «Recreativos» over a formica counter; every cabinet painted in its own game's colours;
+          blue enamel plates lettered in condensed Archivo; a brass holed 25-peseta coin; biro on card.
+  STORY   Shutter up → the lights come on → ten machines → coin → the game, live inside the glass → back
+          out to the machine; the plate remembers your stars.
+  FIRST VIEWPORT  From the door: two herringbone rows of cabinets converge on the neon and the counter; the
+          ten marquees repeat as tabs along the bottom.
+  FORM    Walk-in 3D (three.js), guided camera; DOM for every word you can press. World pinned by the
+          brief («salón recreativo»), so no concept roll.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0b10">
+<meta name="color-scheme" content="dark">
+<title>RECREATIVOS · Diez juegos virales, una máquina cada uno</title>
+<meta name="description" content="Un salón recreativo de barrio con diez máquinas y diez juegos cortos para el navegador: bostezos contagiosos, el metro de Tokio, un gato con tostada… Echa una moneda y juega, gratis, en el móvil o en el ordenador.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RECREATIVOS · Diez juegos virales, una máquina cada uno">
+<meta property="og:description" content="Sube la persiana, elige máquina y echa una moneda: diez juegos cortos para el navegador, gratis y sin instalar nada.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/arcade/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Un salón recreativo visto desde la puerta: dos filas de máquinas pintadas cada una de un color convergen hacia un neón rojo que dice Recreativos.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="hub/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="hub/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="hub/fonts/NothingYouCouldDo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="arcade/arcade.min.js">
+<link rel="stylesheet" href="arcade/arcade.css">
+</head>
+<body data-mode="shutter">
+<h1 class="vh" data-t="title">RECREATIVOS · Diez juegos virales, una máquina cada uno</h1>
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<header id="bar">
+  <p class="brand" aria-hidden="true"><span>Recreativos</span></p>
+  <a id="programme" class="chip to-programme" href="programa.html" data-t="poster">Programa de fiestas</a>
+  <button id="sound" class="chip" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="wave" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M16 9l6 6M22 9l-6 6"/></svg><span id="sound-label">Sonido</span></button>
+  <button id="lang" class="chip" type="button" lang="en" aria-label="Read in English">English</button>
+</header>
+
+<div id="tags" aria-hidden="true"></div>
+<p id="hint" aria-hidden="true">Pincha una máquina.</p>
+
+<nav id="machines" aria-label="Las diez máquinas"><ol id="tabs"></ol></nav>
+
+<section id="plate" aria-labelledby="plate-title" aria-hidden="true" inert>
+  <div class="plate-face">
+    <div class="plate-head">
+      <h2 id="plate-title">—</h2>
+      <p id="plate-no">1</p>
+    </div>
+    <p id="plate-line"></p>
+    <p id="plate-pitch"></p>
+    <p id="plate-how"></p>
+  </div>
+  <p id="plate-rec"></p>
+  <div class="plate-row">
+    <button id="prev" class="knob" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span class="vh" data-t="prev">Máquina anterior</span></button>
+    <button id="coin" type="button">
+      <span class="coin" aria-hidden="true"><span class="coin-face"><b>25</b><i>PTAS</i></span></span>
+      <span class="coin-label" data-t="coin">Echar moneda</span>
+    </button>
+    <button id="next" class="knob" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg><span class="vh" data-t="next">Máquina siguiente</span></button>
+  </div>
+  <button id="back" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6m5-6-6 6 6 6"/></svg><span data-t="back">Volver al salón</span></button>
+</section>
+
+<div id="play" hidden>
+  <div id="play-bar">
+    <button id="leave" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6m5-6-6 6 6 6"/></svg><span data-t="leave">Dejar la máquina</span></button>
+    <p id="play-title"></p>
+    <button id="big" type="button" aria-pressed="false">Ampliar</button>
+  </div>
+  <p id="play-wait" aria-hidden="true"></p>
+  <iframe id="game" title="" allow="autoplay; fullscreen; clipboard-write" src="about:blank"></iframe>
+</div>
+
+<div id="shutter">
+  <div class="slats" aria-hidden="true"></div>
+  <div class="shop">
+    <p class="sign" aria-hidden="true">Recreativos</p>
+    <div class="notice">
+      <p class="shop-line" data-t="line">Diez juegos virales, una máquina cada uno.</p>
+      <p class="shop-sub" data-t="sub">Gratis y sin instalar nada, en el móvil o en el ordenador.</p>
+    </div>
+    <button id="open" type="button" disabled><span id="open-label">Encendiendo las máquinas…</span><span id="meter" aria-hidden="true"></span></button>
+    <a class="shop-alt to-programme" href="programa.html" data-t="programme">Prefiero el programa de fiestas</a>
+  </div>
+  <div class="rail" aria-hidden="true"><span class="lock"></span><span class="lock"></span></div>
+</div>
+
+<p id="status" class="vh" aria-live="polite"></p>
+
+<noscript>
+  <div class="noscript">
+    <p>RECREATIVOS necesita JavaScript para encender las máquinas. Los diez juegos, sin salón:</p>
+    <ol>
+      <li><a href="01-bostezo/">BOSTEZO</a></li>
+      <li><a href="02-que-cierran/">¡QUE CIERRAN!</a></li>
+      <li><a href="03-crujido/">CRUJIDO</a></li>
+      <li><a href="04-patata/">¡PATATA!</a></li>
+      <li><a href="05-perdon/">PERDÓN, PERDÓN</a></li>
+      <li><a href="06-un-solo-viaje/">UN SOLO VIAJE</a></li>
+      <li><a href="07-hipo/">HIPO</a></li>
+      <li><a href="08-la-ola/">LA OLA</a></li>
+      <li><a href="09-la-gota/">LA GOTA</a></li>
+      <li><a href="10-gato-con-tostada/">GATO CON TOSTADA</a></li>
+    </ol>
+    <p><a href="programa.html">Programa de fiestas</a></p>
+  </div>
+</noscript>
+<script type="module" src="arcade/arcade.min.js"></script>
+</body>
+</html>

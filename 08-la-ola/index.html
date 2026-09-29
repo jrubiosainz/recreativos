@@ -1,0 +1,52 @@
+<!doctype html>
+<!--
+  LA OLA · design contract
+  World   A football stadium at minute 80, 0–0, seen from the blimp: the whole bowl in a 3/4 oval,
+          thousands of fans in their seats, the LED boards round the pitch and the videomarcador
+          hanging over the centre circle. The Canvas2D stadium is the source of truth (stands, people,
+          the LED ribbon that draws each wave's lap, the players, the big screen and its close-up
+          feed). The DOM is the stadium's own electronics: the title is the scoreboard's fixture list,
+          the HUD is the director's control desk (tally, ON AIR button), the result is the full-time
+          board.
+  Type    Doto 800–900 (LED dot matrix) for every number and every shout on a screen; Big Shoulders
+          Display 800–900 for stadium signage (level names, buttons); Barlow Semi Condensed 500/700
+          for the small print.
+  Colour  panel #07080B, housing #1B1D23 / #2A2D36, LED amber #FFB31A, LED green #39FF7A, tally red
+          #FF3B30, lap cyan #3FD8FF, lap magenta #FF5FD2, paper #F4F1EA; home red #D6283E, away blue.
+  Shape   LED panels behind a pixel grid, housings with rounded corners and bolt heads; the stars are
+          floodlight lamps that switch on; the ON AIR button is a tally light.
+  Motion  the wave carries the motion: the title's attract loop runs a real wave behind the board,
+          LED lines blink at 2–3 Hz, shouts pop with overshoot, the result's lamps switch on one by
+          one. Reduced motion keeps every reading and drops shake, flashing and the attract loop.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#07080B">
+<meta name="color-scheme" content="dark">
+<title>LA OLA · Enfoca. Que se levanten.</title>
+<meta name="description" content="Minuto 80, 0 a 0 y el estadio se aburre. Tú manejas el videomarcador: el que sale en la pantalla gigante se levanta. Empieza la ola y haz que dé la vuelta al estadio antes del pitido final.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LA OLA · Enfoca. Que se levanten.">
+<meta property="og:description" content="Manejas la pantalla gigante del estadio. El que sale en ella se levanta. Empieza la ola y que dé la vuelta entera antes del pitido final.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/08-la-ola/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Un estadio visto desde arriba. La pantalla gigante emite en directo al palco haciendo la ola y marca VUELTA 2.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307080B'/%3E%3Cellipse cx='32' cy='33' rx='24' ry='18' fill='none' stroke='%23D6283E' stroke-width='7'/%3E%3Cellipse cx='32' cy='33' rx='14' ry='9' fill='%232F8A3E'/%3E%3Cpath d='M12 24a24 18 0 0 1 22-9' fill='none' stroke='%23FFB31A' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Doto-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/BigShoulders-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/BarlowSC-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Un estadio visto desde arriba, con miles de aficionados, y un videomarcador que controlas tú"></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">LA OLA necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

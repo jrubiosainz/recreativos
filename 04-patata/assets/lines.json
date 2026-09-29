@@ -1,0 +1,488 @@
+{
+ "call_e": {
+  "who": "you",
+  "cat": "call",
+  "es": "¡Venga, todos juntos! ¡Decid patata!",
+  "en": "Okay, everybody together! Say cheese!"
+ },
+ "call_n": {
+  "who": "you",
+  "cat": "call",
+  "es": "¡Decid patata!",
+  "en": "Say cheese!"
+ },
+ "call_b": {
+  "who": "you",
+  "cat": "callb",
+  "es": "Venga, que es la última… ¡Decid patata!",
+  "en": "Come on, last one… Say cheese!"
+ },
+ "call_t": {
+  "who": "you",
+  "cat": "call",
+  "es": "¡Que salta, que salta! ¡Decid patata!",
+  "en": "It's about to go! Say cheese!"
+ },
+ "run": {
+  "who": "you",
+  "cat": "run",
+  "es": "¡Voy, voy, voy!",
+  "en": "Coming, coming!"
+ },
+ "pat_mama_e": {
+  "who": "mama",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_mama_n": {
+  "who": "mama",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_mama_b": {
+  "who": "mama",
+  "cat": "pat_b",
+  "es": "Patata…",
+  "en": "Cheese…"
+ },
+ "pat_papa_e": {
+  "who": "papa",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_papa_n": {
+  "who": "papa",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_papa_b": {
+  "who": "papa",
+  "cat": "pat_b",
+  "es": "Patata…",
+  "en": "Cheese…"
+ },
+ "pat_lucia_e": {
+  "who": "lucia",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_lucia_n": {
+  "who": "lucia",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_lucia_b": {
+  "who": "lucia",
+  "cat": "pat_b",
+  "es": "Patata…",
+  "en": "Cheese…"
+ },
+ "pat_abuela_e": {
+  "who": "abuela",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_abuela_n": {
+  "who": "abuela",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_abuela_b": {
+  "who": "abuela",
+  "cat": "pat_b",
+  "es": "Patata, hijo…",
+  "en": "Cheese, dear…"
+ },
+ "pat_abuelo_e": {
+  "who": "abuelo",
+  "cat": "pat_e",
+  "es": "¿Eh? ¡Ah! ¡Patataaa!",
+  "en": "Eh? Oh! Cheeeese!"
+ },
+ "pat_abuelo_n": {
+  "who": "abuelo",
+  "cat": "pat_n",
+  "es": "¿Qué? ¡Ah, patata!",
+  "en": "What? Oh, cheese!"
+ },
+ "pat_abuelo_b": {
+  "who": "abuelo",
+  "cat": "pat_b",
+  "es": "¿Otra vez? Patata.",
+  "en": "Again? Cheese."
+ },
+ "pat_paco_e": {
+  "who": "paco",
+  "cat": "pat_e",
+  "es": "¡Patataaaaa!",
+  "en": "Cheeeeeese!"
+ },
+ "pat_paco_n": {
+  "who": "paco",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_paco_b": {
+  "who": "paco",
+  "cat": "pat_b",
+  "es": "Patatita…",
+  "en": "Cheesy…"
+ },
+ "pat_mari_e": {
+  "who": "mari",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_mari_n": {
+  "who": "mari",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_mari_b": {
+  "who": "mari",
+  "cat": "pat_b",
+  "es": "Patata…",
+  "en": "Cheese…"
+ },
+ "pat_toni_e": {
+  "who": "toni",
+  "cat": "pat_e",
+  "es": "¡Patata, patata, patataaa!",
+  "en": "Cheese, cheese, cheeeese!"
+ },
+ "pat_toni_n": {
+  "who": "toni",
+  "cat": "pat_n",
+  "es": "¡Patata, patata!",
+  "en": "Cheese, cheese!"
+ },
+ "pat_toni_b": {
+  "who": "toni",
+  "cat": "pat_b",
+  "es": "Patata, venga.",
+  "en": "Cheese, come on."
+ },
+ "pat_kiko_e": {
+  "who": "kiko",
+  "cat": "pat_e",
+  "es": "¡Patataaaaa!",
+  "en": "Cheeeeeese!"
+ },
+ "pat_kiko_n": {
+  "who": "kiko",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_kiko_b": {
+  "who": "kiko",
+  "cat": "pat_b",
+  "es": "Pataaata…",
+  "en": "Cheeese…"
+ },
+ "pat_encarna_e": {
+  "who": "encarna",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_encarna_n": {
+  "who": "encarna",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_encarna_b": {
+  "who": "encarna",
+  "cat": "pat_b",
+  "es": "Patata…",
+  "en": "Cheese…"
+ },
+ "pat_raul_e": {
+  "who": "raul",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_raul_n": {
+  "who": "raul",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_raul_b": {
+  "who": "raul",
+  "cat": "pat_b",
+  "es": "Patata, tío.",
+  "en": "Cheese, man."
+ },
+ "pat_you_e": {
+  "who": "you",
+  "cat": "pat_e",
+  "es": "¡Patataaa!",
+  "en": "Cheeeese!"
+ },
+ "pat_you_n": {
+  "who": "you",
+  "cat": "pat_n",
+  "es": "¡Patata!",
+  "en": "Cheese!"
+ },
+ "pat_you_b": {
+  "who": "you",
+  "cat": "pat_b",
+  "es": "Patata…",
+  "en": "Cheese…"
+ },
+ "r_ya": {
+  "who": "mama",
+  "cat": "react",
+  "es": "¿Ya está?",
+  "en": "Done?"
+ },
+ "r_salido": {
+  "who": "abuela",
+  "cat": "react",
+  "es": "¿Ha salido bien?",
+  "en": "Did it come out all right?"
+ },
+ "r_otra": {
+  "who": "kiko",
+  "cat": "react",
+  "es": "¡Otra, otra!",
+  "en": "Again, again!"
+ },
+ "r_paco": {
+  "who": "paco",
+  "cat": "react",
+  "es": "Uy… creo que he parpadeado.",
+  "en": "Oops… I think I blinked."
+ },
+ "r_cara": {
+  "who": "mari",
+  "cat": "react",
+  "es": "Me duele la cara de sonreír.",
+  "en": "My face hurts from smiling."
+ },
+ "r_flash": {
+  "who": "abuelo",
+  "cat": "react",
+  "es": "¡Qué fogonazo! No veo nada.",
+  "en": "What a flash! I can't see a thing."
+ },
+ "r_sol": {
+  "who": "papa",
+  "cat": "react",
+  "es": "¡Que nos achicharramos!",
+  "en": "We're roasting out here!"
+ },
+ "r_paella": {
+  "who": "encarna",
+  "cat": "react",
+  "es": "¡Venga, que se enfría la paella!",
+  "en": "Come on, the paella's getting cold!"
+ },
+ "r_toni": {
+  "who": "toni",
+  "cat": "react",
+  "es": "¡Esa ha salido fenomenal, seguro!",
+  "en": "That one's perfect, for sure!"
+ },
+ "r_movil": {
+  "who": "lucia",
+  "cat": "react",
+  "es": "¿Me puedo mover ya?",
+  "en": "Can I move now?"
+ },
+ "c_donde": {
+  "who": "abuela",
+  "cat": "chat",
+  "es": "¿Dónde me pongo yo?",
+  "en": "Where do I stand?"
+ },
+ "c_barriga": {
+  "who": "mama",
+  "cat": "chat",
+  "es": "Juan, mete la barriga.",
+  "en": "Juan, suck your tummy in."
+ },
+ "c_pelo": {
+  "who": "mari",
+  "cat": "chat",
+  "es": "¿Se me ve bien el pelo?",
+  "en": "Does my hair look all right?"
+ },
+ "c_vestido": {
+  "who": "lucia",
+  "cat": "chat",
+  "es": "¡Que se vea el vestido!",
+  "en": "Make sure you get my dress!"
+ },
+ "c_bajita": {
+  "who": "papa",
+  "cat": "chat",
+  "es": "Mamá, ponte delante, que eres bajita.",
+  "en": "Mum, go in front, you're short."
+ },
+ "c_gafas": {
+  "who": "abuelo",
+  "cat": "chat",
+  "es": "¿Me quito las gafas o qué?",
+  "en": "Should I take my glasses off?"
+ },
+ "c_calor": {
+  "who": "paco",
+  "cat": "chat",
+  "es": "Qué calor, por Dios.",
+  "en": "Good Lord, it's hot."
+ },
+ "c_tarta": {
+  "who": "kiko",
+  "cat": "chat",
+  "es": "¿Cuándo nos comemos la tarta?",
+  "en": "When do we get the cake?"
+ },
+ "c_pajarito": {
+  "who": "toni",
+  "cat": "chat",
+  "es": "Tú mira al pajarito, ¿eh?",
+  "en": "Just watch the birdie, okay?"
+ },
+ "c_nino": {
+  "who": "mari",
+  "cat": "chat",
+  "es": "Chsss, que se me duerme el niño.",
+  "en": "Shh, the baby's dropping off."
+ },
+ "c_movil": {
+  "who": "lucia",
+  "cat": "chat",
+  "es": "Un segundo, que estoy escribiendo.",
+  "en": "One sec, I'm texting."
+ },
+ "c_perro": {
+  "who": "raul",
+  "cat": "chat",
+  "es": "¡Bolita, quieta!",
+  "en": "Bolita, stay!"
+ },
+ "c_turron": {
+  "who": "encarna",
+  "cat": "chat",
+  "es": "¿Alguien quiere más turrón?",
+  "en": "Anyone want more turrón?"
+ },
+ "c_arena": {
+  "who": "papa",
+  "cat": "chat",
+  "es": "Se me mete arena en los zapatos.",
+  "en": "I've got sand in my shoes."
+ },
+ "c_ojos": {
+  "who": "paco",
+  "cat": "chat",
+  "es": "Esta vez no parpadeo, ya verás.",
+  "en": "I won't blink this time, you'll see."
+ },
+ "c_prisa": {
+  "who": "abuela",
+  "cat": "chat",
+  "es": "Date prisa, que se me cansa la sonrisa.",
+  "en": "Hurry up, my smile's getting tired."
+ },
+ "t1": {
+  "who": "toni",
+  "cat": "talk",
+  "es": "Pues como le decía yo a tu primo…",
+  "en": "So like I was telling your cousin…"
+ },
+ "t2": {
+  "who": "toni",
+  "cat": "talk",
+  "es": "Esta cámara es buenísima, ¿eh?",
+  "en": "That camera's a good one, you know?"
+ },
+ "t3": {
+  "who": "toni",
+  "cat": "talk",
+  "es": "Que se vea bien al niño, ¿eh?",
+  "en": "Make sure you get the baby in, yeah?"
+ },
+ "t4": {
+  "who": "toni",
+  "cat": "talk",
+  "es": "Yo en las fotos siempre salgo bien.",
+  "en": "I always look good in photos."
+ },
+ "t5": {
+  "who": "toni",
+  "cat": "talk",
+  "es": "Venga, que no tenemos todo el día.",
+  "en": "Come on, we haven't got all day."
+ },
+ "t6": {
+  "who": "toni",
+  "cat": "talk",
+  "es": "¿Ya? ¿Ya ha disparado?",
+  "en": "Done? Did it go off?"
+ },
+ "l_hala": {
+  "who": "abuela",
+  "cat": "leave",
+  "es": "¡Hala, se acabó! ¡A comer!",
+  "en": "That's it! Time to eat!"
+ },
+ "l_basta": {
+  "who": "papa",
+  "cat": "leave",
+  "es": "Ya está bien de fotos, hombre.",
+  "en": "That's enough photos, come on."
+ },
+ "w_1": {
+  "who": "abuela",
+  "cat": "win",
+  "es": "¡Ay, qué foto más bonita!",
+  "en": "Oh, what a lovely photo!"
+ },
+ "w_2": {
+  "who": "mama",
+  "cat": "win",
+  "es": "¡Esta la enmarcamos!",
+  "en": "We're framing this one!"
+ },
+ "w_3": {
+  "who": "paco",
+  "cat": "win",
+  "es": "¡Por fin salgo con los ojos abiertos!",
+  "en": "Finally, a photo with my eyes open!"
+ },
+ "f_1": {
+  "who": "paco",
+  "cat": "fail",
+  "es": "¡Otra vez yo con los ojos cerrados!",
+  "en": "Me with my eyes shut, again!"
+ },
+ "f_2": {
+  "who": "abuela",
+  "cat": "fail",
+  "es": "Pues vaya… habrá que repetirla.",
+  "en": "Oh dear… we'll have to do it again."
+ },
+ "f_3": {
+  "who": "mama",
+  "cat": "fail",
+  "es": "¡Si es que no os estáis quietos!",
+  "en": "You just can't keep still, can you!"
+ }
+}

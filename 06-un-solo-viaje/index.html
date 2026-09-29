@@ -1,0 +1,53 @@
+<!doctype html>
+<!--
+  UN SOLO VIAJE · design contract
+  World   Your own two hands, full of shopping bags, on the way up from a double-parked car to your
+          door: portal, lobby, lift or stairs, landing. The Canvas2D building is the source of truth
+          (rooms, doors, lifts, the stair light, the bags and the fists holding them). The DOM is
+          only what the fruit shop prints and weighs: the scale is the menu, its thermal label is
+          the HUD, and the plastic bag it all came in carries the result.
+  Type    Sofia Sans Extra Condensed 800 for everything printed big; Sofia Sans Condensed 500–700
+          (italic 700 for shouts) for the small print; DSEG7 Classic for whatever an LCD shows.
+  Colour  tile #7f9160 / grout #5f6e45, bezel #ece6d6 / #c8c0ab, LCD #b7c0a1 with segments
+          #1f251d, label #f5f2ea, ink #1c1d1a, brand green #2f6b3f / #3f8a52, pilot #ff8a24,
+          orange #e8762a, red #c8372d, sticker yellow #f6e27f.
+  Shape   thermal labels with a green band and a real EAN-13 (prefix 2, weight in grams); PLU keys
+          with a product on each; checks are printed discs; what-next buttons are paper tags with
+          an eyelet; the result is a round rubber seal.
+  Motion  the hands carry the motion. The scale settles on the weight; the printer feeds the label
+          out; the checks tick one by one and the seal comes down. Reduced motion keeps every
+          reading and every mark, and drops the travel.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2f6b3f">
+<meta name="color-scheme" content="light">
+<title>UN SOLO VIAJE · Súbelo todo de una vez</title>
+<meta name="description" content="Has aparcado en doble fila con toda la compra en el maletero. Reparte las bolsas entre tus dos manos, abre puertas, llama ascensores y enciende luces sin soltar nada, y súbelo todo de una vez antes de que te piten. Seis pisos, un ascensor que no espera y una vecina que no te deja pasar.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="UN SOLO VIAJE · Súbelo todo de una vez">
+<meta property="og:description" content="Toda la compra, dos manos y ni un viaje de más. Llaves con la derecha, el ascensor con la izquierda y, si no te queda mano, con la nariz.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/06-un-solo-viaje/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dos manos cargadas de bolsas de la compra ante el maletero, la pegatina «Sin manos: con la cabeza» y la balanza de frutería marcando 24,400 kg junto a la etiqueta de UN SOLO VIAJE.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f6b3f'/%3E%3Cpath d='M17 23h30l3 31H14z' fill='%23f5f2ea'/%3E%3Cpath d='M24 23v-4a8 8 0 0 1 16 0v4' fill='none' stroke='%23f5f2ea' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M24 35c2.5 3.2 13.5 3.2 16 0' fill='none' stroke='%232f6b3f' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/SofiaSansExtraCondensed-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/SofiaSansCondensed-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/SofiaSansCondensed-Italic-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/DSEG7Classic-Bold-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/manifest.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Tus dos manos cargadas de bolsas, subiendo la compra por el portal"></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">UN SOLO VIAJE necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+/* GATO CON TOSTADA — the kitchen's fridge door around the flat. See the design contract in index.html. */
+@font-face { font-family: 'Fredoka'; src: url(assets/fonts/Fredoka-var.woff2) format('woff2'); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: 'Nunito'; src: url(assets/fonts/Nunito-var.woff2) format('woff2'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Patrick Hand'; src: url(assets/fonts/PatrickHand.woff2) format('woff2'); font-display: swap; }
+
+:root {
+  --ink: #2a1c14; --ink2: #6a5442; --enamel: #f6f2e9; --enamel2: #e4dccb;
+  --butter: #ffd84a; --butter2: #f7c832; --crust: #b86a2c; --ginger: #f08a3c; --redink: #b3261e;
+  --red: #e0463b; --blue: #3b7be0; --yellow: #f2c230; --green: #43b67a;
+  --n-yellow: #fff3a6; --n-pink: #ffd9e0; --n-blue: #d6ecff; --n-green: #e2f5cc; --n-white: #fffdf6;
+  --magnet: 'Fredoka', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+  --biro: 'Patrick Hand', 'Chalkboard SE', 'Comic Sans MS', cursive;
+  --talk: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --safe-t: env(safe-area-inset-top, 0px); --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px); --safe-r: env(safe-area-inset-right, 0px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* a magnet is pulled harder the closer it gets: it accelerates into the door and stops dead */
+  --snap: cubic-bezier(0.6, 0, 0.9, 0.35);
+  /* enamel: a long soft reflection across the door, over a white that yellows a little towards the floor */
+  --enamel-bg: linear-gradient(104deg, rgba(255, 255, 255, 0) 28%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0) 52%), linear-gradient(180deg, #fcfaf5, var(--enamel) 38%, var(--enamel2));
+  /* paper: a faint fibre grain */
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .16 0 0 0 0 .11 0 0 0 0 .08 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --lined: repeating-linear-gradient(180deg, transparent 0 27px, rgba(59, 123, 224, 0.25) 27px 28px);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--ink); color: var(--ink); overflow: hidden; overscroll-behavior: none; }
+body { font: 600 16px/1.35 var(--talk); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+canvas#game { position: fixed; inset: 0; z-index: 1; width: 100vw; height: 100vh; height: 100dvh; display: block; }
+#ui { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+#ui > * { pointer-events: auto; }
+/* the stage takes the touches beside the door and under the HUD */
+#ui > .title, #ui > .play, #ui > .result { pointer-events: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+kbd { display: inline-block; min-width: 1.6em; font: 800 0.8em/1 var(--talk); padding: 0.28em 0.45em 0.22em; border-radius: 6px; background: #fffdf6; color: var(--ink); text-align: center; box-shadow: inset 0 0 0 1.5px var(--ink), 0 2.5px 0 var(--ink); vertical-align: 0.12em; white-space: nowrap; }
+.noscript { position: fixed; inset: 0; display: grid; place-items: center; margin: 0; font: 700 20px var(--talk); color: var(--enamel); }
+.ic { width: 1.25em; height: 1.25em; flex: none; }
+
+/* ---------- screens ---------- */
+.scr { position: absolute; inset: 0; opacity: 1; transition: opacity 0.26s var(--ease); }
+.scr.out { opacity: 0; pointer-events: none; }
+.scr.boot { display: grid; place-items: center; background: var(--ink); color: var(--butter); font: 400 clamp(22px, 3vw, 30px) var(--biro); }
+.scr.boot p { margin: 0; animation: breathe 1.6s ease-in-out infinite; }
+.scr.boot.out { animation: none; }
+@keyframes breathe { 50% { opacity: 0.45; } }
+
+/* ---------- buttons: fat plastic with an ink rim, like everything drawn on the stage ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45em; min-height: 50px; padding: 0.42em 1.15em 0.46em 0.95em; border-radius: 999px; color: var(--ink); background: #fffdf8; box-shadow: inset 0 0 0 2.5px var(--ink), 0 4px 0 var(--ink); font: 600 clamp(16px, 1.75vw, 19px)/1 var(--magnet); letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; transition: transform 0.1s var(--ease), box-shadow 0.1s, background 0.15s; }
+.btn:hover { background: #fff; transform: translateY(-1px); box-shadow: inset 0 0 0 2.5px var(--ink), 0 5px 0 var(--ink); }
+.btn:active { transform: translateY(3px); box-shadow: inset 0 0 0 2.5px var(--ink), 0 1px 0 var(--ink); }
+.btn.butter { background: var(--butter); }
+.btn.butter:hover { background: #ffe168; }
+.btn.blue { color: #fff; background: var(--blue); }
+.btn.blue:hover { background: #4c89ea; }
+.btn .ic { width: 1.2em; height: 1.2em; }
+
+/* a round plastic magnet (sound, language, pause, the Polaroid's way back to the fridge) */
+.rb { --m: var(--red); position: relative; display: inline-grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: 50%; color: #fff; background: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.7) 0 13%, rgba(255, 255, 255, 0) 30%), var(--m); box-shadow: inset 0 0 0 2.5px var(--ink), inset 0 -5px 0 rgba(0, 0, 0, 0.16), 0 3px 0 var(--ink), 0 7px 12px rgba(42, 28, 20, 0.25); transition: transform 0.1s var(--ease), box-shadow 0.1s, filter 0.15s; }
+.rb:hover { filter: brightness(1.07); transform: translateY(-1px); }
+.rb:active { transform: translateY(3px); box-shadow: inset 0 0 0 2.5px var(--ink), inset 0 -5px 0 rgba(0, 0, 0, 0.16), 0 0 0 var(--ink); }
+.rb .ic { width: 22px; height: 22px; }
+.rb.blue { --m: var(--blue); }
+.rb.green { --m: var(--green); }
+.rb.yellow { --m: var(--yellow); color: var(--ink); }
+.rb[aria-pressed='false'] { --m: #9c9087; }
+.rb.lang { font: 700 15px/1 var(--magnet); letter-spacing: 0.04em; }
+
+/* a star earned is a gold star magnet; one to come is its dashed outline in biro */
+.star { display: inline-block; width: 22px; height: 22px; flex: none; vertical-align: middle; }
+.star path { fill: rgba(42, 28, 20, 0.06); stroke: rgba(42, 28, 20, 0.4); stroke-width: 1.6; stroke-dasharray: 2.6 2.4; stroke-linejoin: round; }
+.star.on path { fill: var(--yellow); stroke: var(--ink); stroke-width: 2; stroke-dasharray: none; }
+.star.on { filter: drop-shadow(0 2px 0 rgba(42, 28, 20, 0.35)); }
+
+/* the magnet that holds a note up: a plastic button with a highlight */
+.pin { position: absolute; left: 50%; top: -10px; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.75) 0 16%, rgba(255, 255, 255, 0) 32%), var(--m, var(--red)); box-shadow: inset 0 0 0 2px var(--ink), inset 0 -4px 0 rgba(0, 0, 0, 0.15), 0 3px 4px rgba(42, 28, 20, 0.3); pointer-events: none; }
+
+/* ---------- title: the fridge door beside the flat ---------- */
+.title { display: flex; padding: calc(12px + var(--safe-t)) calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l)); pointer-events: none; }
+.title > * { pointer-events: auto; }
+body.land .title { align-items: center; justify-content: flex-end; padding-right: calc(24px + var(--safe-r)); }
+body:not(.land) .title { align-items: flex-end; justify-content: center; }
+/* a seventies fridge: enamel with one long reflection, big soft corners, a chrome handle down its left side */
+.door { position: relative; display: flex; flex-direction: column; width: min(480px, 44vw); max-height: 100%; padding: 20px 18px 16px 42px; border-radius: 30px 30px 22px 22px; background: var(--enamel-bg); color: var(--ink); box-shadow: inset 0 0 0 2.5px var(--ink), inset 0 3px 0 2.5px rgba(255, 255, 255, 0.95), inset 0 -7px 0 2.5px rgba(154, 138, 110, 0.2), 0 24px 50px rgba(20, 12, 8, 0.5), 0 6px 14px rgba(20, 12, 8, 0.3); animation: doorin 0.6s var(--ease) both; }
+@keyframes doorin { from { opacity: 0; transform: translateX(56px); } }
+body:not(.land) .door { width: min(560px, 100%); max-height: 64%; max-height: 64dvh; animation-name: doorup; }
+@keyframes doorup { from { opacity: 0; transform: translateY(70px); } }
+.handle { position: absolute; left: 13px; top: 15%; bottom: 15%; width: 14px; border-radius: 8px; background: linear-gradient(90deg, #767c84, #e9edf1 28%, #fff 40%, #b8bdc4 62%, #6f757d); box-shadow: inset 0 0 0 2px var(--ink), 3px 5px 7px rgba(42, 28, 20, 0.3); pointer-events: none; }
+
+.d-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+/* the logo in plastic magnet letters, each its own colour and a little askew, clacking onto the door */
+.logo { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.3em; font: 700 clamp(40px, 4.1vw, 58px)/1.04 var(--magnet); }
+.logo .w { display: inline-flex; white-space: nowrap; }
+.ml { display: inline-block; color: var(--c); -webkit-text-stroke: 0.1em var(--ink); paint-order: stroke fill; text-shadow: 0 0.07em 0 var(--ink), 0 0.14em 0.14em rgba(42, 28, 20, 0.3); transform: translateY(var(--y, 0)) rotate(var(--r, 0deg)); margin-right: -0.02em; animation: clack 0.34s var(--snap) calc(0.2s + var(--i, 0) * 0.045s) both; }
+@keyframes clack { from { opacity: 0; transform: translateY(calc(var(--y, 0px) - 0.1em)) rotate(calc(var(--r, 0deg) * 3)) scale(1.4); text-shadow: 0 0.07em 0 var(--ink), 0 0.5em 0.4em rgba(42, 28, 20, 0.2); } }
+.corner { flex: none; display: flex; gap: 8px; margin-top: 2px; }
+.tagline { margin: 6px 0 0; font: 400 clamp(21px, 1.9vw, 25px)/1 var(--biro); color: var(--ink2); transform: rotate(-1.5deg); transform-origin: 0 50%; }
+.laws { margin: 14px 0 0; padding: 0 0 0 1.35em; font: 400 19px/1.22 var(--biro); color: var(--ink); }
+.laws li::marker { font: 700 15px var(--magnet); color: var(--red); }
+.pitch { margin: 8px 0 0; font: 600 15px/1.42 var(--talk); color: var(--ink2); text-wrap: pretty; }
+.pitch b { color: var(--ink); font-weight: 800; }
+
+/* one biro note per room, held up by a magnet: the room, what the family wrote on it, the star magnets won */
+.notes { list-style: none; margin: 14px -8px 0; padding: 16px 8px 10px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; overflow-y: auto; min-height: 0; flex: 1 1 auto; scrollbar-width: thin; overscroll-behavior: contain; touch-action: pan-y; }
+.notes li { display: flex; }
+.note { --c: var(--n-yellow); --m: var(--red); position: relative; flex: 1; display: flex; flex-direction: column; align-items: flex-start; min-height: 104px; padding: 18px 12px 10px 14px; background: var(--grain), var(--c); color: var(--ink); text-align: left; box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.55), 0 1px 1px rgba(42, 28, 20, 0.2), 0 10px 10px -7px rgba(42, 28, 20, 0.5); transform: rotate(var(--r, 0deg)); transform-origin: 50% 4px; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); animation: swing 1s var(--ease) calc(0.3s + var(--i, 0) * 0.07s) both; }
+/* hung on its magnet, a note swings on it and settles: a pendulum, not a bounce */
+@keyframes swing { 0% { opacity: 0; transform: rotate(calc(var(--r, 0deg) + 16deg)); } 38% { opacity: 1; transform: rotate(calc(var(--r, 0deg) - 5deg)); } 68% { transform: rotate(calc(var(--r, 0deg) + 1.5deg)); } }
+.note:hover, .note:focus-visible { transform: rotate(calc(var(--r, 0deg) * 0.25)) translateY(-3px); box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.55), 0 2px 2px rgba(42, 28, 20, 0.2), 0 18px 16px -9px rgba(42, 28, 20, 0.5); }
+.note .pin { top: -10px; }
+.n-name { display: flex; align-items: baseline; gap: 7px; font: 400 22px/1.02 var(--biro); }
+.n-name b { font: 700 19px/1 var(--magnet); color: var(--m); -webkit-text-stroke: 0.12em var(--ink); paint-order: stroke fill; }
+.n-line { margin-top: 5px; font: 400 16.5px/1.16 var(--biro); color: var(--ink2); text-wrap: pretty; }
+.n-foot { margin-top: auto; padding-top: 8px; display: flex; align-items: center; gap: 3px; }
+.go { display: inline-flex; align-items: center; padding: 6px 10px 5px; border-radius: 7px; background: var(--butter); color: var(--ink); font: 700 14.5px/1 var(--magnet); letter-spacing: 0.03em; box-shadow: inset 0 0 0 2px var(--ink), 0 2px 0 var(--ink); transform: rotate(-3deg); white-space: nowrap; animation: nudge 2.6s var(--ease) 1.5s infinite; }
+@keyframes nudge { 0%, 72%, 100% { transform: rotate(-3deg) translateX(0); } 80% { transform: rotate(-3deg) translateX(4px); } 88% { transform: rotate(-3deg) translateX(0); } 94% { transform: rotate(-3deg) translateX(2px); } }
+.note .lock { width: 17px; height: 17px; margin-left: 2px; color: var(--ink2); align-self: center; }
+.note.shut .pin, .note.shut .n-name b { --m: #a89d93; }
+.note.shut { cursor: not-allowed; filter: saturate(0.3); box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.28), 0 7px 8px -7px rgba(42, 28, 20, 0.35); }
+.note.shut > :not(.pin) { opacity: 0.5; }
+.note.nope { animation: nope 0.36s; }
+@keyframes nope { 20%, 60% { transform: rotate(var(--r, 0deg)) translateX(-6px); } 40%, 80% { transform: rotate(var(--r, 0deg)) translateX(6px); } }
+.note.pick { transform: rotate(0deg) scale(1.05); }
+.title.leaving .door { opacity: 0; transform: translateX(46px); transition: transform 0.4s var(--ease), opacity 0.32s; }
+body:not(.land) .title.leaving .door { transform: translateY(60px); }
+
+/* ---------- play: the room's note, the butter in its own wrapper, the red magnet that pauses ---------- */
+.play { pointer-events: none; }
+.hud { position: absolute; top: calc(10px + var(--safe-t)); left: calc(14px + var(--safe-l)); right: calc(12px + var(--safe-r)); height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 14px; pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.lvnote { --c: var(--n-yellow); --m: var(--red); position: relative; display: flex; align-items: baseline; gap: 7px; min-width: 0; padding: 13px 14px 8px; background: var(--grain), var(--c); font: 400 21px/1 var(--biro); color: var(--ink); white-space: nowrap; box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.55), 0 9px 10px -6px rgba(0, 0, 0, 0.5); transform: rotate(-2deg); }
+.lvnote .pin { width: 18px; height: 18px; margin-left: -9px; top: -8px; }
+.lvnote b { font: 700 18px/1 var(--magnet); color: var(--m); -webkit-text-stroke: 0.12em var(--ink); paint-order: stroke fill; }
+.lvnote span { overflow: hidden; text-overflow: ellipsis; }
+.hud .rb { width: 50px; height: 50px; }
+/* the wrapper opened flat, the block of butter on it shrinking from the knife end; a star magnet on the rim
+   marks how much must be left for the third star, and falls off (dashed) once there's less */
+.gauge { position: relative; flex: 0 1 300px; display: flex; align-items: center; gap: 10px; min-width: 150px; }
+.wrap { position: relative; flex: 1; height: 36px; border-radius: 5px; background: repeating-linear-gradient(102deg, rgba(255, 255, 255, 0) 0 9px, rgba(255, 255, 255, 0.55) 9px 11px, rgba(255, 255, 255, 0) 11px 22px), linear-gradient(180deg, #f3f5f7, #cfd5dc 55%, #e7ebef); box-shadow: inset 0 0 0 2px var(--ink), 0 4px 0 rgba(20, 12, 8, 0.45); }
+.wrap::before, .wrap::after { content: ''; position: absolute; top: 5px; bottom: 5px; width: 10px; background: linear-gradient(90deg, #b9c1ca, #eef1f4); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.wrap::before { left: -8px; border-radius: 4px 0 0 4px; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 82%); }
+.wrap::after { right: -8px; border-radius: 0 4px 4px 0; clip-path: polygon(0 0, 100% 18%, 100% 82%, 0 100%); }
+.block { position: absolute; left: 6px; top: 6px; bottom: 6px; width: calc((100% - 12px) * var(--b, 1)); min-width: 0; border-radius: 3px 5px 5px 3px; background: linear-gradient(180deg, #fff3b0 0 18%, var(--butter) 40%, var(--butter2) 88%, #e0ad22); box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.6), inset -3px 0 0 rgba(255, 255, 255, 0.45); transition: width 0.18s linear, filter 0.3s; }
+.gauge.low .block { animation: low 0.8s ease-in-out infinite; }
+@keyframes low { 50% { filter: brightness(1.12) saturate(1.4) hue-rotate(-18deg); } }
+.par { position: absolute; top: -12px; left: calc(6px + (100% - 12px) * var(--p, 0.5)); width: 22px; height: 22px; margin-left: -11px; transition: opacity 0.3s, transform 0.4s var(--ease); }
+.par .star { width: 22px; height: 22px; }
+.gauge.under .par { transform: translateY(5px) rotate(-18deg); }
+.pct { flex: none; min-width: 3.1em; font: 700 19px/1 var(--magnet); color: #fff8ea; text-align: right; font-variant-numeric: tabular-nums; text-shadow: 0 2px 0 rgba(20, 12, 8, 0.7), 0 0 8px rgba(20, 12, 8, 0.6); }
+.pct small { font-size: 0.7em; margin-left: 1px; }
+.play.done .hud .rb { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+
+/* on a touchscreen the two halves of the screen turn the cat; these only say so, and light while held */
+.pads { position: absolute; left: calc(14px + var(--safe-l)); right: calc(14px + var(--safe-r)); bottom: calc(16px + var(--safe-b)); display: none; justify-content: space-between; pointer-events: none; }
+body.touch .pads { display: flex; }
+.tpad { display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%; color: rgba(255, 248, 234, 0.92); background: rgba(42, 28, 20, 0.34); box-shadow: inset 0 0 0 2.5px rgba(255, 248, 234, 0.55); transition: background 0.12s, transform 0.12s var(--ease), color 0.12s; }
+.tpad .ic { width: 40px; height: 40px; }
+.tpad.on { color: var(--ink); background: var(--butter); box-shadow: inset 0 0 0 2.5px var(--ink), 0 3px 0 var(--ink); transform: scale(0.93); }
+.play.done .pads { opacity: 0; transition: opacity 0.3s; }
+
+/* a sticky note the family left on the fridge: how things work in this flat */
+#hint { position: fixed; z-index: 3; left: 50%; top: calc(78px + var(--safe-t)); width: min(440px, calc(100vw - 32px)); padding: 17px 18px 13px; background: var(--grain), var(--n-yellow); color: var(--ink); font: 400 19.5px/1.28 var(--biro); text-wrap: pretty; box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.55), 0 14px 16px -8px rgba(0, 0, 0, 0.55); transform: translateX(-50%) rotate(-1.2deg); transform-origin: 50% 0; pointer-events: none; }
+#hint::before { content: ''; position: absolute; left: 50%; top: -10px; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.75) 0 16%, rgba(255, 255, 255, 0) 32%), var(--blue); box-shadow: inset 0 0 0 2px var(--ink), inset 0 -4px 0 rgba(0, 0, 0, 0.15), 0 3px 4px rgba(42, 28, 20, 0.3); }
+#hint b { font-weight: 400; text-decoration: underline 2px var(--redink); text-underline-offset: 3px; text-decoration-skip-ink: none; }
+#hint kbd { font-size: 14px; }
+#hint.in { animation: hin 0.7s var(--ease); }
+@keyframes hin { 0% { opacity: 0; transform: translateX(-50%) rotate(9deg); } 45% { opacity: 1; transform: translateX(-50%) rotate(-3deg); } 75% { transform: translateX(-50%) rotate(-0.6deg); } }
+#hint[hidden] { display: none; }
+
+/* a small note slid under a magnet at the top of the door */
+#toast { position: fixed; left: 50%; top: calc(12px + var(--safe-t)); z-index: 5; max-width: calc(100vw - 24px); padding: 14px 18px 10px; background: var(--grain), var(--n-white); color: var(--ink); font: 400 20px/1.2 var(--biro); text-align: center; box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.55), 0 14px 18px -8px rgba(0, 0, 0, 0.55); transform: translate(-50%, calc(-100% - 40px - var(--safe-t))) rotate(1deg); opacity: 0; transition: transform 0.45s var(--ease), opacity 0.2s; pointer-events: none; }
+#toast.show { transform: translate(-50%, 0) rotate(1deg); opacity: 1; }
+
+/* ---------- pause: the shopping list, torn off the pad ---------- */
+.pause { display: grid; place-items: center; padding: 20px; background: rgba(42, 28, 20, 0.5); backdrop-filter: blur(3px) saturate(0.8); -webkit-backdrop-filter: blur(3px) saturate(0.8); }
+.list { position: relative; width: min(370px, 100%); filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.45)) drop-shadow(0 3px 3px rgba(0, 0, 0, 0.25)); transform: rotate(-1.5deg); animation: listin 0.5s var(--ease) both; }
+@keyframes listin { from { opacity: 0; transform: translateY(-26px) rotate(4deg); } }
+.sheet { padding: 26px 24px 30px 50px; background: var(--grain), linear-gradient(90deg, transparent 36px, rgba(224, 70, 59, 0.5) 36px 38px, transparent 38px), var(--lined), var(--n-white); background-position: 0 0, 0 0, 0 16px, 0 0; -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 9px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 18px 9px repeat-x; mask: linear-gradient(#000 0 0) top / 100% calc(100% - 9px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 18px 9px repeat-x; }
+.list > .pin { z-index: 1; top: -11px; }
+.list h2 { margin: 0 0 8px; font: 400 44px/1 var(--biro); color: var(--ink); transform: rotate(-1deg); }
+.list .acts { display: grid; gap: 2px; margin: 0 0 12px -8px; }
+/* each thing to do is a line on the list with a box drawn next to it: pick it and it gets ticked */
+.item { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 4px 8px; border-radius: 8px; font: 400 28px/1 var(--biro); color: var(--ink); text-align: left; transition: background 0.15s; }
+.item i { position: relative; flex: none; width: 22px; height: 22px; border: 2.2px solid var(--ink); border-radius: 3px 5px 4px 6px; transform: rotate(-4deg); }
+.item i::after { content: ''; position: absolute; left: 3px; top: -7px; width: 9px; height: 19px; border: solid var(--redink); border-width: 0 3.5px 3.5px 0; transform: rotate(40deg) scale(0.3); opacity: 0; transition: transform 0.18s var(--ease), opacity 0.12s; }
+.item:hover i::after, .item:focus-visible i::after { transform: rotate(40deg) scale(1); opacity: 1; }
+.item:hover { background: rgba(59, 123, 224, 0.08); }
+.item.main span { background: linear-gradient(transparent 52%, rgba(255, 216, 74, 0.95) 52% 90%, transparent 90%); padding: 0 3px; }
+.list .keys { margin: 0; font: 600 14px/1.55 var(--talk); color: var(--ink2); text-wrap: pretty; }
+.list .rb { position: absolute; right: 14px; top: 16px; width: 44px; height: 44px; }
+
+/* ---------- the end: a Polaroid of the landing stuck on the fridge door ---------- */
+.result { display: flex; padding: calc(12px + var(--safe-t)) calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l)); pointer-events: none; }
+body.land .result { align-items: center; justify-content: flex-end; padding-right: calc(24px + var(--safe-r)); }
+body:not(.land) .result { align-items: flex-end; justify-content: center; }
+.rdoor { pointer-events: auto; width: min(440px, 42vw); padding: 22px 20px 16px 42px; overflow-y: auto; scrollbar-width: thin; overscroll-behavior: contain; touch-action: pan-y; animation-duration: 0.5s; }
+body:not(.land) .rdoor { width: min(520px, 100%); max-height: 100%; }
+.polaroid { position: relative; align-self: center; flex: none; width: min(74%, 300px); margin: 8px 0 0; padding: 11px 11px 0; background: linear-gradient(180deg, #fffefb, #f1eee6); box-shadow: inset 0 0 0 1px rgba(42, 28, 20, 0.2), 0 2px 2px rgba(42, 28, 20, 0.25), 0 18px 22px -8px rgba(20, 12, 8, 0.5); transform: rotate(-3deg); animation: stick 0.42s var(--snap) 0.12s both; }
+@keyframes stick { from { opacity: 0; transform: rotate(-9deg) translateY(-14px) scale(1.14); box-shadow: inset 0 0 0 1px rgba(42, 28, 20, 0.2), 0 30px 40px -8px rgba(20, 12, 8, 0.3); } }
+.polaroid .pin { top: -13px; width: 30px; height: 30px; margin-left: -15px; }
+.photo { position: relative; aspect-ratio: 1; background: #231914; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35); }
+/* it develops: out of a milky grey-brown, into colour */
+.photo canvas { display: block; width: 100%; height: 100%; animation: develop 2.8s cubic-bezier(0.3, 0, 0.3, 1) 0.35s both; }
+@keyframes develop { 0% { filter: grayscale(1) sepia(0.55) brightness(2) contrast(0.25) blur(2px); } 35% { filter: grayscale(0.75) sepia(0.4) brightness(1.45) contrast(0.6) blur(0.7px); } 100% { filter: none; } }
+.cap { margin: 0; padding: 10px 4px 14px; font: 400 clamp(25px, 2.3vw, 32px)/1.02 var(--biro); color: var(--ink); text-align: center; text-wrap: balance; }
+.is-lose .cap { color: var(--redink); }
+.r-body { margin-top: 16px; }
+.r-sub { margin: 0; font: 700 16.5px/1.35 var(--talk); color: var(--ink); text-wrap: pretty; }
+.r-stats { margin: 5px 0 0; font: 600 14.5px/1.35 var(--talk); color: var(--ink2); font-variant-numeric: tabular-nums; }
+.r-tip { position: relative; margin: 14px 2px 0; padding: 14px 14px 9px; background: var(--grain), var(--n-yellow); font: 400 18.5px/1.2 var(--biro); color: var(--ink); text-wrap: pretty; box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.5), 0 9px 9px -6px rgba(0, 0, 0, 0.4); transform: rotate(0.8deg); }
+.r-tip .pin { --m: var(--green); top: -9px; width: 20px; height: 20px; margin-left: -10px; }
+.prizes { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 7px; }
+.prizes li { display: flex; align-items: center; gap: 10px; font: 600 15px/1.25 var(--talk); color: var(--ink2); }
+.prizes .star { width: 27px; height: 27px; }
+.prizes li.on.in { color: var(--ink); }
+.prizes li:not(.in) .star.on { filter: none; }
+.prizes li:not(.in) .star ellipse { display: none; }
+.prizes li:not(.in) .star.on path { fill: rgba(42, 28, 20, 0.06); stroke: rgba(42, 28, 20, 0.4); stroke-width: 1.6; stroke-dasharray: 2.6 2.4; }
+.prizes li.in.on .star { animation: clackin 0.26s var(--snap); }
+@keyframes clackin { from { transform: scale(1.8) rotate(-28deg); filter: drop-shadow(0 12px 6px rgba(42, 28, 20, 0.22)); } }
+.result .acts { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+.result .acts .btn { flex: 1 1 auto; }
+.result .acts .rb { --m: var(--green); align-self: center; }
+
+/* ---------- sizes ---------- */
+@media (max-width: 480px) {
+  .door { padding: 16px 12px 12px 34px; border-radius: 24px 24px 18px 18px; }
+  .handle { left: 10px; width: 12px; }
+  .logo { font-size: 37px; }
+  .corner .rb { width: 42px; height: 42px; }
+  .notes { gap: 18px 10px; }
+  .note { min-height: 92px; padding: 16px 9px 8px 11px; }
+  .n-name { font-size: 19px; gap: 5px; }
+  .n-name b { font-size: 16px; }
+  .n-line { font-size: 15px; }
+  .go { font-size: 13px; padding: 5px 8px 4px; }
+  .hud { height: 46px; gap: 10px; left: calc(10px + var(--safe-l)); right: calc(8px + var(--safe-r)); }
+  .lvnote { font-size: 17.5px; padding: 11px 10px 7px; }
+  .lvnote b { font-size: 16px; }
+  .gauge { flex: 1 1 0; min-width: 96px; gap: 7px; }
+  .wrap { height: 32px; }
+  /* no room beside the wrapper for the figure: it's written on the foil, at the knife end */
+  .pct { position: absolute; right: 9px; top: 50%; min-width: 0; transform: translateY(-50%); font-size: 14px; color: var(--ink); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75); pointer-events: none; }
+  .hud .rb { width: 44px; height: 44px; }
+  #hint { top: calc(66px + var(--safe-t)); font-size: 17.5px; }
+  .tpad { width: 66px; height: 66px; }
+  .btn { padding-left: 0.8em; padding-right: 0.9em; }
+  .rdoor { padding: 16px 12px 12px 34px; }
+  .polaroid { width: min(64%, 260px); }
+}
+@media (max-width: 480px) and (max-aspect-ratio: 1/1) { .laws { display: none; } .pitch { font-size: 14px; margin-top: 10px; } }
+/* an upright phone that isn't tall: what a first flight needs, the tutorial says the rest */
+@media (max-height: 760px) and (max-aspect-ratio: 1/1) {
+  .tagline, .laws, .pitch .how { display: none; }
+  .note { min-height: 82px; }
+  .polaroid { width: min(50%, 210px); }
+  .cap { font-size: 22px; padding: 7px 2px 10px; }
+  .r-body { margin-top: 10px; }
+}
+/* a phone on its side: everything packed into the height */
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  .door { padding: 12px 12px 10px 34px; border-radius: 22px; }
+  .handle { left: 10px; width: 12px; }
+  .logo { font-size: 30px; }
+  .corner .rb { width: 40px; height: 40px; }
+  .tagline, .laws, .pitch { display: none; }
+  .notes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 10px; margin-top: 4px; padding-top: 14px; }
+  .note { min-height: 72px; padding: 14px 8px 6px 9px; }
+  .n-line { display: none; }
+  .n-name { font-size: 17px; flex-wrap: wrap; row-gap: 2px; }
+  .hud { height: 44px; top: calc(6px + var(--safe-t)); }
+  .lvnote { font-size: 17px; padding: 10px 10px 6px; }
+  .hud .rb { width: 42px; height: 42px; }
+  #hint { top: calc(58px + var(--safe-t)); width: min(400px, 56vw); font-size: 16.5px; }
+  .tpad { width: 60px; height: 60px; }
+  .rdoor { display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 0 16px; align-items: start; width: min(600px, 64vw); padding: 12px 14px 12px 34px; }
+  .polaroid { width: 100%; margin-top: 10px; }
+  .cap { font-size: 20px; padding: 7px 2px 9px; }
+  .r-body { margin-top: 0; }
+  .r-sub { font-size: 14.5px; }
+  .r-tip { margin-top: 8px; padding: 10px 10px 6px; font-size: 15.5px; }
+  .prizes { margin-top: 8px; gap: 3px; }
+  .prizes li { font-size: 13px; }
+  .prizes .star { width: 22px; height: 22px; }
+  .result .acts { margin-top: 10px; gap: 6px; }
+  .result .acts .btn { min-height: 42px; font-size: 15px; padding: 0.4em 0.75em; }
+  .result .acts .rb { width: 42px; height: 42px; }
+  /* with a next room: again, next and the fridge on one row, sharing under them */
+  .result .acts:has([data-act="next"]) .btn.blue { order: 1; flex-basis: 100%; }
+  .list h2 { font-size: 34px; }
+  .sheet { padding: 16px 20px 22px 50px; }
+  .item { min-height: 42px; font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scr.boot p, .door, .ml, .note, .go, #hint.in, .list, .polaroid, .photo canvas, .prizes li.in.on .star, .gauge.low .block { animation: none; }
+  .title.leaving .door { transform: none; }
+  .note, .tpad, #toast { transition-duration: 0.01s; }
+}

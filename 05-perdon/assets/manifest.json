@@ -1,0 +1,1162 @@
+{
+ "version": 1,
+ "voices": {
+  "es": {
+   "you_ask": {
+    "file": "assets/audio/es/you_ask.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.468,
+    "we": 0.433,
+    "cat": "ask",
+    "who": "you"
+   },
+   "you_askNone": {
+    "file": "assets/audio/es/you_askNone.mp3",
+    "text": "¿Perdón?",
+    "dur": 0.533,
+    "we": 0.5,
+    "cat": "askNone",
+    "who": "you"
+   },
+   "you_brush": {
+    "file": "assets/audio/es/you_brush.mp3",
+    "text": "¡Uy, perdón!",
+    "dur": 1.32,
+    "we": 1.3,
+    "cat": "brush",
+    "who": "you"
+   },
+   "you_d1": {
+    "file": "assets/audio/es/you_d1.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.588,
+    "we": 0.533,
+    "cat": "d1",
+    "who": "you"
+   },
+   "you_d2": {
+    "file": "assets/audio/es/you_d2.mp3",
+    "text": "Perdón, perdón…",
+    "dur": 1.475,
+    "we": 1.433,
+    "cat": "d2",
+    "who": "you"
+   },
+   "you_d3you": {
+    "file": "assets/audio/es/you_d3you.mp3",
+    "text": "Perdón, perdón, perdón",
+    "dur": 2.374,
+    "we": 2.333,
+    "cat": "d3you",
+    "who": "you"
+   },
+   "you_bumpYou": {
+    "file": "assets/audio/es/you_bumpYou.mp3",
+    "text": "¡Ay! ¡Perdón, perdón!",
+    "dur": 1.655,
+    "we": 1.633,
+    "cat": "bumpYou",
+    "who": "you"
+   },
+   "you_missed": {
+    "file": "assets/audio/es/you_missed.mp3",
+    "text": "¡Espere!",
+    "dur": 0.56,
+    "we": 0.5,
+    "cat": "missed",
+    "who": "you"
+   },
+   "f0_d1": {
+    "file": "assets/audio/es/f0_d1.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.475,
+    "we": 0.433,
+    "cat": "d1",
+    "who": "f0"
+   },
+   "f0_d2": {
+    "file": "assets/audio/es/f0_d2.mp3",
+    "text": "Perdón, perdón…",
+    "dur": 1.475,
+    "we": 1.433,
+    "cat": "d2",
+    "who": "f0"
+   },
+   "f0_d3": {
+    "file": "assets/audio/es/f0_d3.mp3",
+    "text": "¿Bailamos?",
+    "dur": 0.73,
+    "we": 0.567,
+    "cat": "d3",
+    "who": "f0"
+   },
+   "f0_part": {
+    "file": "assets/audio/es/f0_part.mp3",
+    "text": "Un placer",
+    "dur": 0.665,
+    "we": 0.6,
+    "cat": "part",
+    "who": "f0"
+   },
+   "f0_aside": {
+    "file": "assets/audio/es/f0_aside.mp3",
+    "text": "Perdona",
+    "dur": 0.468,
+    "we": 0.4,
+    "cat": "aside",
+    "who": "f0"
+   },
+   "f0_cant": {
+    "file": "assets/audio/es/f0_cant.mp3",
+    "text": "No puedo, perdona",
+    "dur": 1.373,
+    "we": 1.333,
+    "cat": "cant",
+    "who": "f0"
+   },
+   "f0_tuck": {
+    "file": "assets/audio/es/f0_tuck.mp3",
+    "text": "Venga, pasa",
+    "dur": 1.237,
+    "we": 1.167,
+    "cat": "tuck",
+    "who": "f0"
+   },
+   "f0_split": {
+    "file": "assets/audio/es/f0_split.mp3",
+    "text": "¡Uy, perdón!",
+    "dur": 0.865,
+    "we": 0.833,
+    "cat": "split",
+    "who": "f0"
+   },
+   "f0_wait": {
+    "file": "assets/audio/es/f0_wait.mp3",
+    "text": "Pasa, pasa",
+    "dur": 1.525,
+    "we": 1.433,
+    "cat": "wait",
+    "who": "f0"
+   },
+   "f0_runner": {
+    "file": "assets/audio/es/f0_runner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.306,
+    "we": 1.267,
+    "cat": "runner",
+    "who": "f0"
+   },
+   "f0_bumpPhone": {
+    "file": "assets/audio/es/f0_bumpPhone.mp3",
+    "text": "¿Eh? Ah… perdón",
+    "dur": 2.012,
+    "we": 1.967,
+    "cat": "bumpPhone",
+    "who": "f0"
+   },
+   "f0_bumpRunner": {
+    "file": "assets/audio/es/f0_bumpRunner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.207,
+    "we": 1.133,
+    "cat": "bumpRunner",
+    "who": "f0"
+   },
+   "f0_bumpTourist": {
+    "file": "assets/audio/es/f0_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.279,
+    "we": 1.233,
+    "cat": "bumpTourist",
+    "who": "f0"
+   },
+   "f0_bumpThem": {
+    "file": "assets/audio/es/f0_bumpThem.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.497,
+    "we": 0.433,
+    "cat": "bumpThem",
+    "who": "f0"
+   },
+   "f0_ole": {
+    "file": "assets/audio/es/f0_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.427,
+    "we": 0.367,
+    "cat": "ole",
+    "who": "f0"
+   },
+   "f1_d1": {
+    "file": "assets/audio/es/f1_d1.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.524,
+    "we": 0.5,
+    "cat": "d1",
+    "who": "f1"
+   },
+   "f1_d2": {
+    "file": "assets/audio/es/f1_d2.mp3",
+    "text": "Perdón, perdón…",
+    "dur": 1.325,
+    "we": 1.3,
+    "cat": "d2",
+    "who": "f1"
+   },
+   "f1_d3": {
+    "file": "assets/audio/es/f1_d3.mp3",
+    "text": "¿Bailamos?",
+    "dur": 0.665,
+    "we": 0.467,
+    "cat": "d3",
+    "who": "f1"
+   },
+   "f1_part": {
+    "file": "assets/audio/es/f1_part.mp3",
+    "text": "Un placer",
+    "dur": 0.708,
+    "we": 0.667,
+    "cat": "part",
+    "who": "f1"
+   },
+   "f1_aside": {
+    "file": "assets/audio/es/f1_aside.mp3",
+    "text": "Perdona",
+    "dur": 0.491,
+    "we": 0.433,
+    "cat": "aside",
+    "who": "f1"
+   },
+   "f1_cant": {
+    "file": "assets/audio/es/f1_cant.mp3",
+    "text": "No puedo, perdona",
+    "dur": 1.379,
+    "we": 1.333,
+    "cat": "cant",
+    "who": "f1"
+   },
+   "f1_tuck": {
+    "file": "assets/audio/es/f1_tuck.mp3",
+    "text": "Venga, pasa",
+    "dur": 1.93,
+    "we": 1.867,
+    "cat": "tuck",
+    "who": "f1"
+   },
+   "f1_split": {
+    "file": "assets/audio/es/f1_split.mp3",
+    "text": "¡Uy, perdón!",
+    "dur": 1.659,
+    "we": 1.633,
+    "cat": "split",
+    "who": "f1"
+   },
+   "f1_wait": {
+    "file": "assets/audio/es/f1_wait.mp3",
+    "text": "Pasa, pasa",
+    "dur": 1.043,
+    "we": 0.967,
+    "cat": "wait",
+    "who": "f1"
+   },
+   "f1_runner": {
+    "file": "assets/audio/es/f1_runner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.286,
+    "we": 1.233,
+    "cat": "runner",
+    "who": "f1"
+   },
+   "f1_bumpPhone": {
+    "file": "assets/audio/es/f1_bumpPhone.mp3",
+    "text": "¿Eh? Ah… perdón",
+    "dur": 1.922,
+    "we": 1.867,
+    "cat": "bumpPhone",
+    "who": "f1"
+   },
+   "f1_bumpRunner": {
+    "file": "assets/audio/es/f1_bumpRunner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.265,
+    "we": 1.233,
+    "cat": "bumpRunner",
+    "who": "f1"
+   },
+   "f1_bumpTourist": {
+    "file": "assets/audio/es/f1_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.623,
+    "we": 1.567,
+    "cat": "bumpTourist",
+    "who": "f1"
+   },
+   "f1_bumpThem": {
+    "file": "assets/audio/es/f1_bumpThem.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.583,
+    "we": 0.533,
+    "cat": "bumpThem",
+    "who": "f1"
+   },
+   "f1_ole": {
+    "file": "assets/audio/es/f1_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.521,
+    "we": 0.467,
+    "cat": "ole",
+    "who": "f1"
+   },
+   "m0_d1": {
+    "file": "assets/audio/es/m0_d1.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.984,
+    "we": 0.933,
+    "cat": "d1",
+    "who": "m0"
+   },
+   "m0_d2": {
+    "file": "assets/audio/es/m0_d2.mp3",
+    "text": "Perdón, perdón…",
+    "dur": 1.086,
+    "we": 1.033,
+    "cat": "d2",
+    "who": "m0"
+   },
+   "m0_d3": {
+    "file": "assets/audio/es/m0_d3.mp3",
+    "text": "¿Bailamos?",
+    "dur": 0.57,
+    "we": 0.533,
+    "cat": "d3",
+    "who": "m0"
+   },
+   "m0_part": {
+    "file": "assets/audio/es/m0_part.mp3",
+    "text": "Un placer",
+    "dur": 0.66,
+    "we": 0.567,
+    "cat": "part",
+    "who": "m0"
+   },
+   "m0_aside": {
+    "file": "assets/audio/es/m0_aside.mp3",
+    "text": "Perdona",
+    "dur": 0.435,
+    "we": 0.4,
+    "cat": "aside",
+    "who": "m0"
+   },
+   "m0_cant": {
+    "file": "assets/audio/es/m0_cant.mp3",
+    "text": "No puedo, perdona",
+    "dur": 1.541,
+    "we": 1.5,
+    "cat": "cant",
+    "who": "m0"
+   },
+   "m0_tuck": {
+    "file": "assets/audio/es/m0_tuck.mp3",
+    "text": "Venga, pasa",
+    "dur": 1.014,
+    "we": 0.933,
+    "cat": "tuck",
+    "who": "m0"
+   },
+   "m0_split": {
+    "file": "assets/audio/es/m0_split.mp3",
+    "text": "¡Uy, perdón!",
+    "dur": 1.249,
+    "we": 1.2,
+    "cat": "split",
+    "who": "m0"
+   },
+   "m0_wait": {
+    "file": "assets/audio/es/m0_wait.mp3",
+    "text": "Pasa, pasa",
+    "dur": 1.264,
+    "we": 1.2,
+    "cat": "wait",
+    "who": "m0"
+   },
+   "m0_runner": {
+    "file": "assets/audio/es/m0_runner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 2.217,
+    "we": 2.133,
+    "cat": "runner",
+    "who": "m0"
+   },
+   "m0_bumpPhone": {
+    "file": "assets/audio/es/m0_bumpPhone.mp3",
+    "text": "¿Eh? Ah… perdón",
+    "dur": 2.689,
+    "we": 2.633,
+    "cat": "bumpPhone",
+    "who": "m0"
+   },
+   "m0_bumpRunner": {
+    "file": "assets/audio/es/m0_bumpRunner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.511,
+    "we": 1.467,
+    "cat": "bumpRunner",
+    "who": "m0"
+   },
+   "m0_bumpTourist": {
+    "file": "assets/audio/es/m0_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.323,
+    "we": 1.267,
+    "cat": "bumpTourist",
+    "who": "m0"
+   },
+   "m0_bumpThem": {
+    "file": "assets/audio/es/m0_bumpThem.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.428,
+    "we": 0.367,
+    "cat": "bumpThem",
+    "who": "m0"
+   },
+   "m0_ole": {
+    "file": "assets/audio/es/m0_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.638,
+    "we": 0.6,
+    "cat": "ole",
+    "who": "m0"
+   },
+   "m1_d1": {
+    "file": "assets/audio/es/m1_d1.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.55,
+    "we": 0.5,
+    "cat": "d1",
+    "who": "m1"
+   },
+   "m1_d2": {
+    "file": "assets/audio/es/m1_d2.mp3",
+    "text": "Perdón, perdón…",
+    "dur": 1.426,
+    "we": 1.367,
+    "cat": "d2",
+    "who": "m1"
+   },
+   "m1_d3": {
+    "file": "assets/audio/es/m1_d3.mp3",
+    "text": "¿Bailamos?",
+    "dur": 0.777,
+    "we": 0.7,
+    "cat": "d3",
+    "who": "m1"
+   },
+   "m1_part": {
+    "file": "assets/audio/es/m1_part.mp3",
+    "text": "Un placer",
+    "dur": 0.854,
+    "we": 0.8,
+    "cat": "part",
+    "who": "m1"
+   },
+   "m1_aside": {
+    "file": "assets/audio/es/m1_aside.mp3",
+    "text": "Perdona",
+    "dur": 0.617,
+    "we": 0.567,
+    "cat": "aside",
+    "who": "m1"
+   },
+   "m1_cant": {
+    "file": "assets/audio/es/m1_cant.mp3",
+    "text": "No puedo, perdona",
+    "dur": 1.86,
+    "we": 1.8,
+    "cat": "cant",
+    "who": "m1"
+   },
+   "m1_tuck": {
+    "file": "assets/audio/es/m1_tuck.mp3",
+    "text": "Venga, pasa",
+    "dur": 1.256,
+    "we": 1.2,
+    "cat": "tuck",
+    "who": "m1"
+   },
+   "m1_split": {
+    "file": "assets/audio/es/m1_split.mp3",
+    "text": "¡Uy, perdón!",
+    "dur": 1.454,
+    "we": 1.4,
+    "cat": "split",
+    "who": "m1"
+   },
+   "m1_wait": {
+    "file": "assets/audio/es/m1_wait.mp3",
+    "text": "Pasa, pasa",
+    "dur": 1.413,
+    "we": 1.333,
+    "cat": "wait",
+    "who": "m1"
+   },
+   "m1_runner": {
+    "file": "assets/audio/es/m1_runner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.485,
+    "we": 1.433,
+    "cat": "runner",
+    "who": "m1"
+   },
+   "m1_bumpPhone": {
+    "file": "assets/audio/es/m1_bumpPhone.mp3",
+    "text": "¿Eh? Ah… perdón",
+    "dur": 2.617,
+    "we": 2.567,
+    "cat": "bumpPhone",
+    "who": "m1"
+   },
+   "m1_bumpRunner": {
+    "file": "assets/audio/es/m1_bumpRunner.mp3",
+    "text": "¡Perdona, perdona!",
+    "dur": 1.634,
+    "we": 1.6,
+    "cat": "bumpRunner",
+    "who": "m1"
+   },
+   "m1_bumpTourist": {
+    "file": "assets/audio/es/m1_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.621,
+    "we": 1.567,
+    "cat": "bumpTourist",
+    "who": "m1"
+   },
+   "m1_bumpThem": {
+    "file": "assets/audio/es/m1_bumpThem.mp3",
+    "text": "¡Perdón!",
+    "dur": 0.637,
+    "we": 0.6,
+    "cat": "bumpThem",
+    "who": "m1"
+   },
+   "m1_ole": {
+    "file": "assets/audio/es/m1_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.628,
+    "we": 0.567,
+    "cat": "ole",
+    "who": "m1"
+   },
+   "granny": {
+    "file": "assets/audio/es/granny.mp3",
+    "text": "¡Ay, hija, qué prisas!",
+    "dur": 2.573,
+    "we": 2.333,
+    "cat": "granny",
+    "who": "granny"
+   },
+   "pa_next": {
+    "file": "assets/audio/es/pa_next.mp3",
+    "text": "Próximo tren con destino Correderas: efectuará su salida en breve. Disculpen las molestias.",
+    "dur": 4.383,
+    "we": 4.333,
+    "cat": "pa",
+    "who": "pa"
+   },
+   "pa_last": {
+    "file": "assets/audio/es/pa_last.mp3",
+    "text": "Atención: el tren con destino Correderas va a efectuar su salida.",
+    "dur": 4.954,
+    "we": 4.9,
+    "cat": "pa",
+    "who": "pa"
+   },
+   "pa_missed": {
+    "file": "assets/audio/es/pa_missed.mp3",
+    "text": "El próximo tren con destino Correderas llegará en cuarenta minutos. Disculpen las molestias.",
+    "dur": 6.467,
+    "we": 6.333,
+    "cat": "pa",
+    "who": "pa"
+   }
+  },
+  "en": {
+   "you_ask": {
+    "file": "assets/audio/en/you_ask.mp3",
+    "text": "Sorry!",
+    "dur": 0.503,
+    "we": 0.467,
+    "cat": "ask",
+    "who": "you"
+   },
+   "you_askNone": {
+    "file": "assets/audio/en/you_askNone.mp3",
+    "text": "Sorry?",
+    "dur": 0.521,
+    "we": 0.5,
+    "cat": "askNone",
+    "who": "you"
+   },
+   "you_brush": {
+    "file": "assets/audio/en/you_brush.mp3",
+    "text": "Oops, sorry!",
+    "dur": 1.293,
+    "we": 1.267,
+    "cat": "brush",
+    "who": "you"
+   },
+   "you_d1": {
+    "file": "assets/audio/en/you_d1.mp3",
+    "text": "Sorry!",
+    "dur": 0.619,
+    "we": 0.6,
+    "cat": "d1",
+    "who": "you"
+   },
+   "you_d2": {
+    "file": "assets/audio/en/you_d2.mp3",
+    "text": "Sorry, sorry…",
+    "dur": 1.445,
+    "we": 1.4,
+    "cat": "d2",
+    "who": "you"
+   },
+   "you_d3you": {
+    "file": "assets/audio/en/you_d3you.mp3",
+    "text": "Sorry, sorry, sorry",
+    "dur": 2.497,
+    "we": 2.4,
+    "cat": "d3you",
+    "who": "you"
+   },
+   "you_bumpYou": {
+    "file": "assets/audio/en/you_bumpYou.mp3",
+    "text": "Ow! Sorry, sorry!",
+    "dur": 2.166,
+    "we": 2.067,
+    "cat": "bumpYou",
+    "who": "you"
+   },
+   "you_missed": {
+    "file": "assets/audio/en/you_missed.mp3",
+    "text": "Wait!",
+    "dur": 0.609,
+    "we": 0.533,
+    "cat": "missed",
+    "who": "you"
+   },
+   "f0_d1": {
+    "file": "assets/audio/en/f0_d1.mp3",
+    "text": "Sorry!",
+    "dur": 0.483,
+    "we": 0.467,
+    "cat": "d1",
+    "who": "f0"
+   },
+   "f0_d2": {
+    "file": "assets/audio/en/f0_d2.mp3",
+    "text": "Sorry, sorry…",
+    "dur": 1.122,
+    "we": 1.1,
+    "cat": "d2",
+    "who": "f0"
+   },
+   "f0_d3": {
+    "file": "assets/audio/en/f0_d3.mp3",
+    "text": "Shall we dance?",
+    "dur": 0.948,
+    "we": 0.7,
+    "cat": "d3",
+    "who": "f0"
+   },
+   "f0_part": {
+    "file": "assets/audio/en/f0_part.mp3",
+    "text": "A pleasure",
+    "dur": 0.7,
+    "we": 0.633,
+    "cat": "part",
+    "who": "f0"
+   },
+   "f0_aside": {
+    "file": "assets/audio/en/f0_aside.mp3",
+    "text": "Sorry",
+    "dur": 0.489,
+    "we": 0.433,
+    "cat": "aside",
+    "who": "f0"
+   },
+   "f0_cant": {
+    "file": "assets/audio/en/f0_cant.mp3",
+    "text": "Can't, sorry",
+    "dur": 1.131,
+    "we": 1.1,
+    "cat": "cant",
+    "who": "f0"
+   },
+   "f0_tuck": {
+    "file": "assets/audio/en/f0_tuck.mp3",
+    "text": "Go on, squeeze by",
+    "dur": 1.577,
+    "we": 1.533,
+    "cat": "tuck",
+    "who": "f0"
+   },
+   "f0_split": {
+    "file": "assets/audio/en/f0_split.mp3",
+    "text": "Oops, sorry!",
+    "dur": 1.205,
+    "we": 1.167,
+    "cat": "split",
+    "who": "f0"
+   },
+   "f0_wait": {
+    "file": "assets/audio/en/f0_wait.mp3",
+    "text": "After you",
+    "dur": 0.691,
+    "we": 0.667,
+    "cat": "wait",
+    "who": "f0"
+   },
+   "f0_runner": {
+    "file": "assets/audio/en/f0_runner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.305,
+    "we": 1.267,
+    "cat": "runner",
+    "who": "f0"
+   },
+   "f0_bumpPhone": {
+    "file": "assets/audio/en/f0_bumpPhone.mp3",
+    "text": "Huh? Oh… sorry",
+    "dur": 2.081,
+    "we": 2.033,
+    "cat": "bumpPhone",
+    "who": "f0"
+   },
+   "f0_bumpRunner": {
+    "file": "assets/audio/en/f0_bumpRunner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.206,
+    "we": 1.167,
+    "cat": "bumpRunner",
+    "who": "f0"
+   },
+   "f0_bumpTourist": {
+    "file": "assets/audio/en/f0_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.184,
+    "we": 1.133,
+    "cat": "bumpTourist",
+    "who": "f0"
+   },
+   "f0_bumpThem": {
+    "file": "assets/audio/en/f0_bumpThem.mp3",
+    "text": "Sorry!",
+    "dur": 0.567,
+    "we": 0.5,
+    "cat": "bumpThem",
+    "who": "f0"
+   },
+   "f0_ole": {
+    "file": "assets/audio/en/f0_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.369,
+    "we": 0.3,
+    "cat": "ole",
+    "who": "f0"
+   },
+   "f1_d1": {
+    "file": "assets/audio/en/f1_d1.mp3",
+    "text": "Sorry!",
+    "dur": 0.545,
+    "we": 0.5,
+    "cat": "d1",
+    "who": "f1"
+   },
+   "f1_d2": {
+    "file": "assets/audio/en/f1_d2.mp3",
+    "text": "Sorry, sorry…",
+    "dur": 1.465,
+    "we": 1.433,
+    "cat": "d2",
+    "who": "f1"
+   },
+   "f1_d3": {
+    "file": "assets/audio/en/f1_d3.mp3",
+    "text": "Shall we dance?",
+    "dur": 1.102,
+    "we": 0.833,
+    "cat": "d3",
+    "who": "f1"
+   },
+   "f1_part": {
+    "file": "assets/audio/en/f1_part.mp3",
+    "text": "A pleasure",
+    "dur": 0.725,
+    "we": 0.7,
+    "cat": "part",
+    "who": "f1"
+   },
+   "f1_aside": {
+    "file": "assets/audio/en/f1_aside.mp3",
+    "text": "Sorry",
+    "dur": 0.568,
+    "we": 0.533,
+    "cat": "aside",
+    "who": "f1"
+   },
+   "f1_cant": {
+    "file": "assets/audio/en/f1_cant.mp3",
+    "text": "Can't, sorry",
+    "dur": 1.209,
+    "we": 1.167,
+    "cat": "cant",
+    "who": "f1"
+   },
+   "f1_tuck": {
+    "file": "assets/audio/en/f1_tuck.mp3",
+    "text": "Go on, squeeze by",
+    "dur": 1.782,
+    "we": 1.733,
+    "cat": "tuck",
+    "who": "f1"
+   },
+   "f1_split": {
+    "file": "assets/audio/en/f1_split.mp3",
+    "text": "Oops, sorry!",
+    "dur": 1.323,
+    "we": 1.3,
+    "cat": "split",
+    "who": "f1"
+   },
+   "f1_wait": {
+    "file": "assets/audio/en/f1_wait.mp3",
+    "text": "After you",
+    "dur": 0.776,
+    "we": 0.733,
+    "cat": "wait",
+    "who": "f1"
+   },
+   "f1_runner": {
+    "file": "assets/audio/en/f1_runner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.325,
+    "we": 1.3,
+    "cat": "runner",
+    "who": "f1"
+   },
+   "f1_bumpPhone": {
+    "file": "assets/audio/en/f1_bumpPhone.mp3",
+    "text": "Huh? Oh… sorry",
+    "dur": 2.408,
+    "we": 2.367,
+    "cat": "bumpPhone",
+    "who": "f1"
+   },
+   "f1_bumpRunner": {
+    "file": "assets/audio/en/f1_bumpRunner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.459,
+    "we": 1.433,
+    "cat": "bumpRunner",
+    "who": "f1"
+   },
+   "f1_bumpTourist": {
+    "file": "assets/audio/en/f1_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.087,
+    "we": 1.033,
+    "cat": "bumpTourist",
+    "who": "f1"
+   },
+   "f1_bumpThem": {
+    "file": "assets/audio/en/f1_bumpThem.mp3",
+    "text": "Sorry!",
+    "dur": 0.602,
+    "we": 0.567,
+    "cat": "bumpThem",
+    "who": "f1"
+   },
+   "f1_ole": {
+    "file": "assets/audio/en/f1_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.571,
+    "we": 0.5,
+    "cat": "ole",
+    "who": "f1"
+   },
+   "m0_d1": {
+    "file": "assets/audio/en/m0_d1.mp3",
+    "text": "Sorry!",
+    "dur": 0.437,
+    "we": 0.367,
+    "cat": "d1",
+    "who": "m0"
+   },
+   "m0_d2": {
+    "file": "assets/audio/en/m0_d2.mp3",
+    "text": "Sorry, sorry…",
+    "dur": 1.286,
+    "we": 1.267,
+    "cat": "d2",
+    "who": "m0"
+   },
+   "m0_d3": {
+    "file": "assets/audio/en/m0_d3.mp3",
+    "text": "Shall we dance?",
+    "dur": 1.83,
+    "we": 1.667,
+    "cat": "d3",
+    "who": "m0"
+   },
+   "m0_part": {
+    "file": "assets/audio/en/m0_part.mp3",
+    "text": "A pleasure",
+    "dur": 0.635,
+    "we": 0.567,
+    "cat": "part",
+    "who": "m0"
+   },
+   "m0_aside": {
+    "file": "assets/audio/en/m0_aside.mp3",
+    "text": "Sorry",
+    "dur": 0.492,
+    "we": 0.433,
+    "cat": "aside",
+    "who": "m0"
+   },
+   "m0_cant": {
+    "file": "assets/audio/en/m0_cant.mp3",
+    "text": "Can't, sorry",
+    "dur": 1.104,
+    "we": 1.067,
+    "cat": "cant",
+    "who": "m0"
+   },
+   "m0_tuck": {
+    "file": "assets/audio/en/m0_tuck.mp3",
+    "text": "Go on, squeeze by",
+    "dur": 1.657,
+    "we": 1.6,
+    "cat": "tuck",
+    "who": "m0"
+   },
+   "m0_split": {
+    "file": "assets/audio/en/m0_split.mp3",
+    "text": "Oops, sorry!",
+    "dur": 1.149,
+    "we": 1.1,
+    "cat": "split",
+    "who": "m0"
+   },
+   "m0_wait": {
+    "file": "assets/audio/en/m0_wait.mp3",
+    "text": "After you",
+    "dur": 0.641,
+    "we": 0.567,
+    "cat": "wait",
+    "who": "m0"
+   },
+   "m0_runner": {
+    "file": "assets/audio/en/m0_runner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.314,
+    "we": 1.267,
+    "cat": "runner",
+    "who": "m0"
+   },
+   "m0_bumpPhone": {
+    "file": "assets/audio/en/m0_bumpPhone.mp3",
+    "text": "Huh? Oh… sorry",
+    "dur": 2.358,
+    "we": 2.3,
+    "cat": "bumpPhone",
+    "who": "m0"
+   },
+   "m0_bumpRunner": {
+    "file": "assets/audio/en/m0_bumpRunner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.551,
+    "we": 1.5,
+    "cat": "bumpRunner",
+    "who": "m0"
+   },
+   "m0_bumpTourist": {
+    "file": "assets/audio/en/m0_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.192,
+    "we": 1.133,
+    "cat": "bumpTourist",
+    "who": "m0"
+   },
+   "m0_bumpThem": {
+    "file": "assets/audio/en/m0_bumpThem.mp3",
+    "text": "Sorry!",
+    "dur": 0.449,
+    "we": 0.4,
+    "cat": "bumpThem",
+    "who": "m0"
+   },
+   "m0_ole": {
+    "file": "assets/audio/en/m0_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.621,
+    "we": 0.567,
+    "cat": "ole",
+    "who": "m0"
+   },
+   "m1_d1": {
+    "file": "assets/audio/en/m1_d1.mp3",
+    "text": "Sorry!",
+    "dur": 0.656,
+    "we": 0.633,
+    "cat": "d1",
+    "who": "m1"
+   },
+   "m1_d2": {
+    "file": "assets/audio/en/m1_d2.mp3",
+    "text": "Sorry, sorry…",
+    "dur": 1.417,
+    "we": 1.367,
+    "cat": "d2",
+    "who": "m1"
+   },
+   "m1_d3": {
+    "file": "assets/audio/en/m1_d3.mp3",
+    "text": "Shall we dance?",
+    "dur": 1.118,
+    "we": 0.867,
+    "cat": "d3",
+    "who": "m1"
+   },
+   "m1_part": {
+    "file": "assets/audio/en/m1_part.mp3",
+    "text": "A pleasure",
+    "dur": 0.681,
+    "we": 0.633,
+    "cat": "part",
+    "who": "m1"
+   },
+   "m1_aside": {
+    "file": "assets/audio/en/m1_aside.mp3",
+    "text": "Sorry",
+    "dur": 0.562,
+    "we": 0.5,
+    "cat": "aside",
+    "who": "m1"
+   },
+   "m1_cant": {
+    "file": "assets/audio/en/m1_cant.mp3",
+    "text": "Can't, sorry",
+    "dur": 1.554,
+    "we": 1.5,
+    "cat": "cant",
+    "who": "m1"
+   },
+   "m1_tuck": {
+    "file": "assets/audio/en/m1_tuck.mp3",
+    "text": "Go on, squeeze by",
+    "dur": 2.096,
+    "we": 1.967,
+    "cat": "tuck",
+    "who": "m1"
+   },
+   "m1_split": {
+    "file": "assets/audio/en/m1_split.mp3",
+    "text": "Oops, sorry!",
+    "dur": 1.705,
+    "we": 1.633,
+    "cat": "split",
+    "who": "m1"
+   },
+   "m1_wait": {
+    "file": "assets/audio/en/m1_wait.mp3",
+    "text": "After you",
+    "dur": 0.772,
+    "we": 0.733,
+    "cat": "wait",
+    "who": "m1"
+   },
+   "m1_runner": {
+    "file": "assets/audio/en/m1_runner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.279,
+    "we": 1.233,
+    "cat": "runner",
+    "who": "m1"
+   },
+   "m1_bumpPhone": {
+    "file": "assets/audio/en/m1_bumpPhone.mp3",
+    "text": "Huh? Oh… sorry",
+    "dur": 2.336,
+    "we": 2.3,
+    "cat": "bumpPhone",
+    "who": "m1"
+   },
+   "m1_bumpRunner": {
+    "file": "assets/audio/en/m1_bumpRunner.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.223,
+    "we": 1.167,
+    "cat": "bumpRunner",
+    "who": "m1"
+   },
+   "m1_bumpTourist": {
+    "file": "assets/audio/en/m1_bumpTourist.mp3",
+    "text": "Oh, pardon!",
+    "dur": 1.63,
+    "we": 1.567,
+    "cat": "bumpTourist",
+    "who": "m1"
+   },
+   "m1_bumpThem": {
+    "file": "assets/audio/en/m1_bumpThem.mp3",
+    "text": "Sorry!",
+    "dur": 0.541,
+    "we": 0.5,
+    "cat": "bumpThem",
+    "who": "m1"
+   },
+   "m1_ole": {
+    "file": "assets/audio/en/m1_ole.mp3",
+    "text": "¡Olé!",
+    "dur": 0.68,
+    "we": 0.633,
+    "cat": "ole",
+    "who": "m1"
+   },
+   "granny": {
+    "file": "assets/audio/en/granny.mp3",
+    "text": "Oh, what a hurry!",
+    "dur": 1.693,
+    "we": 1.667,
+    "cat": "granny",
+    "who": "granny"
+   },
+   "pa_next": {
+    "file": "assets/audio/en/pa_next.mp3",
+    "text": "The next train to Correderas will depart shortly. We apologise for any inconvenience.",
+    "dur": 5.364,
+    "we": 5.167,
+    "cat": "pa",
+    "who": "pa"
+   },
+   "pa_last": {
+    "file": "assets/audio/en/pa_last.mp3",
+    "text": "Attention please: the train to Correderas is about to depart.",
+    "dur": 3.418,
+    "we": 3.267,
+    "cat": "pa",
+    "who": "pa"
+   },
+   "pa_missed": {
+    "file": "assets/audio/en/pa_missed.mp3",
+    "text": "The next train to Correderas will arrive in forty minutes. We apologise for any inconvenience.",
+    "dur": 5.894,
+    "we": 5.7,
+    "cat": "pa",
+    "who": "pa"
+   }
+  }
+ },
+ "fx": {}
+}

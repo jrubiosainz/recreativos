@@ -1,0 +1,266 @@
+{
+ "version": 1,
+ "voices": {
+  "es": {
+   "vecina1": {
+    "file": "assets/audio/es/vecina1.mp3",
+    "text": "¡Ay, cariño! ¿Todo eso llevas?",
+    "dur": 3.169,
+    "we": 2.967,
+    "cat": "vecina1",
+    "who": "vecina"
+   },
+   "vecina2": {
+    "file": "assets/audio/es/vecina2.mp3",
+    "text": "Mi Paco subía las garrafas de dos en dos…",
+    "dur": 4.099,
+    "we": 3.867,
+    "cat": "vecina2",
+    "who": "vecina"
+   },
+   "vecina3": {
+    "file": "assets/audio/es/vecina3.mp3",
+    "text": "Bueno, no te entretengo, ¡que se te cae!",
+    "dur": 3.237,
+    "we": 3.2,
+    "cat": "vecina3",
+    "who": "vecina"
+   },
+   "vecina4": {
+    "file": "assets/audio/es/vecina4.mp3",
+    "text": "¿Te ayudo? … Uy, no, que tengo la espalda fatal.",
+    "dur": 3.547,
+    "we": 3.533,
+    "cat": "vecina4",
+    "who": "vecina"
+   },
+   "buzz1": {
+    "file": "assets/audio/es/buzz1.mp3",
+    "text": "¿Sííí? ¿Quién es?",
+    "dur": 1.992,
+    "we": 1.767,
+    "cat": "buzz1",
+    "who": "suegra"
+   },
+   "buzz2": {
+    "file": "assets/audio/es/buzz2.mp3",
+    "text": "¡Ay, sois vosotros! ¡Empujad cuando suene!",
+    "dur": 3.2,
+    "we": 3.167,
+    "cat": "buzz2",
+    "who": "suegra"
+   },
+   "buzzAgain": {
+    "file": "assets/audio/es/buzzAgain.mp3",
+    "text": "¿Otra vez? ¡Que empujéis cuando suena!",
+    "dur": 2.803,
+    "we": 2.733,
+    "cat": "buzzAgain",
+    "who": "suegra"
+   },
+   "door1": {
+    "file": "assets/audio/es/door1.mp3",
+    "text": "¡Voooy!",
+    "dur": 1.617,
+    "we": 1.567,
+    "cat": "door1",
+    "who": "suegra"
+   },
+   "door2": {
+    "file": "assets/audio/es/door2.mp3",
+    "text": "¡Un momento, que tengo las manos en la masa!",
+    "dur": 3.018,
+    "we": 2.967,
+    "cat": "door2",
+    "who": "suegra"
+   },
+   "chat1": {
+    "file": "assets/audio/es/chat1.mp3",
+    "text": "¡Pero si no hacía falta traer nada!",
+    "dur": 2.384,
+    "we": 2.333,
+    "cat": "chat1",
+    "who": "suegra"
+   },
+   "chat2": {
+    "file": "assets/audio/es/chat2.mp3",
+    "text": "¿Y el turrón blando? Que el duro no lo puedo.",
+    "dur": 3.008,
+    "we": 2.967,
+    "cat": "chat2",
+    "who": "suegra"
+   },
+   "chat3": {
+    "file": "assets/audio/es/chat3.mp3",
+    "text": "¡Pasad, pasad, que se enfría la sopa!",
+    "dur": 2.992,
+    "we": 2.967,
+    "cat": "chat3",
+    "who": "suegra"
+   },
+   "chat4": {
+    "file": "assets/audio/es/chat4.mp3",
+    "text": "¿Queréis que os coja algo? …Uy, no, que me he hecho las uñas.",
+    "dur": 5.037,
+    "we": 4.867,
+    "cat": "chat4",
+    "who": "suegra"
+   },
+   "driver1": {
+    "file": "assets/audio/es/driver1.mp3",
+    "text": "¡Oiga! ¡Que es para hoy!",
+    "dur": 1.825,
+    "we": 1.767,
+    "cat": "driver1",
+    "who": "driver"
+   },
+   "driver2": {
+    "file": "assets/audio/es/driver2.mp3",
+    "text": "¡Que no puedo salir!",
+    "dur": 1.107,
+    "we": 1.067,
+    "cat": "driver2",
+    "who": "driver"
+   },
+   "driver3": {
+    "file": "assets/audio/es/driver3.mp3",
+    "text": "¡Voy a llamar a la grúa!",
+    "dur": 1.936,
+    "we": 1.9,
+    "cat": "driver3",
+    "who": "driver"
+   }
+  },
+  "en": {
+   "vecina1": {
+    "file": "assets/audio/en/vecina1.mp3",
+    "text": "Oh, love! You’re carrying all that?",
+    "dur": 3.949,
+    "we": 3.8,
+    "cat": "vecina1",
+    "who": "vecina"
+   },
+   "vecina2": {
+    "file": "assets/audio/en/vecina2.mp3",
+    "text": "My Paco used to carry the water jugs two at a time…",
+    "dur": 4.552,
+    "we": 4.533,
+    "cat": "vecina2",
+    "who": "vecina"
+   },
+   "vecina3": {
+    "file": "assets/audio/en/vecina3.mp3",
+    "text": "Well, I won’t keep you. You’re dropping it!",
+    "dur": 2.825,
+    "we": 2.667,
+    "cat": "vecina3",
+    "who": "vecina"
+   },
+   "vecina4": {
+    "file": "assets/audio/en/vecina4.mp3",
+    "text": "Shall I help? … Oh, no, my back’s terrible.",
+    "dur": 3.868,
+    "we": 3.833,
+    "cat": "vecina4",
+    "who": "vecina"
+   },
+   "buzz1": {
+    "file": "assets/audio/en/buzz1.mp3",
+    "text": "Hellooo? Who is it?",
+    "dur": 1.656,
+    "we": 1.467,
+    "cat": "buzz1",
+    "who": "suegra"
+   },
+   "buzz2": {
+    "file": "assets/audio/en/buzz2.mp3",
+    "text": "Oh, it’s you! Push when it buzzes!",
+    "dur": 2.581,
+    "we": 2.433,
+    "cat": "buzz2",
+    "who": "suegra"
+   },
+   "buzzAgain": {
+    "file": "assets/audio/en/buzzAgain.mp3",
+    "text": "Again? Push when it buzzes!",
+    "dur": 2.7,
+    "we": 2.533,
+    "cat": "buzzAgain",
+    "who": "suegra"
+   },
+   "door1": {
+    "file": "assets/audio/en/door1.mp3",
+    "text": "Coming!",
+    "dur": 0.8,
+    "we": 0.533,
+    "cat": "door1",
+    "who": "suegra"
+   },
+   "door2": {
+    "file": "assets/audio/en/door2.mp3",
+    "text": "Just a minute, my hands are in the dough!",
+    "dur": 2.925,
+    "we": 2.9,
+    "cat": "door2",
+    "who": "suegra"
+   },
+   "chat1": {
+    "file": "assets/audio/en/chat1.mp3",
+    "text": "You didn’t have to bring anything!",
+    "dur": 1.977,
+    "we": 1.933,
+    "cat": "chat1",
+    "who": "suegra"
+   },
+   "chat2": {
+    "file": "assets/audio/en/chat2.mp3",
+    "text": "And the soft turrón? I can’t do the hard one.",
+    "dur": 3.837,
+    "we": 3.8,
+    "cat": "chat2",
+    "who": "suegra"
+   },
+   "chat3": {
+    "file": "assets/audio/en/chat3.mp3",
+    "text": "Come in, come in, the soup’s getting cold!",
+    "dur": 2.365,
+    "we": 2.3,
+    "cat": "chat3",
+    "who": "suegra"
+   },
+   "chat4": {
+    "file": "assets/audio/en/chat4.mp3",
+    "text": "Shall I take something? …Oh, no, I’ve just done my nails.",
+    "dur": 3.372,
+    "we": 3.233,
+    "cat": "chat4",
+    "who": "suegra"
+   },
+   "driver1": {
+    "file": "assets/audio/en/driver1.mp3",
+    "text": "Hey! Today, please!",
+    "dur": 2.181,
+    "we": 2.033,
+    "cat": "driver1",
+    "who": "driver"
+   },
+   "driver2": {
+    "file": "assets/audio/en/driver2.mp3",
+    "text": "I can’t get out!",
+    "dur": 1.593,
+    "we": 1.433,
+    "cat": "driver2",
+    "who": "driver"
+   },
+   "driver3": {
+    "file": "assets/audio/en/driver3.mp3",
+    "text": "I’m calling the tow truck!",
+    "dur": 1.713,
+    "we": 1.533,
+    "cat": "driver3",
+    "who": "driver"
+   }
+  }
+ },
+ "fx": {}
+}

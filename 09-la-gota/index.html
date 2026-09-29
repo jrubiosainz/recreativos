@@ -1,0 +1,53 @@
+<!doctype html>
+<!--
+  LA GOTA · design contract
+  World   A rainy weekday on the city bus, the back seat by the window. The Canvas2D window is the source
+          of truth: the street going by behind steamed-up glass, the fog your finger wipes, the drops and
+          the kids' shouts, the aluminium frame and the black rubber seal with META written on it in
+          marker. The DOM is the bus's own fittings: the title is the bonobús (one row per trip, stars
+          are the holes the validator punches), the HUD is the LED sign over the aisle and the red STOP
+          button, the result is the back of the ticket, stamped by the validator in violet ink.
+  Type    Darumadrop One (letters written with a fingertip on fog) for the logo, the shouts and every
+          headline; Shantell Sans 500–800 (a kid's handwriting grown up) for everything that talks;
+          Doto 800–900 (dot matrix) for the machines: the LED sign and the validator's stamp.
+  Colour  bus wall #23262F / #3A3E4B, fog #E9EEF3, ticket #F3EAD3 with its brown magnetic stripe #3B2A20,
+          municipal ink #1D4E9E, validator violet #5B3FA8, LED amber #FF9E1B, STOP red #E3262B; the kids:
+          you #FFC23D (the yellow raincoat), Dani #FF5A4E, Lucía #7CE0B8, Iker #6FB7FF, Vega #D08CFF.
+  Shape   a paper ticket with rounded corners and its brown magnetic stripe; punched holes; the LED sign in its black
+          housing; a round red STOP button; speech bubbles like the ones the kids shout on the glass.
+  Motion  the glass carries the motion (rain, fog coming back, drops racing, the bus rattling it).
+          The DOM moves like paper and machines: tickets slide out of the rack, holes punch in one by
+          one, the LED blinks at 2 Hz. Reduced motion keeps every reading and drops shake and confetti.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#23262F">
+<meta name="color-scheme" content="dark">
+<title>LA GOTA · ¡Me pido esa!</title>
+<meta name="description" content="Llueve y vas en el bus. Cada uno se pide una gota de la ventanilla empañada: la primera que llegue abajo, gana. Ábrele camino con el dedo, pero nunca toques una gota pedida.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LA GOTA · ¡Me pido esa!">
+<meta property="og:description" content="Cada uno se pide una gota de la ventanilla del bus. La primera que llegue abajo, gana. Tú le abres camino con el dedo por el vaho.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/09-la-gota/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La ventanilla empañada de un autobús, con «LA GOTA» escrito con el dedo en el vaho y gotas bajando entre las letras, junto a un bonobús de papel con los seis viajes.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323262F'/%3E%3Crect x='10' y='8' width='44' height='48' rx='6' fill='%23C9D3DD'/%3E%3Cpath d='M30 12v26' stroke='%2323262F' stroke-width='7' stroke-linecap='round' opacity='.35'/%3E%3Cpath d='M30 30c-6 8-8 11-8 15a8 8 0 0 0 16 0c0-4-2-7-8-15z' fill='%23FFC23D'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/DarumadropOne.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ShantellSans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Doto-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="game" aria-label="La ventanilla empañada de un autobús con lluvia fuera y gotas que bajan por el cristal"></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">LA GOTA necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

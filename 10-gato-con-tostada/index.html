@@ -1,0 +1,51 @@
+<!doctype html>
+<!--
+  GATO CON TOSTADA · design contract
+  World   A Spanish flat from the seventies cut open like a doll's house, the neighbours' flats glowing above
+          and below: breakfast, noon, dusk, evening, bathtime, a windy night on the terrace. The Canvas2D stage
+          is the source of truth: the rooms, the ginger cat with a buttered toast taped to its back, the golden
+          cushion of paradox it hovers on, the things it knocks off, the shouts in magnet letters. The DOM is
+          the kitchen's own fridge door: the title is the door (the logo in magnet letters, one biro note per
+          room held up by a magnet), the HUD is the butter's own wrapper and a red magnet that pauses, the
+          pause is the shopping list, the result is a Polaroid of the landing stuck on the fridge.
+  Type    Fredoka 600–700 (the rounded plastic of magnet letters) for the logo, the shouts, buttons, numbers;
+          Patrick Hand (a note in biro) for the notes, captions and asides; Nunito 600–900 for what must read.
+  Colour  ink #2A1C14, fridge enamel #F6F2E9 / #E4DCCB, chrome #C9CDD2, butter #FFD84A / #F7C832, crust
+          #B86A2C, ginger #F08A3C; magnets red #E0463B, blue #3B7BE0, yellow #F2C230, green #43B67A; notes
+          yellow #FFF3A6, pink #FFD9E0, blue #D6ECFF, green #E2F5CC, lined white #FFFDF6.
+  Shape   paper notes a little askew under a round plastic magnet; magnet letters; the butter wrapper with its
+          foil folded at the ends; a Polaroid with its thick bottom margin; nothing is a plain rectangle card.
+  Motion  the stage carries the motion. The DOM moves like things on a fridge: notes swing in on their magnet,
+          magnets clack into place, the Polaroid develops out of grey. Reduced motion keeps every reading.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2A1C14">
+<meta name="color-scheme" content="light">
+<title>GATO CON TOSTADA · Si quepo, me siento.</title>
+<meta name="description" content="Los gatos siempre caen de pie; las tostadas, del lado de la mantequilla. Alguien le ha atado una tostada a un gato y ahora flota. Gíralo para moverlo y, para bajar, siéntalo de culo en la caja.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GATO CON TOSTADA · Si quepo, me siento.">
+<meta property="og:description" content="Le han atado una tostada con mantequilla a un gato: ninguna ley gana y flota. Gíralo por la casa y siéntalo en la caja de cartón.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/10-gato-con-tostada/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Un gato naranja con una tostada con mantequilla atada a la espalda flota sobre un cojín dorado en una cocina de azulejos, junto a una puerta de nevera con «GATO CON TOSTADA» en letras imantadas.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F08A3C'/%3E%3Cpath d='M17 52V29a9 9 0 0 1-3-7c0-7 8-12 18-12s18 5 18 12a9 9 0 0 1-3 7v23z' fill='%23EAB565' stroke='%23B86A2C' stroke-width='4' stroke-linejoin='round'/%3E%3Crect x='24' y='29' width='16' height='11' rx='2.5' fill='%23FFD84A' stroke='%232A1C14' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Fredoka-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Nunito-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/PatrickHand.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Un piso visto en sección. Un gato naranja con una tostada con mantequilla atada a la espalda flota sin poder aterrizar."></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">GATO CON TOSTADA necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

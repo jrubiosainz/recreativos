@@ -1,0 +1,53 @@
+<!doctype html>
+<!--
+  ¡PATATA! · design contract
+  World   The García family photo album, 1996–2001, and the 35 mm compact that fills it. The Canvas2D
+          camera is the source of truth (the finder, the family, the LCD, the shutter button, what
+          people say); the DOM is only the family's paperwork, lying on the walnut table: the album's
+          padded cover, its pages with photo corners and ballpoint captions, the index card clipped
+          on before each photo, and the photo shop's «revelado en una hora» envelope.
+  Type    Titan One for the logo and anything stuck on (stickers, big numbers); Archivo, variable
+          width, for everything printed (labels, buttons, the shop's envelope); Kalam for anything
+          written by hand (captions, notes, people talking); Permanent Marker for the red marker.
+  Colour  oxblood leatherette #6d1f2a / #4a121a, gold foil #e2b857, album page #f4ecd9, kraft
+          #c9a878, photo paper #fbfaf6, sticker mustard #e8b62c, ballpoint blue #28408f, marker red
+          #e0262e, date-stamp orange #ff8a1f, ink #2a1a14, camera graphite #2b2d31, silver #c9ccd1.
+  Shape   the cover is stitched and padded; prints sit a little askew under black photo corners;
+          the brief is a ruled index card under a clip; primary buttons are sticker-bright, round
+          ones are the camera's own buttons; messages come on label-maker tape.
+  Motion  one material per surface: the card slides in under its clip, prints slide out of the
+          envelope still developing, the marker circles whoever blinked, the sticker slaps on.
+          Reduced motion keeps the information and removes the movement.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2e1b12">
+<meta name="color-scheme" content="dark">
+<title>¡PATATA! · Una foto de familia sin nadie con los ojos cerrados</title>
+<meta name="description" content="Eres quien hace la foto de familia. Di «¡patata!», espera a que todos abran los ojos y dispara. Tío Paco siempre parpadea. Seis fotos, de la comunión de 1996 a las fiestas del pueblo de 2001.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="¡PATATA! · Una foto de familia sin nadie con los ojos cerrados">
+<meta property="og:description" content="Di «¡patata!», espera a que todos abran los ojos y dispara. Con poca luz, el flash tarda; con el temporizador, corres a salir en la foto. Y Tío Paco siempre parpadea.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/04-patata/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El álbum de la familia García con la pegatina de ¡PATATA! y una foto revelada: toda la familia sonríe con los ojos abiertos, menos Tío Paco, rodeado con rotulador rojo. Una nota dice «Dispara cuando nadie parpadee».">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%93%B8%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/TitanOne-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Archivo-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Kalam-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/manifest.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="La cámara: el visor con la familia, el contador y el botón de disparo"></canvas>
+<main id="ui"></main>
+<aside id="hint" role="status" aria-live="polite" hidden></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">¡PATATA! necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

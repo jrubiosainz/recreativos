@@ -1,0 +1,504 @@
+{
+ "version": 1,
+ "voices": {
+  "ja": {
+   "j_arrive": {
+    "file": "assets/audio/ja/j_arrive.mp3",
+    "text": "まもなく、電車がまいります。",
+    "sub": {
+     "es": "Llega el tren.",
+     "en": "A train is now arriving."
+    },
+    "dur": 2.753,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_close": {
+    "file": "assets/audio/ja/j_close.mp3",
+    "text": "ドアが閉まります。ご注意ください。",
+    "sub": {
+     "es": "Cierre de puertas. Tengan cuidado.",
+     "en": "The doors are closing. Please be careful."
+    },
+    "dur": 2.737,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_rush": {
+    "file": "assets/audio/ja/j_rush.mp3",
+    "text": "駆け込み乗車は、おやめください。",
+    "sub": {
+     "es": "No corran para subir al tren.",
+     "en": "Please do not rush onto the train."
+    },
+    "dur": 2.624,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_force": {
+    "file": "assets/audio/ja/j_force.mp3",
+    "text": "無理なご乗車は、おやめください。",
+    "sub": {
+     "es": "No fuercen la entrada, por favor.",
+     "en": "Please do not force your way on."
+    },
+    "dur": 2.661,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_delay": {
+    "file": "assets/audio/ja/j_delay.mp3",
+    "text": "ただいま、電車が遅れております。ご迷惑をおかけしております。",
+    "sub": {
+     "es": "El tren circula con retraso. Disculpen las molestias.",
+     "en": "This train is running late. We apologize for the inconvenience."
+    },
+    "dur": 5.576,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_thanks": {
+    "file": "assets/audio/ja/j_thanks.mp3",
+    "text": "本日もご乗車、ありがとうございます。",
+    "sub": {
+     "es": "Gracias por viajar con nosotros.",
+     "en": "Thank you for riding with us today."
+    },
+    "dur": 3.079,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_line": {
+    "file": "assets/audio/ja/j_line.mp3",
+    "text": "黄色い線の内側まで、お下がりください。",
+    "sub": {
+     "es": "Retírense detrás de la línea amarilla.",
+     "en": "Please stand behind the yellow line."
+    },
+    "dur": 3.684,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s1": {
+    "file": "assets/audio/ja/j_st_s1.mp3",
+    "text": "始発、始発です。",
+    "sub": {
+     "es": "Shihatsu, estación de Shihatsu.",
+     "en": "Shihatsu. This is Shihatsu."
+    },
+    "dur": 2.934,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s2": {
+    "file": "assets/audio/ja/j_st_s2.mp3",
+    "text": "朝霧、朝霧です。",
+    "sub": {
+     "es": "Asagiri, estación de Asagiri.",
+     "en": "Asagiri. This is Asagiri."
+    },
+    "dur": 2.158,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s3": {
+    "file": "assets/audio/ja/j_st_s3.mp3",
+    "text": "雨宮、雨宮です。",
+    "sub": {
+     "es": "Amemiya, estación de Amemiya.",
+     "en": "Amemiya. This is Amemiya."
+    },
+    "dur": 2.232,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s4": {
+    "file": "assets/audio/ja/j_st_s4.mp3",
+    "text": "桜坂、桜坂です。",
+    "sub": {
+     "es": "Sakurazaka, estación de Sakurazaka.",
+     "en": "Sakurazaka. This is Sakurazaka."
+    },
+    "dur": 2.603,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s5": {
+    "file": "assets/audio/ja/j_st_s5.mp3",
+    "text": "相撲町、相撲町です。",
+    "sub": {
+     "es": "Sumōchō, estación de Sumōchō.",
+     "en": "Sumōchō. This is Sumōchō."
+    },
+    "dur": 2.61,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s6": {
+    "file": "assets/audio/ja/j_st_s6.mp3",
+    "text": "遅延、遅延です。",
+    "sub": {
+     "es": "Chien, estación de Chien.",
+     "en": "Chien. This is Chien."
+    },
+    "dur": 1.665,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s7": {
+    "file": "assets/audio/ja/j_st_s7.mp3",
+    "text": "乗換、乗換です。",
+    "sub": {
+     "es": "Norikae, estación de Norikae.",
+     "en": "Norikae. This is Norikae."
+    },
+    "dur": 1.926,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "j_st_s8": {
+    "file": "assets/audio/ja/j_st_s8.mp3",
+    "text": "新押込、新押込です。",
+    "sub": {
+     "es": "Shin-Oshikomi, estación de Shin-Oshikomi.",
+     "en": "Shin-Oshikomi. This is Shin-Oshikomi."
+    },
+    "dur": 3.08,
+    "cat": "ann",
+    "who": "ann"
+   },
+   "m_shinko": {
+    "file": "assets/audio/ja/m_shinko.mp3",
+    "text": "出発、進行！",
+    "sub": {
+     "es": "¡Salida, en marcha!",
+     "en": "Clear to depart!"
+    },
+    "dur": 2.023,
+    "cat": "call",
+    "who": "me"
+   },
+   "m_sorry": {
+    "file": "assets/audio/ja/m_sorry.mp3",
+    "text": "失礼しました！",
+    "sub": {
+     "es": "¡Disculpe!",
+     "en": "My apologies!"
+    },
+    "dur": 1.069,
+    "cat": "sorry",
+    "who": "me"
+   },
+   "m_oku": {
+    "file": "assets/audio/ja/m_oku.mp3",
+    "text": "奥へお詰めください！",
+    "sub": {
+     "es": "¡Al fondo, por favor!",
+     "en": "Move to the back, please!"
+    },
+    "dur": 2.168,
+    "cat": "shout",
+    "who": "me"
+   },
+   "u_board": {
+    "file": "assets/audio/ja/u_board.mp3",
+    "text": "どすこい！",
+    "sub": {
+     "es": "¡Dosukoi!",
+     "en": "Dosukoi!"
+    },
+    "dur": 1.246,
+    "cat": "big",
+    "who": "sumo"
+   },
+   "m_hai": {
+    "file": "assets/audio/ja/m_hai.mp3",
+    "text": "はい、どうぞー！",
+    "sub": {
+     "es": "¡Adelante!",
+     "en": "In you go!"
+    },
+    "dur": 1.661,
+    "cat": "shout",
+    "who": "me"
+   },
+   "m_door": {
+    "file": "assets/audio/ja/m_door.mp3",
+    "text": "ドア、閉めまーす！",
+    "sub": {
+     "es": "¡Cierro puertas!",
+     "en": "Closing the doors!"
+    },
+    "dur": 2.033,
+    "cat": "shout",
+    "who": "me"
+   }
+  },
+  "es": {
+   "g_push": {
+    "file": "assets/audio/es/g_push.mp3",
+    "text": "¡Oiga! ¡A mí no me empuje, jovencito!",
+    "dur": 3.019,
+    "cat": "angry",
+    "who": "granny"
+   },
+   "g_board": {
+    "file": "assets/audio/es/g_board.mp3",
+    "text": "Con permiso... con permiso...",
+    "dur": 1.982,
+    "cat": "calm",
+    "who": "granny"
+   },
+   "c_ruin": {
+    "file": "assets/audio/es/c_ruin.mp3",
+    "text": "¡Mi tarta! ¡Era para mi madre!",
+    "dur": 2.066,
+    "cat": "wail",
+    "who": "cake"
+   },
+   "c_safe": {
+    "file": "assets/audio/es/c_safe.mp3",
+    "text": "¡Ni una miga fuera de sitio!",
+    "dur": 2.202,
+    "cat": "joy",
+    "who": "cake"
+   },
+   "z_board": {
+    "file": "assets/audio/es/z_board.mp3",
+    "text": "Despiértame en mi parada...",
+    "dur": 1.92,
+    "cat": "sleepy",
+    "who": "sleepy"
+   },
+   "t_board": {
+    "file": "assets/audio/es/t_board.mp3",
+    "text": "¿Esto es normal? ¿¡Todos los días!?",
+    "dur": 2.428,
+    "cat": "shock",
+    "who": "tourist"
+   },
+   "r_wait": {
+    "file": "assets/audio/es/r_wait.mp3",
+    "text": "¡Esperaaad! ¡Aguantad la puerta!",
+    "dur": 2.81,
+    "cat": "run",
+    "who": "runner"
+   },
+   "r_miss": {
+    "file": "assets/audio/es/r_miss.mp3",
+    "text": "¡Nooo! ¡Por un segundo!",
+    "dur": 2.472,
+    "cat": "wail",
+    "who": "runner"
+   },
+   "r_made": {
+    "file": "assets/audio/es/r_made.mp3",
+    "text": "¡Dentro! ¡Por los pelos!",
+    "dur": 2.226,
+    "cat": "joy",
+    "who": "runner"
+   },
+   "s_giveup": {
+    "file": "assets/audio/es/s_giveup.mp3",
+    "text": "Nada, nada. Cojo el siguiente.",
+    "dur": 3.155,
+    "cat": "sigh",
+    "who": "salary"
+   },
+   "s_late": {
+    "file": "assets/audio/es/s_late.mp3",
+    "text": "¡Que llego tarde a la reunión!",
+    "dur": 2.434,
+    "cat": "shock",
+    "who": "salary"
+   },
+   "w_full": {
+    "file": "assets/audio/es/w_full.mp3",
+    "text": "¡Que no cabemos!",
+    "dur": 1.479,
+    "cat": "angry",
+    "who": "crowd"
+   },
+   "w_foot": {
+    "file": "assets/audio/es/w_foot.mp3",
+    "text": "¡Ay, mi pie!",
+    "dur": 2.555,
+    "cat": "hurt",
+    "who": "crowd"
+   },
+   "k_wee": {
+    "file": "assets/audio/es/k_wee.mp3",
+    "text": "¡Wiii!",
+    "dur": 0.866,
+    "cat": "joy",
+    "who": "kid"
+   },
+   "st_sorry": {
+    "file": "assets/audio/es/st_sorry.mp3",
+    "text": "¡Perdón, perdón!",
+    "dur": 1.565,
+    "cat": "shy",
+    "who": "student"
+   }
+  },
+  "en": {
+   "g_push": {
+    "file": "assets/audio/en/g_push.mp3",
+    "text": "Excuse me! Don't you push me, young man!",
+    "dur": 3.069,
+    "cat": "angry",
+    "who": "granny"
+   },
+   "g_board": {
+    "file": "assets/audio/en/g_board.mp3",
+    "text": "Pardon me... pardon me...",
+    "dur": 2.313,
+    "cat": "calm",
+    "who": "granny"
+   },
+   "c_ruin": {
+    "file": "assets/audio/en/c_ruin.mp3",
+    "text": "My cake! It was for my mother!",
+    "dur": 2.702,
+    "cat": "wail",
+    "who": "cake"
+   },
+   "c_safe": {
+    "file": "assets/audio/en/c_safe.mp3",
+    "text": "Not a crumb out of place!",
+    "dur": 2.041,
+    "cat": "joy",
+    "who": "cake"
+   },
+   "z_board": {
+    "file": "assets/audio/en/z_board.mp3",
+    "text": "Wake me up at my stop...",
+    "dur": 1.935,
+    "cat": "sleepy",
+    "who": "sleepy"
+   },
+   "t_board": {
+    "file": "assets/audio/en/t_board.mp3",
+    "text": "Is this normal?! Every single day?!",
+    "dur": 2.227,
+    "cat": "shock",
+    "who": "tourist"
+   },
+   "r_wait": {
+    "file": "assets/audio/en/r_wait.mp3",
+    "text": "Waaait! Hold the door!",
+    "dur": 2.053,
+    "cat": "run",
+    "who": "runner"
+   },
+   "r_miss": {
+    "file": "assets/audio/en/r_miss.mp3",
+    "text": "Nooo! By one second!",
+    "dur": 2.783,
+    "cat": "wail",
+    "who": "runner"
+   },
+   "r_made": {
+    "file": "assets/audio/en/r_made.mp3",
+    "text": "I'm in! By a hair!",
+    "dur": 2.017,
+    "cat": "joy",
+    "who": "runner"
+   },
+   "s_giveup": {
+    "file": "assets/audio/en/s_giveup.mp3",
+    "text": "Forget it. I'll take the next one.",
+    "dur": 2.141,
+    "cat": "sigh",
+    "who": "salary"
+   },
+   "s_late": {
+    "file": "assets/audio/en/s_late.mp3",
+    "text": "I'm going to be late for my meeting!",
+    "dur": 1.822,
+    "cat": "shock",
+    "who": "salary"
+   },
+   "w_full": {
+    "file": "assets/audio/en/w_full.mp3",
+    "text": "We're full in here!",
+    "dur": 1.454,
+    "cat": "angry",
+    "who": "crowd"
+   },
+   "w_foot": {
+    "file": "assets/audio/en/w_foot.mp3",
+    "text": "Ow, my foot!",
+    "dur": 1.663,
+    "cat": "hurt",
+    "who": "crowd"
+   },
+   "k_wee": {
+    "file": "assets/audio/en/k_wee.mp3",
+    "text": "Wheee!",
+    "dur": 1.277,
+    "cat": "joy",
+    "who": "kid"
+   },
+   "st_sorry": {
+    "file": "assets/audio/en/st_sorry.mp3",
+    "text": "Sorry, sorry!",
+    "dur": 1.295,
+    "cat": "shy",
+    "who": "student"
+   }
+  }
+ },
+ "fx": {
+  "x_oof1": {
+   "file": "assets/audio/fx/x_oof1.mp3",
+   "dur": 0.566
+  },
+  "x_oof2": {
+   "file": "assets/audio/fx/x_oof2.mp3",
+   "dur": 0.952
+  },
+  "x_oof3": {
+   "file": "assets/audio/fx/x_oof3.mp3",
+   "dur": 0.518
+  },
+  "x_oof4": {
+   "file": "assets/audio/fx/x_oof4.mp3",
+   "dur": 0.414
+  },
+  "x_oof5": {
+   "file": "assets/audio/fx/x_oof5.mp3",
+   "dur": 0.557
+  },
+  "x_bump": {
+   "file": "assets/audio/fx/x_bump.mp3",
+   "dur": 0.38
+  },
+  "x_gasp": {
+   "file": "assets/audio/fx/x_gasp.mp3",
+   "dur": 0.515
+  },
+  "x_sigh": {
+   "file": "assets/audio/fx/x_sigh.mp3",
+   "dur": 1.199
+  },
+  "x_crowd": {
+   "file": "assets/audio/fx/x_crowd.mp3",
+   "dur": 1.079
+  },
+  "x_puff": {
+   "file": "assets/audio/fx/x_puff.mp3",
+   "dur": 2.249
+  }
+ },
+ "images": {
+  "st_shihatsu": "assets/img/st_shihatsu.jpg",
+  "st_asagiri": "assets/img/st_asagiri.jpg",
+  "st_amemiya": "assets/img/st_amemiya.jpg",
+  "st_sakurazaka": "assets/img/st_sakurazaka.jpg",
+  "st_sumocho": "assets/img/st_sumocho.jpg",
+  "st_chien": "assets/img/st_chien.jpg",
+  "st_norikae": "assets/img/st_norikae.jpg",
+  "st_shinoshikomi": "assets/img/st_shinoshikomi.jpg"
+ }
+}

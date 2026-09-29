@@ -1,0 +1,1442 @@
+{
+ "version": 1,
+ "voices": {
+  "es": {
+   "f1_hero_10s": {
+    "file": "assets/audio/es/f1_hero_10s.mp3",
+    "text": "Tenemos diez segundos.",
+    "dur": 1.667,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_ally_always": {
+    "file": "assets/audio/es/f1_ally_always.mp3",
+    "text": "Siempre dices eso.",
+    "dur": 1.557,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_hero_holdon": {
+    "file": "assets/audio/es/f1_hero_holdon.mp3",
+    "text": "¡Agárrate!",
+    "dur": 0.871,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_ally_detonator": {
+    "file": "assets/audio/es/f1_ally_detonator.mp3",
+    "text": "¿Dónde está el detonador?",
+    "dur": 1.497,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_hero_pocket": {
+    "file": "assets/audio/es/f1_hero_pocket.mp3",
+    "text": "En tu bolsillo.",
+    "dur": 1.076,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_ally_mypocket": {
+    "file": "assets/audio/es/f1_ally_mypocket.mp3",
+    "text": "¿En MI bolsillo?",
+    "dur": 1.959,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_ally_jump": {
+    "file": "assets/audio/es/f1_ally_jump.mp3",
+    "text": "¡Salta!",
+    "dur": 0.55,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_hero_made": {
+    "file": "assets/audio/es/f1_hero_made.mp3",
+    "text": "Lo hemos conseguido.",
+    "dur": 1.056,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_villain_notyet": {
+    "file": "assets/audio/es/f1_villain_notyet.mp3",
+    "text": "Todavía no.",
+    "dur": 0.936,
+    "cat": "film",
+    "who": "villain"
+   },
+   "f2_her_rain": {
+    "file": "assets/audio/es/f2_her_rain.mp3",
+    "text": "Siempre llueve cuando te vas.",
+    "dur": 2.265,
+    "cat": "film",
+    "who": "her"
+   },
+   "f2_him_always": {
+    "file": "assets/audio/es/f2_him_always.mp3",
+    "text": "Entonces me quedaré para siempre.",
+    "dur": 2.399,
+    "cat": "film",
+    "who": "him"
+   },
+   "f2_him_wait": {
+    "file": "assets/audio/es/f2_him_wait.mp3",
+    "text": "¡Espérame!",
+    "dur": 0.848,
+    "cat": "shout",
+    "who": "him"
+   },
+   "f2_her_always": {
+    "file": "assets/audio/es/f2_her_always.mp3",
+    "text": "¡Siempre!",
+    "dur": 0.661,
+    "cat": "shout",
+    "who": "her"
+   },
+   "f2_her_letter": {
+    "file": "assets/audio/es/f2_her_letter.mp3",
+    "text": "Querido Martín: aquí no para de llover.",
+    "dur": 3.661,
+    "cat": "letter",
+    "who": "her"
+   },
+   "f2_her_miss": {
+    "file": "assets/audio/es/f2_her_miss.mp3",
+    "text": "Te echo de menos.",
+    "dur": 1.076,
+    "cat": "letter",
+    "who": "her"
+   },
+   "f2_him_changed": {
+    "file": "assets/audio/es/f2_him_changed.mp3",
+    "text": "No has cambiado nada.",
+    "dur": 1.439,
+    "cat": "soft",
+    "who": "him"
+   },
+   "f2_her_you": {
+    "file": "assets/audio/es/f2_her_you.mp3",
+    "text": "Tú tampoco.",
+    "dur": 0.893,
+    "cat": "soft",
+    "who": "her"
+   },
+   "f3_girl_hello": {
+    "file": "assets/audio/es/f3_girl_hello.mp3",
+    "text": "¿Hola? ¿Hay alguien?",
+    "dur": 1.472,
+    "cat": "afraid",
+    "who": "girl"
+   },
+   "f3_girl_cat": {
+    "file": "assets/audio/es/f3_girl_cat.mp3",
+    "text": "Solo era el gato...",
+    "dur": 1.696,
+    "cat": "relief",
+    "who": "girl"
+   },
+   "f3_girl_mama": {
+    "file": "assets/audio/es/f3_girl_mama.mp3",
+    "text": "¿Mamá? ¿Eres tú?",
+    "dur": 1.762,
+    "cat": "whisper",
+    "who": "girl"
+   },
+   "f3_doll_play": {
+    "file": "assets/audio/es/f3_doll_play.mp3",
+    "text": "¿Quieres jugar conmigo?",
+    "dur": 1.928,
+    "cat": "creepy",
+    "who": "doll"
+   },
+   "f3_girl_no": {
+    "file": "assets/audio/es/f3_girl_no.mp3",
+    "text": "No, no, no...",
+    "dur": 1.472,
+    "cat": "whisper",
+    "who": "girl"
+   },
+   "f3_doll_found": {
+    "file": "assets/audio/es/f3_doll_found.mp3",
+    "text": "Te encontré.",
+    "dur": 1.169,
+    "cat": "creepy",
+    "who": "doll"
+   },
+   "f4_count": {
+    "file": "assets/audio/es/f4_count.mp3",
+    "text": "¡Cinco, seis, siete, ocho!",
+    "dur": 2.789,
+    "cat": "count",
+    "who": "coach"
+   },
+   "f4_her_premiere": {
+    "file": "assets/audio/es/f4_her_premiere.mp3",
+    "text": "Mañana es el estreno.",
+    "dur": 1.464,
+    "cat": "film",
+    "who": "star"
+   },
+   "f4_him_shoes": {
+    "file": "assets/audio/es/f4_him_shoes.mp3",
+    "text": "¿Y mis zapatos de claqué?",
+    "dur": 2.507,
+    "cat": "worried",
+    "who": "dancer"
+   },
+   "f4_her_what": {
+    "file": "assets/audio/es/f4_her_what.mp3",
+    "text": "¿Cómo que tus zapatos?",
+    "dur": 1.631,
+    "cat": "shocked",
+    "who": "star"
+   },
+   "f4_him_stolen": {
+    "file": "assets/audio/es/f4_him_stolen.mp3",
+    "text": "Alguien me los ha robado.",
+    "dur": 1.87,
+    "cat": "worried",
+    "who": "dancer"
+   },
+   "f5_nar_dawn": {
+    "file": "assets/audio/es/f5_nar_dawn.mp3",
+    "text": "Amanece en la sabana.",
+    "dur": 1.499,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f5_nar_calm": {
+    "file": "assets/audio/es/f5_nar_calm.mp3",
+    "text": "Todo parece tranquilo.",
+    "dur": 1.544,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f5_nar_watch": {
+    "file": "assets/audio/es/f5_nar_watch.mp3",
+    "text": "Pero alguien nos observa.",
+    "dur": 1.842,
+    "cat": "narrator_low",
+    "who": "nar"
+   },
+   "f5_nar_quiet": {
+    "file": "assets/audio/es/f5_nar_quiet.mp3",
+    "text": "Silencio... No debe oírnos.",
+    "dur": 3.397,
+    "cat": "narrator_whisper",
+    "who": "nar"
+   },
+   "f5_nar_water": {
+    "file": "assets/audio/es/f5_nar_water.mp3",
+    "text": "Aquí, el agua lo es todo.",
+    "dur": 1.998,
+    "cat": "narrator_loud",
+    "who": "nar"
+   },
+   "f5_nar_elephants": {
+    "file": "assets/audio/es/f5_nar_elephants.mp3",
+    "text": "Los elefantes nunca olvidan.",
+    "dur": 2.764,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f5_nar_night": {
+    "file": "assets/audio/es/f5_nar_night.mp3",
+    "text": "Cae la noche.",
+    "dur": 0.841,
+    "cat": "narrator_low",
+    "who": "nar"
+   },
+   "f5_nar_storm": {
+    "file": "assets/audio/es/f5_nar_storm.mp3",
+    "text": "Y llega la tormenta.",
+    "dur": 1.444,
+    "cat": "narrator_loud",
+    "who": "nar"
+   },
+   "f5_nar_life": {
+    "file": "assets/audio/es/f5_nar_life.mp3",
+    "text": "Y la vida vuelve a empezar.",
+    "dur": 2.309,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f6_keeper_day": {
+    "file": "assets/audio/es/f6_keeper_day.mp3",
+    "text": "Otro día sin barcos.",
+    "dur": 1.701,
+    "cat": "weary",
+    "who": "keeper"
+   },
+   "f6_woman_letter": {
+    "file": "assets/audio/es/f6_woman_letter.mp3",
+    "text": "Mantén la luz encendida. Volveré.",
+    "dur": 4.079,
+    "cat": "letter",
+    "who": "woman"
+   },
+   "f6_keeper_light": {
+    "file": "assets/audio/es/f6_keeper_light.mp3",
+    "text": "La luz... No puede apagarse.",
+    "dur": 2.621,
+    "cat": "strain",
+    "who": "keeper"
+   },
+   "p_scream1": {
+    "file": "assets/audio/es/p_scream1.mp3",
+    "text": "¡Aaah!",
+    "dur": 0.444,
+    "cat": "scream",
+    "who": "amiga"
+   },
+   "p_scream2": {
+    "file": "assets/audio/es/p_scream2.mp3",
+    "text": "¡Aaaaah! ¡No, no, no!",
+    "dur": 1.958,
+    "cat": "scream",
+    "who": "amiga"
+   },
+   "p_scream3": {
+    "file": "assets/audio/es/p_scream3.mp3",
+    "text": "¡AAAAAAAH!",
+    "dur": 1.042,
+    "cat": "scream",
+    "who": "amiga"
+   },
+   "p_sneeze_ah": {
+    "file": "assets/audio/es/p_sneeze_ah.mp3",
+    "text": "Ah... ah...",
+    "dur": 1.728,
+    "cat": "presneeze",
+    "who": "est"
+   },
+   "p_sneeze": {
+    "file": "assets/audio/es/p_sneeze.mp3",
+    "text": "¡ACHÍS!",
+    "dur": 1.079,
+    "cat": "sneeze",
+    "who": "est"
+   },
+   "p_sneeze_false": {
+    "file": "assets/audio/es/p_sneeze_false.mp3",
+    "text": "Ah... ah... ...nada.",
+    "dur": 2.692,
+    "cat": "presneeze",
+    "who": "est"
+   },
+   "p_kid_roar": {
+    "file": "assets/audio/es/p_kid_roar.mp3",
+    "text": "¡Mamá, un león!",
+    "dur": 1.608,
+    "cat": "kid",
+    "who": "kid"
+   },
+   "p_kid_drink": {
+    "file": "assets/audio/es/p_kid_drink.mp3",
+    "text": "¿Los leones beben agua?",
+    "dur": 1.663,
+    "cat": "kid",
+    "who": "kid"
+   },
+   "p_kid_snore": {
+    "file": "assets/audio/es/p_kid_snore.mp3",
+    "text": "Mamá, ese señor ronca como el león.",
+    "dur": 2.979,
+    "cat": "kid",
+    "who": "kid"
+   },
+   "p_mum_shh": {
+    "file": "assets/audio/es/p_mum_shh.mp3",
+    "text": "Chsst, cariño.",
+    "dur": 1.211,
+    "cat": "hush",
+    "who": "mum"
+   },
+   "p_shh1_m1": {
+    "file": "assets/audio/es/p_shh1_m1.mp3",
+    "text": "¡Chsst!",
+    "dur": 0.467,
+    "cat": "shush",
+    "who": "m1"
+   },
+   "p_shh2_m1": {
+    "file": "assets/audio/es/p_shh2_m1.mp3",
+    "text": "¿Te quieres callar?",
+    "dur": 0.932,
+    "cat": "annoyed",
+    "who": "m1"
+   },
+   "p_shh3_m1": {
+    "file": "assets/audio/es/p_shh3_m1.mp3",
+    "text": "¡Acomodador!",
+    "dur": 0.953,
+    "cat": "call",
+    "who": "m1"
+   },
+   "p_shh1_m2": {
+    "file": "assets/audio/es/p_shh1_m2.mp3",
+    "text": "¡Shhh!",
+    "dur": 0.498,
+    "cat": "shush",
+    "who": "m2"
+   },
+   "p_shh2_m2": {
+    "file": "assets/audio/es/p_shh2_m2.mp3",
+    "text": "¡Oye, ya vale!",
+    "dur": 1.974,
+    "cat": "annoyed",
+    "who": "m2"
+   },
+   "p_shh3_m2": {
+    "file": "assets/audio/es/p_shh3_m2.mp3",
+    "text": "¡Acomodador, por favor!",
+    "dur": 1.521,
+    "cat": "call",
+    "who": "m2"
+   },
+   "p_shh1_m3": {
+    "file": "assets/audio/es/p_shh1_m3.mp3",
+    "text": "¡Eh! ¡Silencio!",
+    "dur": 1.622,
+    "cat": "shush",
+    "who": "m3"
+   },
+   "p_shh2_m3": {
+    "file": "assets/audio/es/p_shh2_m3.mp3",
+    "text": "¡Que no me entero de la peli!",
+    "dur": 2.053,
+    "cat": "annoyed",
+    "who": "m3"
+   },
+   "p_shh3_m3": {
+    "file": "assets/audio/es/p_shh3_m3.mp3",
+    "text": "¡Acomodador, aquí!",
+    "dur": 1.686,
+    "cat": "call",
+    "who": "m3"
+   },
+   "p_shh1_f1": {
+    "file": "assets/audio/es/p_shh1_f1.mp3",
+    "text": "¡Chsst!",
+    "dur": 1.697,
+    "cat": "shush",
+    "who": "f1"
+   },
+   "p_shh2_f1": {
+    "file": "assets/audio/es/p_shh2_f1.mp3",
+    "text": "¡Por favor, eh!",
+    "dur": 1.447,
+    "cat": "annoyed",
+    "who": "f1"
+   },
+   "p_shh3_f1": {
+    "file": "assets/audio/es/p_shh3_f1.mp3",
+    "text": "¡Acomodador!",
+    "dur": 1.02,
+    "cat": "call",
+    "who": "f1"
+   },
+   "p_shh1_f2": {
+    "file": "assets/audio/es/p_shh1_f2.mp3",
+    "text": "¡Shhh!",
+    "dur": 0.51,
+    "cat": "shush",
+    "who": "f2"
+   },
+   "p_shh2_f2": {
+    "file": "assets/audio/es/p_shh2_f2.mp3",
+    "text": "¿En serio?",
+    "dur": 0.778,
+    "cat": "annoyed",
+    "who": "f2"
+   },
+   "p_shh3_f2": {
+    "file": "assets/audio/es/p_shh3_f2.mp3",
+    "text": "¡Acomodador!",
+    "dur": 0.838,
+    "cat": "call",
+    "who": "f2"
+   },
+   "p_shh1_old": {
+    "file": "assets/audio/es/p_shh1_old.mp3",
+    "text": "¡Chsst!",
+    "dur": 0.37,
+    "cat": "shush",
+    "who": "old"
+   },
+   "p_shh2_old": {
+    "file": "assets/audio/es/p_shh2_old.mp3",
+    "text": "¡Qué juventud!",
+    "dur": 0.957,
+    "cat": "annoyed",
+    "who": "old"
+   },
+   "p_shh3_old": {
+    "file": "assets/audio/es/p_shh3_old.mp3",
+    "text": "¡Que venga el acomodador!",
+    "dur": 1.642,
+    "cat": "call",
+    "who": "old"
+   },
+   "p_shh1_kid": {
+    "file": "assets/audio/es/p_shh1_kid.mp3",
+    "text": "¡Mamá, ese está comiendo!",
+    "dur": 2.206,
+    "cat": "shush",
+    "who": "kid"
+   },
+   "p_shh2_kid": {
+    "file": "assets/audio/es/p_shh2_kid.mp3",
+    "text": "¡MAMÁ, SIGUE COMIENDO!",
+    "dur": 1.826,
+    "cat": "annoyed",
+    "who": "kid"
+   },
+   "p_shh3_kid": {
+    "file": "assets/audio/es/p_shh3_kid.mp3",
+    "text": "¡MAMÁ, LLAMA AL DE LA LINTERNA!",
+    "dur": 2.195,
+    "cat": "call",
+    "who": "kid"
+   },
+   "p_shh1_amiga": {
+    "file": "assets/audio/es/p_shh1_amiga.mp3",
+    "text": "¡Tía, que se oye!",
+    "dur": 1.319,
+    "cat": "shush",
+    "who": "amiga"
+   },
+   "p_shh2_amiga": {
+    "file": "assets/audio/es/p_shh2_amiga.mp3",
+    "text": "¡Das más miedo tú que la peli!",
+    "dur": 2.15,
+    "cat": "annoyed",
+    "who": "amiga"
+   },
+   "p_shh3_amiga": {
+    "file": "assets/audio/es/p_shh3_amiga.mp3",
+    "text": "¡Acomodador! ¡No le conozco de nada!",
+    "dur": 2.722,
+    "cat": "call",
+    "who": "amiga"
+   },
+   "p_shh1_cine": {
+    "file": "assets/audio/es/p_shh1_cine.mp3",
+    "text": "Por favor...",
+    "dur": 0.648,
+    "cat": "shush",
+    "who": "cine"
+   },
+   "p_shh2_cine": {
+    "file": "assets/audio/es/p_shh2_cine.mp3",
+    "text": "¡Que es un clásico!",
+    "dur": 1.955,
+    "cat": "annoyed",
+    "who": "cine"
+   },
+   "p_shh3_cine": {
+    "file": "assets/audio/es/p_shh3_cine.mp3",
+    "text": "¡Acomodador! Esto es intolerable.",
+    "dur": 3.215,
+    "cat": "call",
+    "who": "cine"
+   },
+   "p_shh1_fan": {
+    "file": "assets/audio/es/p_shh1_fan.mp3",
+    "text": "¡Que es mi canción!",
+    "dur": 1.264,
+    "cat": "shush",
+    "who": "fan"
+   },
+   "p_shh2_fan": {
+    "file": "assets/audio/es/p_shh2_fan.mp3",
+    "text": "¡Chsst! ¡El estribillo!",
+    "dur": 1.696,
+    "cat": "annoyed",
+    "who": "fan"
+   },
+   "p_shh3_fan": {
+    "file": "assets/audio/es/p_shh3_fan.mp3",
+    "text": "¡Acomodador, que me lo estropea!",
+    "dur": 2.109,
+    "cat": "call",
+    "who": "fan"
+   },
+   "p_shh1_abu": {
+    "file": "assets/audio/es/p_shh1_abu.mp3",
+    "text": "¡¿QUÉ ES ESE RUIDO?!",
+    "dur": 1.178,
+    "cat": "shush",
+    "who": "abu"
+   },
+   "p_shh2_abu": {
+    "file": "assets/audio/es/p_shh2_abu.mp3",
+    "text": "¡¿QUIÉN ESTÁ COMIENDO?!",
+    "dur": 1.669,
+    "cat": "annoyed",
+    "who": "abu"
+   },
+   "p_shh3_abu": {
+    "file": "assets/audio/es/p_shh3_abu.mp3",
+    "text": "¡ACOMODADOR!",
+    "dur": 1.312,
+    "cat": "call",
+    "who": "abu"
+   },
+   "p_shh1_crit": {
+    "file": "assets/audio/es/p_shh1_crit.mp3",
+    "text": "Mmm. Anotado.",
+    "dur": 1.703,
+    "cat": "shush",
+    "who": "crit"
+   },
+   "p_shh2_crit": {
+    "file": "assets/audio/es/p_shh2_crit.mp3",
+    "text": "Esto va en la crítica.",
+    "dur": 1.72,
+    "cat": "annoyed",
+    "who": "crit"
+   },
+   "p_shh3_crit": {
+    "file": "assets/audio/es/p_shh3_crit.mp3",
+    "text": "¡Acomodador!",
+    "dur": 0.884,
+    "cat": "call",
+    "who": "crit"
+   },
+   "p_shh1_dir": {
+    "file": "assets/audio/es/p_shh1_dir.mp3",
+    "text": "¡Es MI película!",
+    "dur": 1.691,
+    "cat": "shush",
+    "who": "dir"
+   },
+   "p_shh2_dir": {
+    "file": "assets/audio/es/p_shh2_dir.mp3",
+    "text": "¡Cuatro años de rodaje!",
+    "dur": 4.381,
+    "cat": "annoyed",
+    "who": "dir"
+   },
+   "p_shh3_dir": {
+    "file": "assets/audio/es/p_shh3_dir.mp3",
+    "text": "¡Seguridad!",
+    "dur": 1.025,
+    "cat": "call",
+    "who": "dir"
+   },
+   "p_wake": {
+    "file": "assets/audio/es/p_wake.mp3",
+    "text": "¿Mmm...? ¿Qué pasa?",
+    "dur": 1.546,
+    "cat": "wake",
+    "who": "old"
+   },
+   "p_aid": {
+    "file": "assets/audio/es/p_aid.mp3",
+    "text": "Espera, que me subo el aparato.",
+    "dur": 2.187,
+    "cat": "aid",
+    "who": "abu"
+   },
+   "p_usher": {
+    "file": "assets/audio/es/p_usher.mp3",
+    "text": "Acompáñeme, por favor.",
+    "dur": 1.683,
+    "cat": "usher",
+    "who": "usher"
+   }
+  },
+  "en": {
+   "f1_hero_10s": {
+    "file": "assets/audio/en/f1_hero_10s.mp3",
+    "text": "We have ten seconds.",
+    "dur": 2.645,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_ally_always": {
+    "file": "assets/audio/en/f1_ally_always.mp3",
+    "text": "You always say that.",
+    "dur": 1.044,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_hero_holdon": {
+    "file": "assets/audio/en/f1_hero_holdon.mp3",
+    "text": "Hold on!",
+    "dur": 0.562,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_ally_detonator": {
+    "file": "assets/audio/en/f1_ally_detonator.mp3",
+    "text": "Where's the detonator?",
+    "dur": 1.191,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_hero_pocket": {
+    "file": "assets/audio/en/f1_hero_pocket.mp3",
+    "text": "In your pocket.",
+    "dur": 0.702,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_ally_mypocket": {
+    "file": "assets/audio/en/f1_ally_mypocket.mp3",
+    "text": "In MY pocket?",
+    "dur": 1.549,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_ally_jump": {
+    "file": "assets/audio/en/f1_ally_jump.mp3",
+    "text": "Jump!",
+    "dur": 0.511,
+    "cat": "film",
+    "who": "ally"
+   },
+   "f1_hero_made": {
+    "file": "assets/audio/en/f1_hero_made.mp3",
+    "text": "We made it.",
+    "dur": 1.128,
+    "cat": "film",
+    "who": "hero"
+   },
+   "f1_villain_notyet": {
+    "file": "assets/audio/en/f1_villain_notyet.mp3",
+    "text": "Not yet.",
+    "dur": 0.837,
+    "cat": "film",
+    "who": "villain"
+   },
+   "f2_her_rain": {
+    "file": "assets/audio/en/f2_her_rain.mp3",
+    "text": "It always rains when you leave.",
+    "dur": 1.859,
+    "cat": "film",
+    "who": "her"
+   },
+   "f2_him_always": {
+    "file": "assets/audio/en/f2_him_always.mp3",
+    "text": "Then I'll stay forever.",
+    "dur": 1.798,
+    "cat": "film",
+    "who": "him"
+   },
+   "f2_him_wait": {
+    "file": "assets/audio/en/f2_him_wait.mp3",
+    "text": "Wait for me!",
+    "dur": 1.289,
+    "cat": "shout",
+    "who": "him"
+   },
+   "f2_her_always": {
+    "file": "assets/audio/en/f2_her_always.mp3",
+    "text": "Always!",
+    "dur": 0.806,
+    "cat": "shout",
+    "who": "her"
+   },
+   "f2_her_letter": {
+    "file": "assets/audio/en/f2_her_letter.mp3",
+    "text": "Dear Martin, it never stops raining here.",
+    "dur": 2.846,
+    "cat": "letter",
+    "who": "her"
+   },
+   "f2_her_miss": {
+    "file": "assets/audio/en/f2_her_miss.mp3",
+    "text": "I miss you.",
+    "dur": 0.719,
+    "cat": "letter",
+    "who": "her"
+   },
+   "f2_him_changed": {
+    "file": "assets/audio/en/f2_him_changed.mp3",
+    "text": "You haven't changed a bit.",
+    "dur": 2.215,
+    "cat": "soft",
+    "who": "him"
+   },
+   "f2_her_you": {
+    "file": "assets/audio/en/f2_her_you.mp3",
+    "text": "Neither have you.",
+    "dur": 0.991,
+    "cat": "soft",
+    "who": "her"
+   },
+   "f3_girl_hello": {
+    "file": "assets/audio/en/f3_girl_hello.mp3",
+    "text": "Hello? Is anyone there?",
+    "dur": 2.119,
+    "cat": "afraid",
+    "who": "girl"
+   },
+   "f3_girl_cat": {
+    "file": "assets/audio/en/f3_girl_cat.mp3",
+    "text": "It was just the cat...",
+    "dur": 1.205,
+    "cat": "relief",
+    "who": "girl"
+   },
+   "f3_girl_mama": {
+    "file": "assets/audio/en/f3_girl_mama.mp3",
+    "text": "Mum? Is that you?",
+    "dur": 1.692,
+    "cat": "whisper",
+    "who": "girl"
+   },
+   "f3_doll_play": {
+    "file": "assets/audio/en/f3_doll_play.mp3",
+    "text": "Do you want to play with me?",
+    "dur": 2.488,
+    "cat": "creepy",
+    "who": "doll"
+   },
+   "f3_girl_no": {
+    "file": "assets/audio/en/f3_girl_no.mp3",
+    "text": "No, no, no...",
+    "dur": 2.509,
+    "cat": "whisper",
+    "who": "girl"
+   },
+   "f3_doll_found": {
+    "file": "assets/audio/en/f3_doll_found.mp3",
+    "text": "Found you.",
+    "dur": 0.807,
+    "cat": "creepy",
+    "who": "doll"
+   },
+   "f4_count": {
+    "file": "assets/audio/en/f4_count.mp3",
+    "text": "Five, six, seven, eight!",
+    "dur": 2.269,
+    "cat": "count",
+    "who": "coach"
+   },
+   "f4_her_premiere": {
+    "file": "assets/audio/en/f4_her_premiere.mp3",
+    "text": "Opening night is tomorrow.",
+    "dur": 2.362,
+    "cat": "film",
+    "who": "star"
+   },
+   "f4_him_shoes": {
+    "file": "assets/audio/en/f4_him_shoes.mp3",
+    "text": "Where are my tap shoes?",
+    "dur": 2.055,
+    "cat": "worried",
+    "who": "dancer"
+   },
+   "f4_her_what": {
+    "file": "assets/audio/en/f4_her_what.mp3",
+    "text": "What do you mean, your shoes?",
+    "dur": 2.95,
+    "cat": "shocked",
+    "who": "star"
+   },
+   "f4_him_stolen": {
+    "file": "assets/audio/en/f4_him_stolen.mp3",
+    "text": "Someone stole them.",
+    "dur": 1.611,
+    "cat": "worried",
+    "who": "dancer"
+   },
+   "f5_nar_dawn": {
+    "file": "assets/audio/en/f5_nar_dawn.mp3",
+    "text": "Dawn breaks over the savanna.",
+    "dur": 2.115,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f5_nar_calm": {
+    "file": "assets/audio/en/f5_nar_calm.mp3",
+    "text": "Everything seems calm.",
+    "dur": 1.47,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f5_nar_watch": {
+    "file": "assets/audio/en/f5_nar_watch.mp3",
+    "text": "But someone is watching us.",
+    "dur": 2.153,
+    "cat": "narrator_low",
+    "who": "nar"
+   },
+   "f5_nar_quiet": {
+    "file": "assets/audio/en/f5_nar_quiet.mp3",
+    "text": "Quiet... It mustn't hear us.",
+    "dur": 3.282,
+    "cat": "narrator_whisper",
+    "who": "nar"
+   },
+   "f5_nar_water": {
+    "file": "assets/audio/en/f5_nar_water.mp3",
+    "text": "Here, water is everything.",
+    "dur": 2.037,
+    "cat": "narrator_loud",
+    "who": "nar"
+   },
+   "f5_nar_elephants": {
+    "file": "assets/audio/en/f5_nar_elephants.mp3",
+    "text": "Elephants never forget.",
+    "dur": 1.931,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f5_nar_night": {
+    "file": "assets/audio/en/f5_nar_night.mp3",
+    "text": "Night falls.",
+    "dur": 1.484,
+    "cat": "narrator_low",
+    "who": "nar"
+   },
+   "f5_nar_storm": {
+    "file": "assets/audio/en/f5_nar_storm.mp3",
+    "text": "And the storm arrives.",
+    "dur": 1.671,
+    "cat": "narrator_loud",
+    "who": "nar"
+   },
+   "f5_nar_life": {
+    "file": "assets/audio/en/f5_nar_life.mp3",
+    "text": "And life begins again.",
+    "dur": 1.632,
+    "cat": "narrator",
+    "who": "nar"
+   },
+   "f6_keeper_day": {
+    "file": "assets/audio/en/f6_keeper_day.mp3",
+    "text": "Another day without ships.",
+    "dur": 1.668,
+    "cat": "weary",
+    "who": "keeper"
+   },
+   "f6_woman_letter": {
+    "file": "assets/audio/en/f6_woman_letter.mp3",
+    "text": "Keep the light on. I'll come back.",
+    "dur": 2.768,
+    "cat": "letter",
+    "who": "woman"
+   },
+   "f6_keeper_light": {
+    "file": "assets/audio/en/f6_keeper_light.mp3",
+    "text": "The light... It can't go out.",
+    "dur": 2.079,
+    "cat": "strain",
+    "who": "keeper"
+   },
+   "p_scream1": {
+    "file": "assets/audio/en/p_scream1.mp3",
+    "text": "Aaah!",
+    "dur": 1.16,
+    "cat": "scream",
+    "who": "amiga"
+   },
+   "p_scream2": {
+    "file": "assets/audio/en/p_scream2.mp3",
+    "text": "Aaaaah! No, no, no!",
+    "dur": 3.926,
+    "cat": "scream",
+    "who": "amiga"
+   },
+   "p_scream3": {
+    "file": "assets/audio/en/p_scream3.mp3",
+    "text": "AAAAAAAH!",
+    "dur": 0.805,
+    "cat": "scream",
+    "who": "amiga"
+   },
+   "p_sneeze_ah": {
+    "file": "assets/audio/en/p_sneeze_ah.mp3",
+    "text": "Ah... ah...",
+    "dur": 2.517,
+    "cat": "presneeze",
+    "who": "est"
+   },
+   "p_sneeze": {
+    "file": "assets/audio/en/p_sneeze.mp3",
+    "text": "ACHOO!",
+    "dur": 0.702,
+    "cat": "sneeze",
+    "who": "est"
+   },
+   "p_sneeze_false": {
+    "file": "assets/audio/en/p_sneeze_false.mp3",
+    "text": "Ah... ah... ...nope.",
+    "dur": 2.429,
+    "cat": "presneeze",
+    "who": "est"
+   },
+   "p_kid_roar": {
+    "file": "assets/audio/en/p_kid_roar.mp3",
+    "text": "Mum, a lion!",
+    "dur": 1.434,
+    "cat": "kid",
+    "who": "kid"
+   },
+   "p_kid_drink": {
+    "file": "assets/audio/en/p_kid_drink.mp3",
+    "text": "Do lions drink water?",
+    "dur": 1.514,
+    "cat": "kid",
+    "who": "kid"
+   },
+   "p_kid_snore": {
+    "file": "assets/audio/en/p_kid_snore.mp3",
+    "text": "Mum, that man snores like the lion.",
+    "dur": 2.611,
+    "cat": "kid",
+    "who": "kid"
+   },
+   "p_mum_shh": {
+    "file": "assets/audio/en/p_mum_shh.mp3",
+    "text": "Shh, sweetie.",
+    "dur": 2.08,
+    "cat": "hush",
+    "who": "mum"
+   },
+   "p_shh1_m1": {
+    "file": "assets/audio/en/p_shh1_m1.mp3",
+    "text": "Shh!",
+    "dur": 0.501,
+    "cat": "shush",
+    "who": "m1"
+   },
+   "p_shh2_m1": {
+    "file": "assets/audio/en/p_shh2_m1.mp3",
+    "text": "Do you mind?",
+    "dur": 1.137,
+    "cat": "annoyed",
+    "who": "m1"
+   },
+   "p_shh3_m1": {
+    "file": "assets/audio/en/p_shh3_m1.mp3",
+    "text": "Usher!",
+    "dur": 0.485,
+    "cat": "call",
+    "who": "m1"
+   },
+   "p_shh1_m2": {
+    "file": "assets/audio/en/p_shh1_m2.mp3",
+    "text": "Shhh!",
+    "dur": 0.742,
+    "cat": "shush",
+    "who": "m2"
+   },
+   "p_shh2_m2": {
+    "file": "assets/audio/en/p_shh2_m2.mp3",
+    "text": "Oi, enough!",
+    "dur": 1.362,
+    "cat": "annoyed",
+    "who": "m2"
+   },
+   "p_shh3_m2": {
+    "file": "assets/audio/en/p_shh3_m2.mp3",
+    "text": "Usher, please!",
+    "dur": 1.366,
+    "cat": "call",
+    "who": "m2"
+   },
+   "p_shh1_m3": {
+    "file": "assets/audio/en/p_shh1_m3.mp3",
+    "text": "Hey! Quiet!",
+    "dur": 1.35,
+    "cat": "shush",
+    "who": "m3"
+   },
+   "p_shh2_m3": {
+    "file": "assets/audio/en/p_shh2_m3.mp3",
+    "text": "I can't hear the film!",
+    "dur": 2.032,
+    "cat": "annoyed",
+    "who": "m3"
+   },
+   "p_shh3_m3": {
+    "file": "assets/audio/en/p_shh3_m3.mp3",
+    "text": "Usher, over here!",
+    "dur": 1.783,
+    "cat": "call",
+    "who": "m3"
+   },
+   "p_shh1_f1": {
+    "file": "assets/audio/en/p_shh1_f1.mp3",
+    "text": "Shh!",
+    "dur": 0.38,
+    "cat": "shush",
+    "who": "f1"
+   },
+   "p_shh2_f1": {
+    "file": "assets/audio/en/p_shh2_f1.mp3",
+    "text": "Seriously?!",
+    "dur": 1.066,
+    "cat": "annoyed",
+    "who": "f1"
+   },
+   "p_shh3_f1": {
+    "file": "assets/audio/en/p_shh3_f1.mp3",
+    "text": "Usher!",
+    "dur": 0.579,
+    "cat": "call",
+    "who": "f1"
+   },
+   "p_shh1_f2": {
+    "file": "assets/audio/en/p_shh1_f2.mp3",
+    "text": "Shhh!",
+    "dur": 0.661,
+    "cat": "shush",
+    "who": "f2"
+   },
+   "p_shh2_f2": {
+    "file": "assets/audio/en/p_shh2_f2.mp3",
+    "text": "Excuse me?!",
+    "dur": 0.809,
+    "cat": "annoyed",
+    "who": "f2"
+   },
+   "p_shh3_f2": {
+    "file": "assets/audio/en/p_shh3_f2.mp3",
+    "text": "Usher!",
+    "dur": 0.463,
+    "cat": "call",
+    "who": "f2"
+   },
+   "p_shh1_old": {
+    "file": "assets/audio/en/p_shh1_old.mp3",
+    "text": "Shh!",
+    "dur": 0.699,
+    "cat": "shush",
+    "who": "old"
+   },
+   "p_shh2_old": {
+    "file": "assets/audio/en/p_shh2_old.mp3",
+    "text": "Young people today!",
+    "dur": 1.314,
+    "cat": "annoyed",
+    "who": "old"
+   },
+   "p_shh3_old": {
+    "file": "assets/audio/en/p_shh3_old.mp3",
+    "text": "Get the usher!",
+    "dur": 0.87,
+    "cat": "call",
+    "who": "old"
+   },
+   "p_shh1_kid": {
+    "file": "assets/audio/en/p_shh1_kid.mp3",
+    "text": "Mum, he's eating!",
+    "dur": 1.601,
+    "cat": "shush",
+    "who": "kid"
+   },
+   "p_shh2_kid": {
+    "file": "assets/audio/en/p_shh2_kid.mp3",
+    "text": "MUM, HE'S STILL EATING!",
+    "dur": 1.914,
+    "cat": "annoyed",
+    "who": "kid"
+   },
+   "p_shh3_kid": {
+    "file": "assets/audio/en/p_shh3_kid.mp3",
+    "text": "MUM, GET THE TORCH MAN!",
+    "dur": 2.119,
+    "cat": "call",
+    "who": "kid"
+   },
+   "p_shh1_amiga": {
+    "file": "assets/audio/en/p_shh1_amiga.mp3",
+    "text": "Dude, they can hear you!",
+    "dur": 1.898,
+    "cat": "shush",
+    "who": "amiga"
+   },
+   "p_shh2_amiga": {
+    "file": "assets/audio/en/p_shh2_amiga.mp3",
+    "text": "You're scarier than the film!",
+    "dur": 2.201,
+    "cat": "annoyed",
+    "who": "amiga"
+   },
+   "p_shh3_amiga": {
+    "file": "assets/audio/en/p_shh3_amiga.mp3",
+    "text": "Usher! I don't even know this person!",
+    "dur": 2.219,
+    "cat": "call",
+    "who": "amiga"
+   },
+   "p_shh1_cine": {
+    "file": "assets/audio/en/p_shh1_cine.mp3",
+    "text": "Please...",
+    "dur": 0.563,
+    "cat": "shush",
+    "who": "cine"
+   },
+   "p_shh2_cine": {
+    "file": "assets/audio/en/p_shh2_cine.mp3",
+    "text": "This is a classic!",
+    "dur": 1.483,
+    "cat": "annoyed",
+    "who": "cine"
+   },
+   "p_shh3_cine": {
+    "file": "assets/audio/en/p_shh3_cine.mp3",
+    "text": "Usher! This is intolerable.",
+    "dur": 1.938,
+    "cat": "call",
+    "who": "cine"
+   },
+   "p_shh1_fan": {
+    "file": "assets/audio/en/p_shh1_fan.mp3",
+    "text": "That's my song!",
+    "dur": 1.758,
+    "cat": "shush",
+    "who": "fan"
+   },
+   "p_shh2_fan": {
+    "file": "assets/audio/en/p_shh2_fan.mp3",
+    "text": "Shh! The chorus!",
+    "dur": 2.125,
+    "cat": "annoyed",
+    "who": "fan"
+   },
+   "p_shh3_fan": {
+    "file": "assets/audio/en/p_shh3_fan.mp3",
+    "text": "Usher! He's ruining it!",
+    "dur": 1.452,
+    "cat": "call",
+    "who": "fan"
+   },
+   "p_shh1_abu": {
+    "file": "assets/audio/en/p_shh1_abu.mp3",
+    "text": "WHAT'S THAT NOISE?!",
+    "dur": 1.448,
+    "cat": "shush",
+    "who": "abu"
+   },
+   "p_shh2_abu": {
+    "file": "assets/audio/en/p_shh2_abu.mp3",
+    "text": "WHO'S EATING?!",
+    "dur": 1.055,
+    "cat": "annoyed",
+    "who": "abu"
+   },
+   "p_shh3_abu": {
+    "file": "assets/audio/en/p_shh3_abu.mp3",
+    "text": "USHER!",
+    "dur": 0.517,
+    "cat": "call",
+    "who": "abu"
+   },
+   "p_shh1_crit": {
+    "file": "assets/audio/en/p_shh1_crit.mp3",
+    "text": "Hmm. Noted.",
+    "dur": 1.597,
+    "cat": "shush",
+    "who": "crit"
+   },
+   "p_shh2_crit": {
+    "file": "assets/audio/en/p_shh2_crit.mp3",
+    "text": "This is going in the review.",
+    "dur": 2.151,
+    "cat": "annoyed",
+    "who": "crit"
+   },
+   "p_shh3_crit": {
+    "file": "assets/audio/en/p_shh3_crit.mp3",
+    "text": "Usher!",
+    "dur": 0.538,
+    "cat": "call",
+    "who": "crit"
+   },
+   "p_shh1_dir": {
+    "file": "assets/audio/en/p_shh1_dir.mp3",
+    "text": "This is MY film!",
+    "dur": 2.012,
+    "cat": "shush",
+    "who": "dir"
+   },
+   "p_shh2_dir": {
+    "file": "assets/audio/en/p_shh2_dir.mp3",
+    "text": "Four years of shooting!",
+    "dur": 2.014,
+    "cat": "annoyed",
+    "who": "dir"
+   },
+   "p_shh3_dir": {
+    "file": "assets/audio/en/p_shh3_dir.mp3",
+    "text": "Security!",
+    "dur": 0.926,
+    "cat": "call",
+    "who": "dir"
+   },
+   "p_wake": {
+    "file": "assets/audio/en/p_wake.mp3",
+    "text": "Hmm...? What's going on?",
+    "dur": 2.061,
+    "cat": "wake",
+    "who": "old"
+   },
+   "p_aid": {
+    "file": "assets/audio/en/p_aid.mp3",
+    "text": "Hang on, let me turn my hearing aid up.",
+    "dur": 2.275,
+    "cat": "aid",
+    "who": "abu"
+   },
+   "p_usher": {
+    "file": "assets/audio/en/p_usher.mp3",
+    "text": "Come with me, please.",
+    "dur": 1.841,
+    "cat": "usher",
+    "who": "usher"
+   }
+  }
+ },
+ "fx": {
+  "x_laugh1": {
+   "file": "assets/audio/fx/x_laugh1.mp3",
+   "dur": 0.789
+  },
+  "x_laugh2": {
+   "file": "assets/audio/fx/x_laugh2.mp3",
+   "dur": 0.794
+  },
+  "x_laugh3": {
+   "file": "assets/audio/fx/x_laugh3.mp3",
+   "dur": 1.402
+  },
+  "x_laugh4": {
+   "file": "assets/audio/fx/x_laugh4.mp3",
+   "dur": 1.419
+  },
+  "x_laugh5": {
+   "file": "assets/audio/fx/x_laugh5.mp3",
+   "dur": 0.728
+  },
+  "x_laugh6": {
+   "file": "assets/audio/fx/x_laugh6.mp3",
+   "dur": 1.426
+  },
+  "x_aww1": {
+   "file": "assets/audio/fx/x_aww1.mp3",
+   "dur": 0.643
+  },
+  "x_aww2": {
+   "file": "assets/audio/fx/x_aww2.mp3",
+   "dur": 1.523
+  },
+  "x_aww3": {
+   "file": "assets/audio/fx/x_aww3.mp3",
+   "dur": 0.623
+  },
+  "x_aww4": {
+   "file": "assets/audio/fx/x_aww4.mp3",
+   "dur": 2.845
+  },
+  "x_aww5": {
+   "file": "assets/audio/fx/x_aww5.mp3",
+   "dur": 0.655
+  },
+  "x_scream1": {
+   "file": "assets/audio/fx/x_scream1.mp3",
+   "dur": 0.652
+  },
+  "x_scream2": {
+   "file": "assets/audio/fx/x_scream2.mp3",
+   "dur": 0.433
+  },
+  "x_scream3": {
+   "file": "assets/audio/fx/x_scream3.mp3",
+   "dur": 0.607
+  },
+  "x_scream4": {
+   "file": "assets/audio/fx/x_scream4.mp3",
+   "dur": 0.484
+  },
+  "x_scream5": {
+   "file": "assets/audio/fx/x_scream5.mp3",
+   "dur": 0.486
+  },
+  "x_bravo1": {
+   "file": "assets/audio/fx/x_bravo1.mp3",
+   "dur": 0.666
+  },
+  "x_bravo2": {
+   "file": "assets/audio/fx/x_bravo2.mp3",
+   "dur": 0.591
+  },
+  "x_bravo3": {
+   "file": "assets/audio/fx/x_bravo3.mp3",
+   "dur": 0.866
+  },
+  "x_bravo4": {
+   "file": "assets/audio/fx/x_bravo4.mp3",
+   "dur": 2.246
+  },
+  "x_cough1": {
+   "file": "assets/audio/fx/x_cough1.mp3",
+   "dur": 0.83
+  },
+  "x_cough2": {
+   "file": "assets/audio/fx/x_cough2.mp3",
+   "dur": 0.384
+  },
+  "x_cough3": {
+   "file": "assets/audio/fx/x_cough3.mp3",
+   "dur": 0.775
+  }
+ },
+ "images": {
+  "f1_desert": "assets/img/f1_desert.jpg",
+  "f1_fuse": "assets/img/f1_fuse.jpg",
+  "f1_blast": "assets/img/f1_blast.jpg",
+  "f1_chase": "assets/img/f1_chase.jpg",
+  "f1_hideout": "assets/img/f1_hideout.jpg",
+  "f1_bomb": "assets/img/f1_bomb.jpg",
+  "f1_heli": "assets/img/f1_heli.jpg",
+  "f1_roof": "assets/img/f1_roof.jpg",
+  "f1_button": "assets/img/f1_button.jpg",
+  "f2_cafe": "assets/img/f2_cafe.jpg",
+  "f2_window": "assets/img/f2_window.jpg",
+  "f2_street": "assets/img/f2_street.jpg",
+  "f2_station": "assets/img/f2_station.jpg",
+  "f2_letters": "assets/img/f2_letters.jpg",
+  "f2_storm": "assets/img/f2_storm.jpg",
+  "f2_kiss": "assets/img/f2_kiss.jpg",
+  "f3_house": "assets/img/f3_house.jpg",
+  "f3_hall": "assets/img/f3_hall.jpg",
+  "f3_cat": "assets/img/f3_cat.jpg",
+  "f3_stairs": "assets/img/f3_stairs.jpg",
+  "f3_ghost": "assets/img/f3_ghost.jpg",
+  "f3_attic": "assets/img/f3_attic.jpg",
+  "f3_doll": "assets/img/f3_doll.jpg",
+  "f4_marquee": "assets/img/f4_marquee.jpg",
+  "f4_stage": "assets/img/f4_stage.jpg",
+  "f4_dressing": "assets/img/f4_dressing.jpg",
+  "f4_rain": "assets/img/f4_rain.jpg",
+  "f4_finale": "assets/img/f4_finale.jpg",
+  "f5_savanna": "assets/img/f5_savanna.jpg",
+  "f5_lion": "assets/img/f5_lion.jpg",
+  "f5_roar": "assets/img/f5_roar.jpg",
+  "f5_waterfall": "assets/img/f5_waterfall.jpg",
+  "f5_elephants": "assets/img/f5_elephants.jpg",
+  "f5_night": "assets/img/f5_night.jpg",
+  "f5_storm": "assets/img/f5_storm.jpg",
+  "f5_dawn": "assets/img/f5_dawn.jpg",
+  "f6_sea": "assets/img/f6_sea.jpg",
+  "f6_keeper": "assets/img/f6_keeper.jpg",
+  "f6_lever": "assets/img/f6_lever.jpg",
+  "f6_letter": "assets/img/f6_letter.jpg",
+  "f6_storm": "assets/img/f6_storm.jpg",
+  "f6_dark": "assets/img/f6_dark.jpg",
+  "f6_light": "assets/img/f6_light.jpg",
+  "poster_trueno": "assets/img/poster_trueno.jpg",
+  "poster_lluvia": "assets/img/poster_lluvia.jpg",
+  "poster_casa": "assets/img/poster_casa.jpg",
+  "poster_claque": "assets/img/poster_claque.jpg",
+  "poster_planeta": "assets/img/poster_planeta.jpg",
+  "poster_silencio": "assets/img/poster_silencio.jpg"
+ }
+}

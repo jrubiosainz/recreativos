@@ -1,0 +1,243 @@
+/* LA GOTA — the bus's own fittings around the steamed-up window. See the design contract in index.html. */
+@font-face { font-family: 'Darumadrop One'; src: url(assets/fonts/DarumadropOne.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Shantell Sans'; src: url(assets/fonts/ShantellSans-var.woff2) format('woff2'); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: 'Doto'; src: url(assets/fonts/Doto-var.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
+
+:root {
+  --wall: #23262f; --wall2: #3a3e4b; --fog: #e9eef3; --paper: #f3ead3; --paper-lo: #e6d8b4; --stripe: #3b2a20;
+  --ink: #1d4e9e; --text: #2b2521; --mute: #6f6353; --violet: #5b3fa8; --led: #ff9e1b; --stop: #e3262b; --you: #ffc23d;
+  --hand: 'Darumadrop One', 'Chalkboard SE', 'Comic Sans MS', cursive;
+  --talk: 'Shantell Sans', 'Chalkboard SE', 'Trebuchet MS', system-ui, sans-serif;
+  --dot: 'Doto', 'Courier New', monospace;
+  --safe-t: env(safe-area-inset-top, 0px); --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px); --safe-r: env(safe-area-inset-right, 0px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --pop: cubic-bezier(0.22, 1, 0.36, 1);
+  /* printed paper: a faint fibre grain and the security print's fine diagonal hatching */
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .23 0 0 0 0 .17 0 0 0 0 .1 0 0 0 .1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --paperbg: var(--grain), repeating-linear-gradient(115deg, rgba(29, 78, 158, 0.035) 0 1.5px, transparent 1.5px 8px), linear-gradient(170deg, #fbf5e6, var(--paper) 45%, #ece0c2);
+  /* the dark gaps between the LEDs of the sign */
+  --grid: repeating-linear-gradient(90deg, transparent 0 2px, rgba(0, 0, 0, 0.5) 2px 3px), repeating-linear-gradient(0deg, transparent 0 2px, rgba(0, 0, 0, 0.5) 2px 3px);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--wall); color: var(--fog); overflow: hidden; overscroll-behavior: none; }
+body { font: 500 16px/1.35 var(--talk); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+canvas#bg, canvas#game { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; }
+canvas#bg { z-index: 0; }
+canvas#game { z-index: 1; }
+#ui { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+#ui > * { pointer-events: auto; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--you); outline-offset: 3px; }
+.pass button:focus-visible, .card button:focus-visible { outline-color: var(--ink); }
+b { color: var(--ink); font-weight: 800; }
+kbd { font: 700 0.84em var(--talk); padding: 0 0.42em 0.05em; border-radius: 5px; background: #fffaf0; border: 1px solid #cbbd99; border-bottom-width: 3px; color: var(--stripe); white-space: nowrap; }
+.noscript { position: fixed; inset: 0; display: grid; place-items: center; font: 700 20px var(--talk); }
+.ic { width: 1.25em; height: 1.25em; flex: none; }
+
+/* ---------- screens ---------- */
+.scr { position: absolute; inset: 0; opacity: 1; transition: opacity 0.26s var(--ease); }
+.scr.out { opacity: 0; pointer-events: none; }
+.scr.boot.out { animation: none; }
+.scr.boot { display: grid; place-items: center; font: 600 clamp(18px, 2.6vw, 24px) var(--talk); color: var(--fog); opacity: 0.8; animation: breathe 1.6s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: 0.35; } }
+@keyframes blink { 50% { opacity: 0.2; } }
+
+/* buttons: printed boxes on the ticket; the one to press is the yellow raincoat */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45em; min-height: 48px; padding: 0.45em 1.1em 0.5em 0.95em; border-radius: 12px; color: var(--ink); background: rgba(255, 255, 255, 0.35); box-shadow: inset 0 0 0 2.5px var(--ink), 0 3px 0 rgba(29, 78, 158, 0.3); font: 800 clamp(16px, 1.9vw, 19px)/1 var(--talk); letter-spacing: 0.01em; text-transform: uppercase; white-space: nowrap; transition: transform 0.12s var(--ease), background 0.15s, box-shadow 0.12s; }
+.btn:hover { background: rgba(255, 255, 255, 0.7); }
+.btn:active { transform: translateY(2px); box-shadow: inset 0 0 0 2.5px var(--ink), 0 1px 0 rgba(29, 78, 158, 0.3); }
+.btn.yellow { color: #2c1e00; background: var(--you); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12), 0 3px 0 #b07f12, 0 8px 16px rgba(176, 127, 18, 0.25); }
+.btn.yellow:hover { background: #ffcd5c; }
+.btn.yellow:active { box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12), 0 1px 0 #b07f12; }
+.btn.blue { color: var(--paper); background: var(--ink); box-shadow: 0 3px 0 #0f2f63, 0 8px 16px rgba(15, 47, 99, 0.25); }
+.btn.blue:hover { background: #2a5fb3; }
+.btn.blue:active { box-shadow: 0 1px 0 #0f2f63; }
+.rb { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: rgba(20, 22, 28, 0.78); color: var(--fog); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 3px 10px rgba(0, 0, 0, 0.35); transition: background 0.15s, transform 0.12s var(--ease); }
+.rb:hover { background: rgba(58, 62, 75, 0.95); }
+.rb:active { transform: scale(0.93); }
+.rb[aria-pressed='false'] { color: rgba(233, 238, 243, 0.55); }
+.rb.lang { font: 800 16px var(--talk); letter-spacing: 0.04em; }
+.card .rb { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2.5px var(--ink); }
+.card .rb:hover { background: rgba(255, 255, 255, 0.6); }
+.card .rb[aria-pressed='false'] { color: var(--mute); box-shadow: inset 0 0 0 2.5px var(--mute); }
+
+/* a punched hole: before, the printed ring that says where; after, a hole right through the paper */
+.hole { display: inline-block; flex: none; width: 16px; height: 16px; border-radius: 50%; border: 1.5px dashed rgba(29, 78, 158, 0.55); vertical-align: middle; }
+.hole.on { border: 0; background: radial-gradient(circle at 50% 38%, #15171d 55%, #2b2e37); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 2px 2px rgba(0, 0, 0, 0.7); }
+
+/* ---------- title: the bonobús beside the window ---------- */
+.title { display: flex; padding: calc(12px + var(--safe-t)) calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l)); pointer-events: none; }
+.title > * { pointer-events: auto; }
+body.land .title { align-items: center; justify-content: flex-end; padding-right: calc(28px + var(--safe-r)); }
+body:not(.land) .title { align-items: flex-end; justify-content: center; }
+.pass { position: relative; display: flex; flex-direction: column; width: min(460px, 44vw); max-height: 100%; padding: 18px 0 0; border-radius: 16px; background: var(--paperbg); color: var(--text); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 0 1px rgba(59, 42, 32, 0.08), 0 22px 50px rgba(0, 0, 0, 0.5), 0 5px 12px rgba(0, 0, 0, 0.3); overflow: hidden; animation: slidein 0.6s var(--ease) both; }
+@keyframes slidein { from { opacity: 0; transform: translateX(46px) rotate(1.5deg); } }
+body:not(.land) .pass { width: min(520px, 100%); max-height: 62%; max-height: 62dvh; animation-name: slideup; }
+body:not(.land) .t-desc, body.touch .t-desc { display: none; }
+body:not(.land) .trips, body.touch .trips { padding-bottom: 8px; }
+@keyframes slideup { from { opacity: 0; transform: translateY(60px); } }
+.p-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 0 20px; }
+.brand { margin: 0; font: 400 clamp(38px, 4.4vw, 52px)/0.9 var(--hand); color: var(--ink); letter-spacing: 0.01em; }
+.kind { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font: 900 13px/1 var(--dot); letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
+.kind span:first-child { padding: 3px 6px 2px; border-radius: 3px; background: var(--ink); color: var(--paper); }
+.pitch { margin: 10px 0 0; padding: 0 20px 12px; font: 500 15px/1.38 var(--talk); color: var(--text); text-wrap: pretty; border-bottom: 2px dashed rgba(59, 42, 32, 0.28); }
+.trips { list-style: none; margin: 0; padding: 6px 8px; overflow-y: auto; min-height: 0; flex: 1 1 auto; scrollbar-width: thin; overscroll-behavior: contain; touch-action: pan-y; }
+.trips li + li { border-top: 1px solid rgba(59, 42, 32, 0.12); }
+.trip { position: relative; display: grid; grid-template-columns: 3.3em 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 1px 10px; width: 100%; padding: 8px 12px; border-radius: 10px; text-align: left; color: var(--text); transition: background 0.15s; }
+.trip:hover, .trip:focus-visible { background: rgba(29, 78, 158, 0.07); }
+.tr-clock { grid-row: span 2; font: 900 19px/1 var(--dot); color: var(--ink); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.tr-name { font: 800 18px/1.1 var(--talk); color: var(--text); }
+.tr-meta { grid-column: 2; font: 500 13.5px/1.25 var(--talk); color: var(--mute); }
+.tr-meta .nw { white-space: nowrap; }
+.trip > .holes, .trip > .go, .trip > .closed { grid-row: 1 / span 2; grid-column: 3; }
+.holes { display: flex; gap: 5px; }
+.go { display: inline-flex; align-items: center; padding: 7px 12px 6px; border-radius: 99px; background: var(--you); color: #2c1e00; font: 400 18px/1 var(--hand); letter-spacing: 0.02em; box-shadow: 0 2px 0 #b07f12; white-space: nowrap; animation: nudge 2.4s var(--ease) infinite; }
+@keyframes nudge { 0%, 70%, 100% { transform: translateX(0); } 78% { transform: translateX(4px); } 86% { transform: translateX(0); } 92% { transform: translateX(2px); } }
+.closed { padding: 4px 7px 3px; border: 2px solid rgba(179, 45, 45, 0.7); border-radius: 5px; color: rgba(179, 45, 45, 0.8); font: 900 11.5px/1 var(--dot); letter-spacing: 0.05em; transform: rotate(-5deg); white-space: nowrap; }
+.trip.next { background: rgba(255, 194, 61, 0.3); }
+.trip.shut { cursor: not-allowed; }
+.trip.shut .tr-clock, .trip.shut .tr-name, .trip.shut .tr-meta { opacity: 0.42; }
+.trip.nope { animation: nope 0.36s; }
+@keyframes nope { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.trip.pick { background: rgba(255, 194, 61, 0.55); }
+.t-desc { min-height: 2.7em; margin: 0; padding: 6px 20px 10px; font: 500 14px/1.35 var(--talk); color: var(--mute); text-wrap: pretty; }
+/* the brown magnetic stripe along the bottom of the pass */
+.stripe { flex: none; height: 20px; background: linear-gradient(180deg, #4a3527, var(--stripe) 40%, #2d2018); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+.corner { flex: none; display: flex; gap: 6px; }
+.pass .rb { width: 42px; height: 42px; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.pass .rb:hover { background: rgba(255, 255, 255, 0.6); }
+.pass .rb[aria-pressed='false'] { color: var(--mute); box-shadow: inset 0 0 0 2px var(--mute); }
+.pass .rb.lang { font-size: 14px; }
+.title.leaving .pass { opacity: 0; transform: translateX(40px); transition: transform 0.4s var(--ease), opacity 0.32s; }
+body:not(.land) .title.leaving .pass { transform: translateY(60px); }
+
+/* ---------- play: the LED sign over the aisle and the STOP button ---------- */
+.play { pointer-events: none; }
+.hud { position: absolute; top: calc(8px + var(--safe-t)); left: 50%; transform: translateX(-50%); width: min(640px, calc(100vw - 20px - var(--safe-l) - var(--safe-r))); height: 50px; display: flex; align-items: center; gap: 12px; pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.sign { position: relative; flex: 1; min-width: 0; height: 100%; display: flex; align-items: center; gap: 10px; padding: 0 12px 0 8px; border-radius: 8px; background: #0a0a0c; box-shadow: 0 0 0 4px #2d3039, 0 0 0 5px rgba(255, 255, 255, 0.07), 0 10px 24px rgba(0, 0, 0, 0.45); overflow: hidden; }
+.sign::after { content: ''; position: absolute; inset: 0; background: var(--grid); pointer-events: none; }
+.line { position: relative; z-index: 1; flex: none; padding: 5px 6px 4px; border-radius: 4px; background: var(--led); color: #0a0a0c; font: 900 19px/1 var(--dot); box-shadow: 0 0 10px rgba(255, 158, 27, 0.55); }
+.msg { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; font: 900 clamp(16px, 2vw, 21px)/1 var(--dot); letter-spacing: 0.02em; color: var(--led); text-shadow: 0 0 8px rgba(255, 158, 27, 0.7); }
+.msg .mt { display: inline-block; padding-right: 2px; }
+.msg.roll .mt { animation: roll var(--roll, 4s) ease-in-out infinite alternate; }
+@keyframes roll { 0%, 20% { transform: translateX(0); } 80%, 100% { transform: translateX(var(--over, 0)); } }
+.msg.blink { animation: blink 1s steps(2) infinite; }
+.eta { flex: none; font: 900 19px/1 var(--dot); color: var(--led); text-shadow: 0 0 8px rgba(255, 158, 27, 0.7); font-variant-numeric: tabular-nums; }
+.sign.late .eta { color: #ff3b30; text-shadow: 0 0 10px rgba(255, 59, 48, 0.85); animation: blink 0.5s steps(2) infinite; }
+.sign.late .line { background: #ff3b30; box-shadow: 0 0 12px rgba(255, 59, 48, 0.7); }
+.stop { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle at 42% 36%, #ff6a5e, var(--stop) 55%, #a8141b); color: #fff; font: 900 12.5px/1 var(--dot); letter-spacing: 0.04em; box-shadow: 0 0 0 4px #c9ccd3, 0 0 0 5px rgba(0, 0, 0, 0.35), 0 4px 0 5px #6e7079, 0 10px 20px rgba(0, 0, 0, 0.4); transition: transform 0.1s var(--ease), opacity 0.3s; }
+.stop:hover { filter: brightness(1.08); }
+.stop:active { transform: translateY(2px) scale(0.97); }
+.play.done .stop { opacity: 0; pointer-events: none; }
+/* a phone on its side: the sign steps into the wall on the left so the window keeps its height */
+body.side .hud { left: calc(10px + var(--safe-l)); transform: none; width: min(300px, calc(50vw - 150px)); height: auto; flex-direction: column; align-items: stretch; gap: 14px; }
+body.side .sign { height: 44px; }
+body.side .stop { align-self: flex-start; margin-left: 4px; }
+
+/* the friend in the next seat, whispering how it goes */
+#hint { position: fixed; z-index: 3; left: 50%; bottom: calc(10px + var(--safe-b)); transform: translateX(-50%); width: min(540px, calc(100vw - 24px)); padding: 10px 16px 11px; border-radius: 18px; background: var(--fog); color: #1f2530; font: 600 16px/1.33 var(--talk); text-wrap: pretty; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4), inset 0 -2px 0 rgba(31, 37, 48, 0.1); pointer-events: none; }
+#hint::after { content: ''; position: absolute; left: 50%; top: -9px; width: 18px; height: 18px; margin-left: -9px; background: var(--fog); border-radius: 4px 0 0 0; transform: rotate(45deg); }
+#hint.side { transform: none; bottom: auto; font-size: 15.5px; }
+#hint.side::after { left: -7px; top: 22px; margin-left: 0; transform: rotate(-45deg); }
+#hint.in { animation: hin 0.36s var(--pop); }
+@keyframes hin { from { opacity: 0; transform: translate(-50%, 10px) scale(0.96); } }
+#hint.side.in { animation-name: hinside; }
+@keyframes hinside { from { opacity: 0; transform: translateX(-10px) scale(0.96); } }
+#hint[hidden] { display: none; }
+
+/* a ticket stub from the machine */
+#toast { position: fixed; left: 50%; top: calc(12px + var(--safe-t)); z-index: 5; transform: translate(-50%, calc(-100% - 30px - var(--safe-t))); opacity: 0; max-width: calc(100vw - 24px); padding: 10px 18px 11px 16px; border-radius: 10px; background: var(--paperbg); color: var(--text); font: 700 16px/1.3 var(--talk); text-align: center; box-shadow: inset 0 0 0 1px rgba(91, 63, 168, 0.35), 0 10px 26px rgba(0, 0, 0, 0.45); transition: transform 0.4s var(--ease), opacity 0.2s; pointer-events: none; }
+#toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+/* ---------- the paper cards: pause and the back of the ticket ---------- */
+.card { position: relative; border-radius: 16px; background: var(--paperbg); color: var(--text); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 0 1px rgba(59, 42, 32, 0.08), 0 22px 50px rgba(0, 0, 0, 0.5), 0 5px 12px rgba(0, 0, 0, 0.3); }
+.pause { display: grid; place-items: center; background: rgba(18, 20, 26, 0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.pause .card { width: min(400px, calc(100vw - 40px)); padding: 22px 22px 18px; text-align: center; animation: rin 0.4s var(--ease); }
+.pause h2 { margin: 0 0 16px; font: 400 50px/0.95 var(--hand); color: var(--ink); }
+.pause .acts { display: grid; gap: 10px; }
+.pause .keys { margin: 16px 0 12px; font: 500 14.5px/1.5 var(--talk); color: var(--mute); }
+
+.result { display: flex; padding: calc(12px + var(--safe-t)) calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l)); pointer-events: none; }
+body.land .result { align-items: center; justify-content: flex-end; padding-right: calc(28px + var(--safe-r)); }
+body:not(.land) .result { align-items: flex-end; justify-content: center; }
+.result .card { pointer-events: auto; width: min(430px, 44vw); max-height: 100%; overflow-y: auto; padding: 30px 22px 18px; animation: rin 0.55s var(--ease); scrollbar-width: thin; }
+body:not(.land) .result .card { width: min(520px, 100%); }
+/* the back of a bonobús: the magnetic stripe runs across the top */
+.result .card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 14px; border-radius: 16px 16px 0 0; background: linear-gradient(180deg, #4a3527, var(--stripe) 45%, #2d2018); }
+@keyframes rin { from { opacity: 0; transform: translateY(22px) rotate(-1deg); } }
+.stamp { margin: 0; display: flex; justify-content: flex-start; }
+.stamp span { display: inline-block; padding: 5px 9px 4px; border: 2px solid currentColor; border-radius: 5px; color: var(--violet); font: 900 15px/1 var(--dot); letter-spacing: 0.03em; opacity: 0.86; transform: rotate(-2.5deg); mix-blend-mode: multiply; animation: thunk 0.45s var(--pop) 0.15s both; }
+@keyframes thunk { from { opacity: 0; transform: rotate(-2.5deg) scale(1.5); } }
+.r-big { margin: 14px 0 4px; font: 400 clamp(38px, 4.6vw, 56px)/0.98 var(--hand); color: var(--ink); text-wrap: balance; }
+.is-lose .r-big { color: #9e2a24; }
+.r-sub { margin: 0; font: 700 18px/1.3 var(--talk); color: var(--text); }
+.r-stats { margin: 4px 0 0; font: 500 15px/1.35 var(--talk); color: var(--mute); }
+.r-tip { margin: 12px 0 0; padding: 8px 12px 9px; border-radius: 10px; background: rgba(255, 194, 61, 0.3); font: 500 15px/1.38 var(--talk); color: var(--text); text-wrap: pretty; }
+.prizes { list-style: none; margin: 14px 0 0; padding: 12px 0 0; display: grid; gap: 8px; border-top: 2px dashed rgba(59, 42, 32, 0.25); }
+.prizes li { display: flex; align-items: center; gap: 11px; font: 600 15.5px/1.25 var(--talk); color: var(--mute); }
+.prizes .hole { width: 20px; height: 20px; }
+.prizes li:not(.in) .hole.on { border: 1.5px dashed rgba(29, 78, 158, 0.55); background: none; box-shadow: none; }
+.prizes li.in.on { color: var(--text); }
+.prizes li.in.on .hole { animation: punch 0.3s var(--pop); }
+@keyframes punch { from { transform: scale(1.6); } }
+.result .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.result .acts .btn { flex: 1 1 auto; }
+
+/* ---------- sizes ---------- */
+@media (max-width: 480px) {
+  .hud { height: 44px; gap: 10px; }
+  .stop { width: 44px; height: 44px; font-size: 11px; }
+  .line { font-size: 16px; padding: 4px 5px 3px; }
+  .msg { font-size: 15px; }
+  .eta { font-size: 16px; }
+  .sign { gap: 8px; padding: 0 9px 0 6px; }
+  .trip { padding: 7px 8px; gap: 1px 8px; }
+  .tr-name { font-size: 16.5px; }
+  .tr-meta { font-size: 12.5px; }
+  .go { font-size: 16px; padding: 6px 10px 5px; }
+  .pitch { font-size: 14px; }
+  .btn { padding-left: 0.8em; padding-right: 0.9em; }
+  #hint { font-size: 15px; }
+}
+/* a phone upright: the pass keeps to what a first ride needs; the tutorial whispers the rest */
+@media (max-width: 480px) and (max-aspect-ratio: 1/1) {
+  .pitch .how { display: none; }
+  .trip { padding-top: 6px; padding-bottom: 6px; }
+  .closed { font-size: 10px; padding: 3px 5px 2px; }
+}
+@media (max-height: 740px) and (max-aspect-ratio: 1/1) {
+  .t-desc { display: none; }
+  .pitch { font-size: 13.5px; margin-top: 6px; padding-bottom: 8px; }
+  .brand { font-size: 36px; }
+  .trip { padding-top: 5px; padding-bottom: 5px; }
+}
+/* a phone on its side: everything packed to fit the height */
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  .pass { padding-top: 12px; }
+  .brand { font-size: 34px; }
+  .pitch, .t-desc { display: none; }
+  .p-head { padding-bottom: 8px; border-bottom: 2px dashed rgba(59, 42, 32, 0.28); }
+  .trip { padding: 5px 10px; }
+  .tr-name { font-size: 16px; }
+  .stripe { height: 14px; }
+  .result .card { padding: 22px 16px 12px; }
+  .r-big { margin-top: 8px; font-size: 34px; }
+  .r-sub { font-size: 15px; }
+  .r-tip { margin-top: 6px; padding: 5px 10px; font-size: 13.5px; }
+  .prizes { margin-top: 8px; padding-top: 8px; gap: 3px; }
+  .prizes li { font-size: 13.5px; }
+  .result .acts { margin-top: 10px; gap: 6px; }
+  .result .acts .btn { min-height: 42px; }
+  .pause .card { padding: 14px 18px 12px; }
+  .pause h2 { font-size: 38px; margin-bottom: 10px; }
+  .pause .acts { grid-template-columns: repeat(3, auto); }
+  .pause .keys { margin: 10px 0 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scr.boot, .go, .msg.blink, .sign.late .eta, .pass, .result .card, .pause .card, .stamp span, .prizes li.in.on .hole, #hint.in { animation: none; }
+  .msg.roll .mt { animation: none; }
+  .msg.roll { white-space: normal; line-height: 1.05; font-size: 14px; }
+  .title.leaving .pass { transform: none; }
+}

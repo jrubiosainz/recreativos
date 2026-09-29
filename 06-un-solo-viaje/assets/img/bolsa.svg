@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <!-- the plastic of the bag: long wrinkles lit from the top left, multiplied over its printed stripes -->
+  <filter id="c" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="turbulence" baseFrequency="0.0018 0.012" numOctaves="3" seed="11" result="n"/>
+    <feDiffuseLighting in="n" surfaceScale="14" diffuseConstant="1" lighting-color="#ffffff" result="l">
+      <feDistantLight azimuth="225" elevation="50"/>
+    </feDiffuseLighting>
+    <feColorMatrix in="l" type="matrix" values="0.46 0 0 0 0.56  0 0.46 0 0 0.56  0 0 0.46 0 0.56  0 0 0 0 1"/>
+  </filter>
+  <g transform="rotate(-38 540 675)"><rect x="-500" y="-500" width="2080" height="2350" filter="url(#c)"/></g>
+</svg>

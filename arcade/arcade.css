@@ -1,0 +1,382 @@
+/* RECREATIVOS · the salón's DOM: Dymo tape for the small labels, blue enamel for the plate, brass for
+   the two things you press to go further (the shutter and the coin), biro on card for what you scored. */
+@font-face { font-family: 'Archivo'; src: url('../hub/fonts/Archivo-var.woff2') format('woff2'); font-weight: 400 900; font-stretch: 62% 100%; font-display: swap; }
+@font-face { font-family: 'Archivo'; src: url('../hub/fonts/Archivo-Italic-var.woff2') format('woff2'); font-weight: 400 700; font-stretch: 75% 100%; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Biro'; src: url('../hub/fonts/NothingYouCouldDo.woff2') format('woff2'); font-display: swap; }
+
+:root {
+  --night: #0d0b10; --soot: #17151a;
+  --cream: #f3e9d2; --cream-2: #e2d3b1;
+  --enamel: #1b4da1; --enamel-hi: #2a60bd; --enamel-lo: #133a7e; --enamel-ink: #0c2556;
+  --brass-hi: #f5dc93; --brass: #cfa74f; --brass-lo: #8d6a26; --brass-ink: #2b1d06;
+  --tape: #16141a; --tape-red: #b3161f;
+  --biro: #1c3fb7; --card: #fbf5e6;
+  --sans: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --biro-font: 'Biro', 'Bradley Hand', 'Segoe Print', cursive;
+  --out: cubic-bezier(.16, 1, .3, 1);
+  --safe-t: env(safe-area-inset-top, 0px); --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px); --safe-r: env(safe-area-inset-right, 0px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--night); color: var(--cream); overflow: hidden; overscroll-behavior: none; }
+body { font-family: var(--sans); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:disabled { cursor: default; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--brass-hi); outline-offset: 3px; }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+svg { display: block; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
+
+/* what is on screen in each part of the walk */
+#bar, #machines, #tags, #hint, #plate { transition: opacity .35s var(--out), visibility 0s linear .35s; }
+body:not([data-mode="hall"]):not([data-mode="focus"]) :is(#bar, #machines, #tags, #hint) { opacity: 0; visibility: hidden; pointer-events: none; }
+body[data-mode="hall"] :is(#bar, #machines), body[data-mode="focus"] :is(#bar, #machines) { transition-delay: 0s; }
+#plate:not(.on) { opacity: 0; visibility: hidden; pointer-events: none; }
+#plate.on { transition-delay: 0s; }
+
+/* ── Dymo tape: the embossed plastic labels the owner stuck on everything ── */
+.chip, .tag, #back, #leave, #big {
+  display: inline-flex; align-items: center; gap: .5em;
+  font: 700 13px/1 var(--sans); font-stretch: 78%; letter-spacing: .14em; text-transform: uppercase;
+  color: #f6f3ec; text-decoration: none; white-space: nowrap;
+  padding: 8px 11px 7px; border-radius: 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,0) 45%, rgba(0,0,0,.22)), var(--tape);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.5), 0 3px 8px -2px rgba(0,0,0,.6);
+  transition: background-color .2s, transform .2s var(--out), box-shadow .2s;
+}
+.chip svg, #back svg, #leave svg { width: 15px; height: 15px; margin: -2px 0; stroke-width: 2.6; }
+@media (hover: hover) {
+  .chip:hover, #back:hover, #big:hover { --tape: #2a2630; transform: translateY(-1px); }
+  #leave:hover { --tape: #cf2029; transform: translateY(-1px); }
+}
+.chip:active, #back:active, #leave:active, #big:active { transform: translateY(1px); }
+
+/* ── top: the shop's plaque and three labels ── */
+#bar {
+  position: fixed; z-index: 12; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; gap: 8px;
+  padding: calc(12px + var(--safe-t)) calc(14px + var(--safe-r)) 0 calc(14px + var(--safe-l));
+  pointer-events: none;
+}
+#bar > * { pointer-events: auto; }
+.brand { margin: 0 auto 0 0; }
+.brand span {
+  display: inline-block; padding: 8px 14px 7px; border-radius: 6px;
+  font: 900 17px/1 var(--sans); font-stretch: 62%; letter-spacing: .08em; text-transform: uppercase; color: var(--cream);
+  background: radial-gradient(130% 120% at 25% 0%, rgba(255,255,255,.2), transparent 55%), var(--enamel);
+  box-shadow: inset 0 0 0 2px var(--enamel), inset 0 0 0 3.5px var(--cream), 0 4px 10px -3px rgba(0,0,0,.7);
+}
+#sound .wave, #sound.off .x { display: block; }
+#sound .x, #sound.off .wave { display: none; }
+#lang { letter-spacing: .1em; }
+
+/* ── name tags over the machines, seen from the door ── */
+#tags { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+#tags:not(.on) .tag, #tags .tag.off { opacity: 0; visibility: hidden; }
+.tag {
+  position: absolute; left: 0; top: 0; transform-origin: 50% 100%;
+  font-size: 12px; padding: 7px 9px 6px; pointer-events: auto; cursor: pointer;
+  transition: opacity .3s var(--out), background-color .15s;
+}
+.tag::after {
+  content: ''; position: absolute; left: 50%; top: 100%; width: 1px; height: 10px; background: rgba(246,243,236,.35);
+}
+.tag.on { --tape: var(--tape-red); }
+@media (max-width: 899px) { #tags .tag:not(.on) { opacity: 0; visibility: hidden; } }
+
+#hint {
+  position: fixed; z-index: 6; left: 50%; bottom: calc(112px + var(--safe-b)); transform: translateX(-50%);
+  margin: 0; padding: 8px 14px 6px; background: var(--card); color: var(--biro); rotate: -1.5deg;
+  font: 400 22px/1.1 var(--biro-font); white-space: nowrap;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 10px 18px -8px rgba(0,0,0,.85);
+}
+body.picked #hint { opacity: 0; visibility: hidden; }
+
+/* ── the ten marquees again, small, along the bottom ── */
+#machines {
+  position: fixed; z-index: 8; left: 0; right: 0; bottom: 0;
+  padding: 0 calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l));
+  pointer-events: none;
+}
+#tabs {
+  list-style: none; margin: 0 auto; padding: 10px 2px 2px; width: max-content; max-width: 100%;
+  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; pointer-events: auto;
+}
+#tabs::-webkit-scrollbar { display: none; }
+#tabs li { flex: none; scroll-snap-align: center; }
+.tab {
+  position: relative; display: block; width: 118px; padding: 4px 4px 5px; border-radius: 5px;
+  background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(0,0,0,.18)), var(--body);
+  box-shadow: inset 0 0 0 1.5px var(--trim), 0 6px 14px -6px rgba(0,0,0,.85);
+  transition: transform .25s var(--out), box-shadow .25s, filter .25s;
+  filter: brightness(.82) saturate(.9);
+}
+.tab-art { display: block; width: 100%; height: auto; aspect-ratio: 264 / 74; border-radius: 2px; background: #000; }
+.tab-n {
+  position: absolute; left: -5px; top: -7px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px;
+  display: grid; place-items: center; font: 800 11px/1 var(--sans); font-stretch: 75%;
+  background: var(--cream); color: var(--enamel-ink); box-shadow: 0 2px 4px rgba(0,0,0,.6);
+}
+.tab-stars {
+  position: absolute; right: -4px; top: -8px; font: 400 15px/1 var(--biro-font); color: var(--brass-hi);
+  text-shadow: 0 1px 3px rgba(0,0,0,.9);
+}
+@media (hover: hover) { .tab:hover { transform: translateY(-4px); filter: none; } }
+.tab[aria-current="true"] { transform: translateY(-8px); filter: none; box-shadow: inset 0 0 0 2px var(--trim), 0 0 0 2px var(--cream), 0 10px 18px -6px rgba(0,0,0,.9); }
+.tab:active { transform: translateY(-2px); }
+
+/* ── the enamel plate ── */
+#plate {
+  position: fixed; z-index: 10;
+  right: calc(max(24px, 3.2vw) + var(--safe-r)); top: 50%; width: min(410px, 33vw);
+  transform: translateY(-46%);
+  transition: opacity .35s var(--out), transform .5s var(--out), visibility 0s linear .35s;
+}
+#plate.on { transform: translateY(-50%); }
+#plate.swap .plate-face > *, #plate.swap #plate-rec { opacity: 0; transition: opacity .15s; }
+.plate-face > *, #plate-rec { transition: opacity .25s .05s; }
+.plate-face {
+  position: relative; padding: 28px 30px 26px; border-radius: 14px; color: var(--cream);
+  background:
+    radial-gradient(7px 7px at 14px 14px, #0a1c42 45%, #d7cdb4 55%, transparent 62%),
+    radial-gradient(7px 7px at calc(100% - 14px) 14px, #0a1c42 45%, #d7cdb4 55%, transparent 62%),
+    radial-gradient(7px 7px at 14px calc(100% - 14px), #0a1c42 45%, #d7cdb4 55%, transparent 62%),
+    radial-gradient(7px 7px at calc(100% - 14px) calc(100% - 14px), #0a1c42 45%, #d7cdb4 55%, transparent 62%),
+    radial-gradient(140% 90% at 20% 0%, rgba(255,255,255,.2), rgba(255,255,255,0) 50%),
+    linear-gradient(170deg, var(--enamel-hi), var(--enamel) 42%, var(--enamel-lo));
+  box-shadow:
+    inset 0 0 0 5px transparent, inset 0 0 0 7px var(--cream), inset 0 0 0 9px rgba(12,37,86,.5),
+    inset 0 1px 0 rgba(255,255,255,.35),
+    0 2px 0 #0e2c63, 0 24px 44px -12px rgba(0,0,0,.8);
+}
+/* a chip knocked off the enamel, down to the iron */
+.plate-face::after {
+  content: ''; position: absolute; right: 42px; bottom: -1px; width: 15px; height: 7px;
+  background: #2a2723; border-radius: 60% 40% 30% 70% / 70% 60% 40% 30%; box-shadow: inset 0 1px 1px rgba(0,0,0,.6);
+}
+.plate-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+#plate-title {
+  margin: 0; font: 900 clamp(38px, 3.9vw, 60px)/.88 var(--sans); font-stretch: 62%; letter-spacing: .005em;
+  text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere;
+}
+#plate-no {
+  flex: none; margin: 2px 0 0; width: 54px; height: 54px; border-radius: 50%;
+  display: grid; place-content: center; text-align: center;
+  background: var(--cream); color: var(--enamel-ink);
+  box-shadow: inset 0 0 0 3px var(--cream), inset 0 0 0 4.5px var(--enamel), 0 2px 0 rgba(0,0,0,.25);
+  font: 900 26px/.9 var(--sans); font-stretch: 70%;
+}
+#plate-no small { display: block; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+#plate-line { margin: 14px 0 0; font: 700 18px/1.25 var(--sans); font-stretch: 88%; text-wrap: balance; }
+#plate-pitch { margin: 10px 0 0; font: 400 15px/1.5 var(--sans); color: #dfe6f5; max-width: 40ch; }
+#plate-how {
+  margin: 16px 0 0; padding-top: 12px; border-top: 1.5px solid rgba(243,233,210,.4);
+  display: flex; gap: 10px; align-items: flex-start; font: 600 14px/1.4 var(--sans); font-stretch: 92%; color: var(--cream);
+}
+#plate-how::before {
+  content: ''; flex: none; width: 18px; height: 18px; margin-top: 1px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='4.5'/%3E%3Crect x='10.6' y='9' width='2.8' height='9'/%3E%3Crect x='3' y='17' width='18' height='5' rx='1.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='4.5'/%3E%3Crect x='10.6' y='9' width='2.8' height='9'/%3E%3Crect x='3' y='17' width='18' height='5' rx='1.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* what you scored, in biro, on a card tucked under the plate */
+#plate-rec {
+  position: relative; z-index: 1; width: fit-content; max-width: 88%; margin: -6px 0 0 18px; padding: 9px 14px 7px;
+  background: var(--card); color: var(--biro); rotate: -1.6deg;
+  font: 400 19px/1.2 var(--biro-font);
+  box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 8px 14px -8px rgba(0,0,0,.8);
+}
+#plate-rec.fresh { color: #5b5346; }
+
+.plate-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+.knob {
+  flex: none; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; color: var(--cream);
+  background: radial-gradient(120% 120% at 30% 15%, rgba(255,255,255,.28), transparent 50%), var(--enamel);
+  box-shadow: inset 0 0 0 2px var(--enamel), inset 0 0 0 3.5px var(--cream), 0 3px 0 #0e2c63, 0 8px 14px -6px rgba(0,0,0,.8);
+  transition: transform .15s var(--out), box-shadow .15s;
+}
+.knob svg { width: 22px; height: 22px; stroke-width: 3; }
+@media (hover: hover) { .knob:hover { transform: translateY(-1px); } }
+.knob:active { transform: translateY(2px); box-shadow: inset 0 0 0 2px var(--enamel), inset 0 0 0 3.5px var(--cream), 0 1px 0 #0e2c63; }
+
+/* the brass push plate, and the 25-peseta coin with its hole */
+#coin, #open {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 60px; padding: 10px 22px; border-radius: 10px; color: var(--brass-ink);
+  font: 900 21px/1 var(--sans); font-stretch: 70%; letter-spacing: .07em; text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(255,244,210,.55);
+  background:
+    linear-gradient(100deg, transparent 30%, rgba(255,250,225,.45) 45%, transparent 60%) -150% 0 / 250% 100% no-repeat,
+    linear-gradient(180deg, var(--brass-hi), var(--brass) 52%, #b18a3b);
+  box-shadow: inset 0 1px 0 rgba(255,250,230,.8), inset 0 -2px 0 rgba(90,60,10,.45), 0 3px 0 var(--brass-lo), 0 12px 22px -10px rgba(0,0,0,.9);
+  transition: transform .15s var(--out), box-shadow .15s, background-position .6s var(--out);
+}
+#coin { flex: 1; min-width: 0; justify-content: flex-start; padding-left: 12px; white-space: nowrap; }
+@media (hover: hover) { #coin:hover, #open:not(:disabled):hover { background-position: 150% 0, 0 0; transform: translateY(-1px); } }
+#coin:active, #open:not(:disabled):active { transform: translateY(2px); box-shadow: inset 0 1px 0 rgba(255,250,230,.8), inset 0 -2px 0 rgba(90,60,10,.45), 0 1px 0 var(--brass-lo); }
+.coin {
+  flex: none; position: relative; width: 44px; height: 44px; border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 0 5px, #6f5118 5.5px 6.5px, transparent 7px),
+    repeating-conic-gradient(from 0deg, rgba(90,60,10,.35) 0 2deg, transparent 2deg 6deg),
+    radial-gradient(circle at 35% 30%, #fff1c2, #e3bd62 38%, #a57a2c 75%, #6b4b16);
+  -webkit-mask: radial-gradient(circle, transparent 0 5px, #000 5.5px); mask: radial-gradient(circle, transparent 0 5px, #000 5.5px);
+  box-shadow: inset 0 0 0 2px rgba(90,60,10,.55);
+  rotate: -18deg; transition: rotate .4s var(--out), translate .4s var(--out);
+}
+.coin-face { position: absolute; inset: 0; display: grid; place-items: center; font-stretch: 62%; color: rgba(70,46,6,.85); text-shadow: 0 1px 0 rgba(255,245,210,.6); }
+.coin-face b { position: absolute; top: 5px; font: 900 11px/1 var(--sans); font-stretch: 62%; letter-spacing: 0; }
+.coin-face i { position: absolute; bottom: 5px; font: 800 7px/1 var(--sans); font-style: normal; letter-spacing: .08em; }
+@media (hover: hover) { #coin:hover .coin { rotate: 8deg; } }
+/* the coin goes in */
+#plate.paid .coin { animation: drop .5s cubic-bezier(.5, 0, .9, .4) forwards; }
+@keyframes drop {
+  0% { translate: 0 0; scale: 1 1; }
+  30% { translate: 0 -12px; scale: 1 1; rotate: 0deg; }
+  100% { translate: 0 30px; scale: .15 1; rotate: 0deg; opacity: 0; }
+}
+#plate.paid #coin { transform: translateY(2px); }
+
+#back { position: absolute; left: 0; bottom: calc(100% + 12px); rotate: -1.2deg; }
+
+/* ── a game, inside the glass ── */
+#play { position: fixed; inset: 0; z-index: 20; pointer-events: none; }
+#play[hidden] { display: none; }
+#game { position: absolute; border: 0; background: #000; opacity: 0; transition: opacity .3s var(--out); pointer-events: auto; color-scheme: normal; }
+#play.on #game { opacity: 1; }
+#play-bar {
+  position: absolute; top: calc(10px + var(--safe-t)); left: 50%; translate: -50% 0;
+  display: flex; align-items: center; gap: 14px; padding: 6px; border-radius: 7px; pointer-events: auto;
+  background: var(--night); box-shadow: inset 0 0 0 1px rgba(243,233,210,.12), 0 8px 18px -8px #000;
+  opacity: 0; transition: opacity .3s var(--out);
+}
+#play.on #play-bar, #play.wait #play-bar { opacity: 1; }
+#leave { --tape: var(--tape-red); font-size: 14px; }
+#play-title { margin: 0; font: 900 18px/1 var(--sans); font-stretch: 65%; letter-spacing: .06em; text-transform: uppercase; color: var(--cream); white-space: nowrap; }
+#play-wait {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; margin: 0; padding: 10px 16px;
+  font: 400 24px/1 var(--biro-font); color: var(--cream); text-shadow: 0 2px 6px #000; opacity: 0; transition: opacity .3s;
+}
+#play.wait #play-wait { opacity: 1; }
+#play.full { background: var(--night); pointer-events: auto; }
+#play.full #play-bar { left: 0; right: 0; top: 0; translate: none; height: calc(52px + var(--safe-t)); padding: var(--safe-t) calc(10px + var(--safe-r)) 0 calc(10px + var(--safe-l)); border-radius: 0; box-shadow: none; justify-content: space-between; }
+#play.full #game { left: 0; right: 0; bottom: 0; top: calc(52px + var(--safe-t)); width: 100%; height: calc(100% - 52px - var(--safe-t)); border-radius: 0; }
+#play.full #play-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+#play.narrow #big { display: none; }
+
+/* ── the shutter: galvanised slats under the street lamp, the shop's name painted across them ── */
+#shutter {
+  position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; overflow: hidden;
+  background: #3e4247; transition: translate 1.3s cubic-bezier(.55, 0, .25, 1);
+}
+#shutter.up { translate: 0 -104%; }
+#shutter.quick { transition-duration: .35s; }
+.slats {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(80% 55% at 50% -8%, rgba(255,183,94,.34), rgba(255,183,94,0) 70%),
+    linear-gradient(90deg, rgba(0,0,0,.45), rgba(0,0,0,0) 18%, rgba(0,0,0,0) 82%, rgba(0,0,0,.45)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .09 0 0 0 0 .08 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(180deg, #2c2f33 0 2px, #9ba0a5 2px 4px, #7d8287 4px 12px, #686d72 12px 22px, #474b50 22px 27px, #2c2f33 27px 30px);
+}
+.shop { position: relative; display: grid; justify-items: center; gap: 22px; padding: 24px; text-align: center; width: min(92vw, 900px); }
+.sign {
+  margin: 0; font: 900 clamp(56px, 11vw, 140px)/.8 var(--sans); font-stretch: 62%; letter-spacing: .01em; text-transform: uppercase;
+  color: #efe4c9; rotate: -2deg;
+  /* paint over the ribs: darker where it sank into each groove */
+  -webkit-mask: repeating-linear-gradient(180deg, #000 0 21px, rgba(0,0,0,.55) 22px 27px, #000 28px 30px); mask: repeating-linear-gradient(180deg, #000 0 21px, rgba(0,0,0,.55) 22px 27px, #000 28px 30px);
+  text-shadow: 0 3px 0 rgba(0,0,0,.25);
+}
+.notice {
+  display: grid; gap: 6px; padding: 16px 22px 14px; max-width: 30ch; background: var(--card); color: #1d1a17; rotate: 1.2deg;
+  box-shadow: 0 2px 0 rgba(0,0,0,.1), 0 16px 26px -12px rgba(0,0,0,.85);
+  position: relative;
+}
+.notice::before, .notice::after {
+  content: ''; position: absolute; top: -10px; width: 64px; height: 22px; background: rgba(238,226,190,.78);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.notice::before { left: -14px; rotate: -32deg; }
+.notice::after { right: -14px; rotate: 30deg; }
+.shop-line { margin: 0; font: 800 22px/1.15 var(--sans); font-stretch: 85%; text-wrap: balance; }
+.shop-sub { margin: 0; font: 400 16px/1.4 var(--sans); color: #4a433c; text-wrap: balance; }
+#open { min-width: min(320px, 82vw); flex-direction: column; gap: 8px; padding: 14px 26px 12px; }
+#open:disabled { filter: saturate(.55) brightness(.92); }
+#meter { display: block; width: 100%; height: 5px; border-radius: 3px; background: rgba(60,40,8,.3); box-shadow: inset 0 1px 1px rgba(60,40,8,.5); overflow: hidden; }
+#meter::after { content: ''; display: block; height: 100%; transform: scaleX(var(--k, 0)); transform-origin: 0 50%; background: #5a3f0c; transition: transform .2s linear; }
+#shutter.ready #meter { display: none; }
+#shutter.failed #open-label { font-size: 16px; letter-spacing: .02em; text-transform: none; line-height: 1.3; }
+.shop-alt { font: 600 15px/1.3 var(--sans); color: #f1ead8; text-underline-offset: 3px; text-shadow: 0 1px 2px rgba(0,0,0,.8); }
+.shop-alt:hover { color: #fff; }
+.rail { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; background: linear-gradient(180deg, #8a8f94, #5c6166 30%, #34373b); box-shadow: 0 -2px 0 rgba(0,0,0,.4); display: flex; justify-content: space-between; padding: 0 16%; }
+.lock { width: 30px; height: 24px; margin-top: 12px; border-radius: 3px; background: linear-gradient(180deg, #b9bdc0, #6f7478); box-shadow: 0 2px 3px rgba(0,0,0,.6); }
+
+/* ── phones and narrow windows: the machine above, the plate below ── */
+@media (max-width: 699px), (max-aspect-ratio: 95/100) {
+  #plate { left: calc(12px + var(--safe-l)); right: calc(12px + var(--safe-r)); top: auto; bottom: calc(14px + var(--safe-b)); width: auto; transform: translateY(8%); }
+  #plate.on { transform: none; }
+  .plate-face { padding: 20px 20px 18px; }
+  #plate-title { font-size: clamp(32px, 9.5vw, 44px); }
+  #plate-no { width: 46px; height: 46px; font-size: 22px; }
+  #plate-line { margin-top: 10px; font-size: 16px; }
+  #plate-pitch { display: none; }
+  #plate-how { margin-top: 10px; padding-top: 9px; font-size: 13px; }
+  .plate-row { margin-top: 12px; }
+  #coin { min-height: 54px; font-size: 19px; }
+  .knob { width: 46px; height: 46px; }
+  body[data-mode="focus"] #machines { opacity: 0; visibility: hidden; pointer-events: none; }
+  #machines { padding-bottom: calc(8px + var(--safe-b)); }
+  #tabs { margin: 0; width: auto; padding-left: 6px; padding-right: 6px; }
+  .tab { width: 104px; }
+  #hint { bottom: calc(96px + var(--safe-b)); font-size: 20px; }
+  .brand span { font-size: 15px; }
+  #programme { display: none; }
+}
+@media (max-height: 620px) and (min-aspect-ratio: 95/100) {
+  #plate-pitch { display: none; }
+  #plate { width: min(400px, 42vw); }
+  .plate-face { padding: 18px 22px 16px; }
+  .plate-row { gap: 10px; }
+  #coin { min-height: 52px; gap: 9px; padding-right: 14px; font-size: 17px; letter-spacing: .04em; }
+  #coin .coin { width: 38px; height: 38px; }
+  .knob { width: 44px; height: 44px; }
+  #plate-title { font-size: clamp(30px, 3.4vw, 44px); }
+}
+
+/* ── landscape phones: no room above the plate, so «back» goes to the corner, the plate keeps to the right and the tabs step aside ── */
+@media (max-height: 500px) and (min-aspect-ratio: 1/1) {
+  body[data-mode="focus"] #machines { opacity: 0; visibility: hidden; pointer-events: none; }
+  #plate, #plate.on { top: auto; bottom: calc(10px + var(--safe-b)); left: auto; right: calc(12px + var(--safe-r)); width: min(400px, 50vw); transform: none; }
+  #coin { letter-spacing: .02em; }
+  #back { position: fixed; left: calc(14px + var(--safe-l)); bottom: calc(14px + var(--safe-b)); rotate: none; }
+  #hint { bottom: calc(86px + var(--safe-b)); font-size: 18px; }
+  #programme { display: none; }
+  .tab { width: 104px; }
+}
+
+/* a short landscape phone: the shutter's sign, card and push plate must all clear the bottom rail */
+@media (max-height: 420px) {
+  .shop { gap: 12px; padding: 10px 24px 56px; }
+  .sign { font-size: clamp(44px, 9vw, 84px); }
+  .notice { padding: 10px 18px 9px; }
+  .shop-line { font-size: 18px; }
+  .shop-sub { font-size: 14px; }
+  #open { min-height: 50px; padding: 10px 22px 9px; }
+}
+@media (max-height: 340px) { .shop-sub { display: none; } }
+@media (max-height: 500px) and (min-aspect-ratio: 1/1) and (max-width: 600px) {
+  #plate, #plate.on { width: min(360px, 64vw); }
+  .plate-row { gap: 8px; }
+  #coin { gap: 7px; padding-left: 9px; padding-right: 10px; font-size: 15px; }
+}
+.coin-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; }
+  #shutter { transition: none; }
+}
+
+.noscript { position: fixed; inset: 0; z-index: 40; overflow: auto; padding: 32px; background: var(--night); font: 400 18px/1.5 var(--sans); }
+.noscript a { color: var(--brass-hi); }
