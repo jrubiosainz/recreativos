@@ -1,10 +1,10 @@
 // The end: a Polaroid of the landing, stuck on the fridge door with a magnet. The photo is the stage at the
 // moment it ended, cropped around the cat, developing out of grey; the caption is the verdict in biro. Under
-// it: why, what it cost (butter left, breakages, time), a tip on a sticky note when it went wrong, the three
+// it: why, what it cost (jam left, breakages, time), a tip on a sticky note when it went wrong, the three
 // star magnets clacking on one by one, and the ways on: again, the next room, share, back to the fridge.
 import { t, getLang, plural, fmtNum } from '../i18n.js';
 import { el, esc, wire, show, later, toast, star, ICON } from './dom.js';
-import { starsOf } from '../save.js';
+import { starsOf, jamOf } from '../save.js';
 import { drawShot } from '../share.js';
 import { Audio } from '../audio.js';
 
@@ -20,7 +20,7 @@ export function verdict(sim) {
   return { head: e.win ? t('res.win') : t('res.why.' + e.why), sub: t('res.sub.' + (e.win ? 'win' : e.why)) };
 }
 export function statsOf(sim) {
-  const e = sim.end, out = [t('res.stat.butter', { p: fmtNum(pctOf(e.butter)) })];
+  const e = sim.end, out = [t('res.stat.jam', { p: fmtNum(pctOf(jamOf(e))) })];
   if (e.broke) out.push(plural('res.stat.broke', e.broke));
   out.push(t('res.stat.time', { s: fmt1(e.t) }));
   return out;

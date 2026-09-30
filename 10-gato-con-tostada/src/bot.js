@@ -1,6 +1,7 @@
 // The autopilot, for the tests and the attract loop. It flies the level's route like a player: tilts the nose
 // down to go (a tilt is a speed), spins to climb and brakes the spin so it comes out level, keeps its speed over
-// gaps, and over the box turns tail-down and lets the cat sit. `late` is a gentler, clumsier pilot.
+// gaps, tops up the jam at a bottle, and over the box turns tail-down and lets the cat sit. `late` is a gentler,
+// clumsier pilot.
 import { K, SIT } from './sim.js';
 import { clamp, angDiff } from './util.js';
 
@@ -13,13 +14,13 @@ const btf = (b) => 0.55 + 0.45 * b;
 export class Bot {
   constructor(sim, style = 'sharp') {
     this.s = sim; this.o = STYLE[style] || STYLE.sharp; this.route = (sim.lv.route || []).map((w) => [...w]);
-    this.i = 0; this.phase = 0; this.dir = 0; this.back = false; this.jam = 0;
+    this.i = 0; this.phase = 0; this.dir = 0; this.back = false; this.stuck = 0; this.t0 = 0;
   }
   step() {
     const s = this.s, inp = s.input;
     if (s.end || this.i >= this.route.length) { inp.turn = 0; return; }
     const [xt, mode, o = {}] = this.route[this.i];
-    inp.turn = mode === 'climb' ? this.climb(o) : mode === 'sit' ? this.sit(xt) : mode === 'wait' ? this.hold(xt, o) : this.fly(xt, mode, o);
+    inp.turn = mode === 'climb' ? this.climb(o) : mode === 'sit' ? this.sit(xt) : mode === 'wait' ? this.hold(xt, o) : mode === 'jar' ? this.jar(xt, o) : this.fly(xt, mode, o);
   }
   next() { this.i++; this.phase = 0; this.dir = 0; this.back = false; }
 
@@ -46,8 +47,8 @@ export class Bot {
     if (mode === 'pass' ? dx * this.dir <= 0 : Math.abs(dx) < 12 && (!careful || Math.abs(s.vx) < 30)) { this.next(); return this.steer(0); }
     const v = mode === 'pass' ? this.dir * vmax : clamp(dx * 2.2, -vmax, vmax);
     // pressed against something it can't float over: spin up and climb it
-    this.jam = Math.abs(v) > 40 && Math.abs(s.vx) < 15 && s.contacts.some((h) => Math.abs(h.nx) > 0.5) ? this.jam + 1 / 120 : 0;
-    if (this.jam > 0.4) { this.jam = 0; this.route.splice(this.i, 0, [s.x, 'climb', { c: 0.85 }]); this.phase = 0; return 0; }
+    this.stuck = Math.abs(v) > 40 && Math.abs(s.vx) < 15 && s.contacts.some((h) => Math.abs(h.nx) > 0.5) ? this.stuck + 1 / 120 : 0;
+    if (this.stuck > 0.4) { this.stuck = 0; this.route.splice(this.i, 0, [s.x, 'climb', { c: 0.85 }]); this.phase = 0; return 0; }
     return this.steer(this.tiltFor(v));
   }
   // spin (the safe way round: tail down first) until the lift has built up, then brake so it stops facing
@@ -60,6 +61,23 @@ export class Bot {
     if (this.phase === 1) { if (W < K.keep || Math.abs(angDiff(go, stop)) < 0.3) this.phase = 2; else return -1; }
     if (Math.abs(s.w) > K.keep - 0.8) return -Math.sign(s.w);
     this.next(); return 0;
+  }
+  // a refill: stop over the bottle, turn jam side down (tail first, past sitting), hold station while the cushion
+  // squeezes the bottle into the toast, then turn back the same way round
+  jar(xt, o) {
+    const s = this.s, dx = xt - s.x, hold = this.tiltFor(clamp(dx * 2.2, -60, 60));
+    if (this.phase === 0) {
+      if (Math.abs(dx) < 8 && Math.abs(s.vx) < 30) { this.phase = 1; this.t0 = s.time; }
+      return this.steer(this.tiltFor(clamp(dx * 2.2, -110, 110)));
+    }
+    if (this.phase === 1) { if (s.th < -2.2 || s.th > 2.9) this.phase = 2; else return this.steer(-2.6); }
+    if (this.phase === 2) {
+      if (s.b >= (o.to ?? 0.97) || s.time - this.t0 > (o.max ?? 6)) this.phase = 3;
+      else return this.steer(Math.PI + hold);
+    }
+    if (this.phase === 3) { if (s.th < 0 && s.th > -2.2) this.phase = 4; else return this.steer(-1.6); }
+    if (Math.abs(angDiff(0, s.th)) < 0.12 && Math.abs(s.w) < 1) { this.next(); return 0; }
+    return this.steer(hold);
   }
   // hold still over a spot until the coast is clear (the dog's gone by)
   hold(xt, o) {

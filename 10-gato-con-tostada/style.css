@@ -123,7 +123,7 @@ body:not(.land) .door { width: min(560px, 100%); max-height: 64%; max-height: 64
 .title.leaving .door { opacity: 0; transform: translateX(46px); transition: transform 0.4s var(--ease), opacity 0.32s; }
 body:not(.land) .title.leaving .door { transform: translateY(60px); }
 
-/* ---------- play: the room's note, the butter in its own wrapper, the red magnet that pauses ---------- */
+/* ---------- play: the room's note, the jam jar, the red magnet that pauses ---------- */
 .play { pointer-events: none; }
 .hud { position: absolute; top: calc(10px + var(--safe-t)); left: calc(14px + var(--safe-l)); right: calc(12px + var(--safe-r)); height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 14px; pointer-events: none; }
 .hud > * { pointer-events: auto; }
@@ -132,20 +132,25 @@ body:not(.land) .title.leaving .door { transform: translateY(60px); }
 .lvnote b { font: 700 18px/1 var(--magnet); color: var(--m); -webkit-text-stroke: 0.12em var(--ink); paint-order: stroke fill; }
 .lvnote span { overflow: hidden; text-overflow: ellipsis; }
 .hud .rb { width: 50px; height: 50px; }
-/* the wrapper opened flat, the block of butter on it shrinking from the knife end; a star magnet on the rim
-   marks how much must be left for the third star, and falls off (dashed) once there's less */
+/* a jar of strawberry jam lying on its side: the gingham-capped lid on the left, the glass, and the jam inside
+   going down towards the lid as it's used and coming back at a bottle; a star magnet on the glass marks how much
+   must be left for the third star, and falls off (dashed) once there's less */
 .gauge { position: relative; flex: 0 1 300px; display: flex; align-items: center; gap: 10px; min-width: 150px; }
-.wrap { position: relative; flex: 1; height: 36px; border-radius: 5px; background: repeating-linear-gradient(102deg, rgba(255, 255, 255, 0) 0 9px, rgba(255, 255, 255, 0.55) 9px 11px, rgba(255, 255, 255, 0) 11px 22px), linear-gradient(180deg, #f3f5f7, #cfd5dc 55%, #e7ebef); box-shadow: inset 0 0 0 2px var(--ink), 0 4px 0 rgba(20, 12, 8, 0.45); }
-.wrap::before, .wrap::after { content: ''; position: absolute; top: 5px; bottom: 5px; width: 10px; background: linear-gradient(90deg, #b9c1ca, #eef1f4); box-shadow: inset 0 0 0 1.5px var(--ink); }
-.wrap::before { left: -8px; border-radius: 4px 0 0 4px; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 82%); }
-.wrap::after { right: -8px; border-radius: 0 4px 4px 0; clip-path: polygon(0 0, 100% 18%, 100% 82%, 0 100%); }
-.block { position: absolute; left: 6px; top: 6px; bottom: 6px; width: calc((100% - 12px) * var(--b, 1)); min-width: 0; border-radius: 3px 5px 5px 3px; background: linear-gradient(180deg, #fff3b0 0 18%, var(--butter) 40%, var(--butter2) 88%, #e0ad22); box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.6), inset -3px 0 0 rgba(255, 255, 255, 0.45); transition: width 0.18s linear, filter 0.3s; }
-.gauge.low .block { animation: low 0.8s ease-in-out infinite; }
-@keyframes low { 50% { filter: brightness(1.12) saturate(1.4) hue-rotate(-18deg); } }
-.par { position: absolute; top: -12px; left: calc(6px + (100% - 12px) * var(--p, 0.5)); width: 22px; height: 22px; margin-left: -11px; transition: opacity 0.3s, transform 0.4s var(--ease); }
+.jar { position: relative; flex: 1; height: 38px; display: flex; align-items: center; }
+.lid { position: relative; z-index: 1; flex: none; width: 17px; height: 42px; margin-right: -3px; border-radius: 6px 3px 3px 6px; background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0) 0 5px, rgba(255, 255, 255, 0.55) 5px 10px), repeating-linear-gradient(90deg, #d2283c 0 5px, #f3f0e8 5px 10px); box-shadow: inset 0 0 0 2px var(--ink), 0 4px 0 rgba(20, 12, 8, 0.45); }
+.lid::after { content: ''; position: absolute; right: -3px; top: 6px; bottom: 6px; width: 5px; border-radius: 2px; background: linear-gradient(90deg, #c9b27c, #f4e3b0); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.glass { position: relative; flex: 1; height: 38px; border-radius: 6px 14px 14px 6px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.16) 45%, rgba(210, 225, 235, 0.3)); box-shadow: inset 0 0 0 2px var(--ink), 0 4px 0 rgba(20, 12, 8, 0.45); overflow: hidden; }
+.glass::after { content: ''; position: absolute; left: 8px; right: 14px; top: 5px; height: 4px; border-radius: 3px; background: rgba(255, 255, 255, 0.75); pointer-events: none; }
+.fill { position: absolute; left: 2px; top: 2px; bottom: 2px; width: calc((100% - 4px) * var(--b, 1)); border-radius: 4px 10px 10px 4px; background: radial-gradient(circle at 20% 35%, #ffe3a3 0 1px, transparent 1.6px) 0 0 / 11px 9px, radial-gradient(circle at 70% 75%, #ffe3a3 0 1px, transparent 1.6px) 0 0 / 13px 11px, linear-gradient(180deg, #f25a68, #d2283c 40%, #8e1426); box-shadow: inset -2px 0 0 rgba(42, 28, 20, 0.35); transition: width 0.18s linear, filter 0.3s; }
+.fill i { position: absolute; left: 6px; right: 8px; top: 4px; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.4); }
+.gauge.low .fill { animation: low 0.8s ease-in-out infinite; }
+@keyframes low { 50% { filter: brightness(1.25) saturate(1.3); } }
+.gauge.up .fill { filter: brightness(1.18) saturate(1.15); }
+.gauge.up .pct { color: #ffd0d4; }
+.par { position: absolute; z-index: 2; top: -12px; left: calc(16px + (100% - 18px) * var(--p, 0.5)); width: 22px; height: 22px; margin-left: -11px; transition: opacity 0.3s, transform 0.4s var(--ease); }
 .par .star { width: 22px; height: 22px; }
 .gauge.under .par { transform: translateY(5px) rotate(-18deg); }
-.pct { flex: none; min-width: 3.1em; font: 700 19px/1 var(--magnet); color: #fff8ea; text-align: right; font-variant-numeric: tabular-nums; text-shadow: 0 2px 0 rgba(20, 12, 8, 0.7), 0 0 8px rgba(20, 12, 8, 0.6); }
+.pct { flex: none; min-width: 3.1em; font: 700 19px/1 var(--magnet); color: #fff8ea; text-align: right; font-variant-numeric: tabular-nums; text-shadow: 0 2px 0 rgba(20, 12, 8, 0.7), 0 0 8px rgba(20, 12, 8, 0.6); transition: color 0.2s; }
 .pct small { font-size: 0.7em; margin-left: 1px; }
 .play.done .hud .rb { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 
@@ -158,6 +163,15 @@ body.touch .pads { display: flex; }
 .play.done .pads { opacity: 0; transition: opacity 0.3s; }
 
 /* a sticky note the family left on the fridge: how things work in this flat */
+/* the intro: the HUD and the pads wait in the wings while the cat gets ready; a chip to skip it, bottom right */
+.hud, .pads { transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), visibility 0s; }
+body.intro .hud, body.intro .pads { opacity: 0; transform: translateY(-8px); visibility: hidden; transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s; }
+body.intro #hint, body.paused .skip { display: none; }
+.skip { position: fixed; z-index: 3; right: calc(16px + var(--safe-r)); bottom: calc(18px + var(--safe-b)); display: inline-flex; align-items: center; gap: 0.3em; min-height: 44px; padding: 0.3em 0.8em 0.34em 1.05em; border-radius: 999px; color: var(--ink); background: rgba(255, 253, 248, 0.9); box-shadow: inset 0 0 0 2px var(--ink), 0 3px 0 var(--ink); font: 600 15px/1 var(--magnet); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; animation: skipin 0.5s var(--ease) 0.6s both; transition: transform 0.1s var(--ease), box-shadow 0.1s, background 0.15s; }
+.skip:hover { background: #fff; transform: translateY(-1px); box-shadow: inset 0 0 0 2px var(--ink), 0 4px 0 var(--ink); }
+.skip:active { transform: translateY(2px); box-shadow: inset 0 0 0 2px var(--ink), 0 1px 0 var(--ink); }
+.skip svg { width: 1em; height: 1em; margin-right: -0.15em; }
+@keyframes skipin { from { opacity: 0; transform: translateY(10px); } }
 #hint { position: fixed; z-index: 3; left: 50%; top: calc(78px + var(--safe-t)); width: min(440px, calc(100vw - 32px)); padding: 17px 18px 13px; background: var(--grain), var(--n-yellow); color: var(--ink); font: 400 19.5px/1.28 var(--biro); text-wrap: pretty; box-shadow: inset 0 0 0 1.5px rgba(42, 28, 20, 0.55), 0 14px 16px -8px rgba(0, 0, 0, 0.55); transform: translateX(-50%) rotate(-1.2deg); transform-origin: 50% 0; pointer-events: none; }
 #hint::before { content: ''; position: absolute; left: 50%; top: -10px; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.75) 0 16%, rgba(255, 255, 255, 0) 32%), var(--blue); box-shadow: inset 0 0 0 2px var(--ink), inset 0 -4px 0 rgba(0, 0, 0, 0.15), 0 3px 4px rgba(42, 28, 20, 0.3); }
 #hint b { font-weight: 400; text-decoration: underline 2px var(--redink); text-underline-offset: 3px; text-decoration-skip-ink: none; }
@@ -237,9 +251,10 @@ body:not(.land) .rdoor { width: min(520px, 100%); max-height: 100%; }
   .lvnote { font-size: 17.5px; padding: 11px 10px 7px; }
   .lvnote b { font-size: 16px; }
   .gauge { flex: 1 1 0; min-width: 96px; gap: 7px; }
-  .wrap { height: 32px; }
-  /* no room beside the wrapper for the figure: it's written on the foil, at the knife end */
-  .pct { position: absolute; right: 9px; top: 50%; min-width: 0; transform: translateY(-50%); font-size: 14px; color: var(--ink); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75); pointer-events: none; }
+  .jar, .glass { height: 32px; }
+  .lid { height: 36px; width: 15px; }
+  /* no room beside the jar for the figure: it's written on the glass, at the far end */
+  .pct { position: absolute; right: 12px; top: 50%; min-width: 0; transform: translateY(-50%); font-size: 14px; color: #fff8ea; text-shadow: 0 1px 0 var(--ink), 1px 0 0 var(--ink), -1px 0 0 var(--ink), 0 -1px 0 var(--ink), 0 0 5px rgba(42, 28, 20, 0.7); pointer-events: none; z-index: 1; }
   .hud .rb { width: 44px; height: 44px; }
   #hint { top: calc(66px + var(--safe-t)); font-size: 17.5px; }
   .tpad { width: 66px; height: 66px; }
@@ -291,7 +306,8 @@ body:not(.land) .rdoor { width: min(520px, 100%); max-height: 100%; }
   .item { min-height: 42px; font-size: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .scr.boot p, .door, .ml, .note, .go, #hint.in, .list, .polaroid, .photo canvas, .prizes li.in.on .star, .gauge.low .block { animation: none; }
+  .scr.boot p, .door, .ml, .note, .go, #hint.in, .list, .polaroid, .photo canvas, .prizes li.in.on .star, .gauge.low .fill { animation: none; }
   .title.leaving .door { transform: none; }
-  .note, .tpad, #toast { transition-duration: 0.01s; }
+  .note, .tpad, #toast, .hud, .pads, .skip { transition-duration: 0.01s; }
+  .skip { animation: none; }
 }

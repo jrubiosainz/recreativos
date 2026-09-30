@@ -1,6 +1,6 @@
 // Audio core: one lazily-created context and a mixing graph for a Spanish flat. Every sound in GATO CON TOSTADA
 // is synthesised: the fridge, the clock, the tap, the paradox humming under the cat, the cat itself (meows,
-// purrs, a hiss), the butter, the breakages, the dog, the box. src/audio.js schedules nodes through the
+// purrs, a hiss), the jam and its bottles, the tape, the breakages, the dog, the box. src/audio.js schedules nodes through the
 // helpers here.
 
 export const mtof = m => 440 * Math.pow(2, (m - 69) / 12);

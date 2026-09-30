@@ -1,7 +1,7 @@
-// GATO CON TOSTADA — the buttered-cat paradox as a flight model. Deterministic at 120 Hz, no DOM: it runs in
-// Node for the tests. Centimetres, y down, angles clockwise (like the canvas).
-// The device is a cat with a buttered toast taped to its back, butter up. θ = 0: feet down, butter up, the cat
-// facing right. Cats land on their feet and toast lands butter down, so whichever face points at the ground the
+// GATO CON TOSTADA — the buttered-cat paradox (here spread with jam) as a flight model. Deterministic at 120 Hz, no DOM:
+// it runs in Node for the tests. Centimetres, y down, angles clockwise (like the canvas).
+// The device is a cat with a slice of toast and jam taped to its back, jam up. θ = 0: feet down, jam up, the cat
+// facing right. Cats land on their feet and toast lands jam side down, so whichever face points at the ground the
 // other law objects, and the thing hovers over whatever is below it. The harder the two laws fight (|cos θ|, and
 // more while it spins, when they swap sides many times a second), the higher it floats. On its end (θ = ±90°)
 // neither face points down, the fight stops and it comes down: tail first (−90°) the cat sits, like a person,
@@ -15,18 +15,20 @@ export const K = {
   keep: 6, tStop: 0.06, tSpin: 0.7,       // let go below `keep` and it stops at once; above, it spins on like a top
   spin0: 4, spinS: 12,                    // |ω| that starts to count as spinning, and full spin
   charge: [0.35, 1.3],                    // the spin's lift builds up and fades slowly (attack, release, s)
-  H: 52, spinH: 0.95, reach: 150,         // hover clearance at full fight and full butter, extra for spinning, how far down the laws feel ground
+  H: 52, spinH: 1.2, reach: 150,          // hover clearance at full fight and full jam, extra for spinning, how far down the laws feel ground
   end: 0.18,                              // within ~10° of standing on its end neither face points down: no fight at all
   ks: 34, kd: 6.5, up: 2.3,               // the cushion: spring and damping to the hover clearance, push-up cap (× g)
+  run: 1.5, runMax: 18, runT: 0.25, runLead: 50, // a run-up: speed lets the laws feel a step coming (½v² = gΔh × run, up to runMax cm), runT s ahead
   T: 720, drag: 1.3, dragAir: 0.25,       // thrust along the fight axis (T/2 at 45°); drag while hovering / falling
-  drip: 0.0045, fling: 0.04, smear: 0.045, melt: 0.04, fan: 0.04, // butter lost: per s, per s of full spin, per scrape, per s over a hob…
+  drip: 0.0045, fling: 0.04, smear: 0.045, melt: 0.04, fan: 0.04, // jam lost: soaking in (per s), per s of full spin, per scrape, per s over a hob…
+  gdrip: 0.12, sagT: [0.45, 0.25], jar: 0.55, jarX: 20, // …per s running off an upside-down toast (once it has sagged: attack, release s); refilled per s at a bottle, within ±jarX cm of it
   r: 13, half: 15,                        // the capsule along the cat, tail to head
   sitWin: 0.42, sitV: 190, settle: 0.6,   // sitting: within 24° of tail-down and slow enough; this long in the box wins
   dizzy: 0.8,
   push: 175, rub: 3, mDev: 4,             // the cushion shoves loose things below it; their friction on a surface (1/s); device mass (kg)
 };
 
-const bf = (b) => 0.45 + 0.55 * b;       // how much the toast's law still has to say
+const bf = (b) => 0.45 + 0.55 * b;       // how much the toast's law still has to say (b: the jam left, 0…1)
 const btf = (b) => 0.55 + 0.45 * b;
 
 export class Sim {
@@ -46,14 +48,16 @@ export class Sim {
     this.dogs = (level.dogs || []).map((d) => ({ x0: d[0], x1: d[1], y: d[2], x: d[3] ?? d[0], dir: 1, v: 90, jy: 0, jvy: 0, jvx: 0, cd: 0.8, bark: 0, hit: 0, jump: false }));
     this.gusts = (level.gusts || []).map((g) => ({ t: g[0], d: g[1], a: g[2], on: false }));
     const [sx, sy] = level.start;
-    Object.assign(this, { x: sx, y: sy, vx: 0, vy: 0, th: 0, w: 0, b: level.butter ?? 1 });
+    this.jars = (level.jars || []).map((j, i) => ({ id: i, x: j[0], y: j[1], sq: 0, on: false, catch: false }));
+    Object.assign(this, { x: sx, y: sy, vx: 0, vy: 0, th: 0, w: 0, b: level.jam ?? 1 });
     this.input = { turn: 0 };
     this.time = 0; this.ev = []; this.end = null;
     this.charge = 0; this.spin = 0; this.fight = 1; this.dizzy = 0; this.gust = 0;
     this.sit = null; this.sitT = 0; this.offGround = 0;
-    this.hover = { h: 0, target: 0, gy: Infinity, water: false, none: true, solid: null };
+    this.hover = { h: 0, target: 0, gy: Infinity, by: Infinity, water: false, none: true, solid: null, run: null };
     this.touch = null; this.lastSmear = -1; this.lastPaw = -1; this.lastSizzle = -1;
     this.broke = 0; this.tempted = false; this.lowSaid = false; this.spinSaid = false;
+    this.sag = 0; this.dripAcc = 0; this.lastSquirt = -1; this.lastRefill = -1; this.hopOn = false; this.lastHop = -1; this.refilled = 0;
     this.contacts = [];
   }
 
@@ -73,11 +77,21 @@ export class Sim {
     return { y: best, water, solid };
   }
   ground() {
-    const yl = this.lowY(), e = this.extX() * 0.7;
+    const yl = this.lowY(), ex = this.extX(), e = ex * 0.7;
     let g = this.probe(this.x, yl);
     for (const dx of [-e, e]) { const p = this.probe(this.x + dx, yl); if (p.y < g.y) g = p; }
+    const by = g.y;
+    // a run-up: flying at a step fast enough, the laws feel its top coming and ride up onto it, like a skater
+    // onto a kerb. Only from solid ground (water and the void give nothing to push off) and only while they fight.
+    let run = null;
+    const v = Math.abs(this.vx);
+    if (v > 40 && this.fight > 0.3 && !this.sit && !g.water && g.y - yl < K.reach) {
+      const up = Math.min(K.runMax, (K.run * v * v) / (2 * G)), dir = Math.sign(this.vx);
+      const p = this.probe(this.x + dir * (ex + Math.min(K.runLead, v * K.runT)), yl - up);
+      if (p.solid && p.y < g.y - 1) { g = p; run = { x: dir > 0 ? p.solid.x : p.solid.x + p.solid.w, y: p.y, dir }; }
+    }
     const h = g.y - yl;
-    return { gy: g.y, h, water: g.water, solid: g.solid, none: g.water || !isFinite(g.y) || h > K.reach };
+    return { gy: g.y, by, h, water: g.water, solid: g.solid, run, none: g.water || !isFinite(g.y) || h > K.reach };
   }
 
   tick() {
@@ -101,6 +115,8 @@ export class Sim {
     this.spin = s; this.fight = c;
     if (s > 0.6 && !this.spinSaid) { this.spinSaid = true; this.emit({ k: 'spin' }); } else if (s < 0.2) this.spinSaid = false;
     const g = this.ground(); this.hover = g;
+    if (g.run && !this.hopOn && g.run.y < g.by - 8 && this.time - this.lastHop > 0.6) { this.hopOn = true; this.lastHop = this.time; this.emit({ k: 'hop', x: g.run.x, y: g.run.y, dir: g.run.dir }); }
+    else if (!g.run) this.hopOn = false;
     const target = K.H * bf(this.b) * (c + K.spinH * this.charge); g.target = target;
     let ax = 0, ay = G;
     if (this.sit) ax = -K.drag * this.vx; // sitting: the cushion is off, it rests on its bottom
@@ -123,10 +139,10 @@ export class Sim {
     if (this.end) return;
     this.objects(dt);
     this.hazards(dt, g);
-    // ---- butter
-    this.b -= (K.drip + K.fling * s * s) * dt;
-    if (this.b < 0.25 && !this.lowSaid) { this.lowSaid = true; this.emit({ k: 'low' }); }
-    if (this.b <= 0) { this.b = 0; this.emit({ k: 'nobutter' }); this.finish(false, 'butter'); return; }
+    // ---- jam
+    this.spread(dt, s, g);
+    if (this.b < 0.25 && !this.lowSaid) { this.lowSaid = true; this.emit({ k: 'low' }); } else if (this.b > 0.4) this.lowSaid = false;
+    if (this.b <= 0) { this.b = 0; this.emit({ k: 'nojam' }); this.finish(false, 'jam'); return; }
     if (this.y > this.fallY) this.finish(false, 'fell');
   }
 
@@ -166,12 +182,12 @@ export class Sim {
     return hits;
   }
 
-  // what the contacts mean: sitting, bonking, the butter scraping, paws
+  // what the contacts mean: sitting, bonking, the jam scraping, paws
   react(dt) {
     const fx = -Math.sin(this.th), fy = Math.cos(this.th); // the feet point this way
     let ground = null;
     for (const h of this.contacts) {
-      const side = -(h.nx * fx + h.ny * fy); // > 0: the feet side touched; < 0: the butter
+      const side = -(h.nx * fx + h.ny * fy); // > 0: the feet side touched; < 0: the jam
       if (h.ny < -0.6 && (!ground || h.s.y < ground.s.y)) ground = h;
       if (side < -0.45 && (h.v > 20 || Math.hypot(this.vx, this.vy) > 40)) {
         if (this.time - this.lastSmear > 0.22) {
@@ -291,7 +307,7 @@ export class Sim {
         this.sit = null; this.emit({ k: 'cucumber', x: q.x, y: q.y });
       }
     }
-    // a lit hob right below melts the butter
+    // a lit hob right below boils the jam off
     if (!g.none && g.solid && g.solid.tag === 'hob' && g.h < 110) {
       this.b -= K.melt * dt;
       if (this.time - this.lastSizzle > 0.45) { this.lastSizzle = this.time; this.emit({ k: 'sizzle' }); }
@@ -340,11 +356,40 @@ export class Sim {
     }
   }
 
+  // the jam: it soaks in a little all the time and flies off a spinning toast; turned upside down it runs off (it's
+  // thick, so it takes a moment to start and a quick flip costs little, but fly jam side down and it pours). A squeeze
+  // bottle under the cushion gets pressed and squirts straight up: jam side down, the toast catches it; feet down,
+  // the cat's belly does.
+  spread(dt, s, g) {
+    const ca = Math.cos(this.th), sa = Math.sin(this.th);
+    const ups = clamp((0.15 - ca) / 1.15); // 0: jam up … 1: jam straight down
+    this.sag += (ups - this.sag) * (1 - Math.exp(-dt / (ups > this.sag ? K.sagT[0] : K.sagT[1])));
+    const u = clamp((this.sag - 0.3) / 0.7), run = K.gdrip * u * u * (3 - 2 * u) * (0.35 + 0.65 * this.b);
+    this.b -= (K.drip + K.fling * s * s + run) * dt;
+    this.dripAcc += run * dt;
+    if (this.dripAcc > 0.02 && this.b > 0) {
+      this.dripAcc = 0;
+      const lx = sa > 0 ? 5.5 : -18.5, ly = -18.5; // the lowest end of the jam
+      this.emit({ k: 'drip', x: this.x + ca * lx - sa * ly, y: this.y + sa * lx + ca * ly });
+    }
+    for (const j of this.jars) {
+      const over = !g.none && !this.sit && Math.abs(j.x - this.x) < K.jarX && Math.abs(j.y - g.by) < 3;
+      const press = over ? this.fight * bf(this.b) * clamp(1 - (g.by - this.lowY() - g.target - 12) / 40) : 0;
+      j.sq += (press - j.sq) * (1 - Math.exp(-dt / 0.12));
+      j.on = j.sq > 0.25; j.catch = j.on && ups > 0.6;
+      if (!j.on) continue;
+      if (j.catch) {
+        const add = Math.min(1 - this.b, K.jar * j.sq * dt); this.b += add; this.refilled += add;
+        if (this.time - this.lastRefill > 0.3) { this.lastRefill = this.time; this.emit({ k: 'refill', id: j.id, x: j.x, y: j.y, full: this.b > 0.995 }); }
+      } else if (this.time - this.lastSquirt > 0.6) { this.lastSquirt = this.time; this.emit({ k: 'squirt', id: j.id, x: j.x, y: j.y }); }
+    }
+  }
+
   // after the end: the physics keeps going for the show (the fall onto its feet, the splash)
   after(dt) {
     const e = this.end;
     if (e.win) { this.w = 0; this.th += angDiff(SIT, this.th) * (1 - Math.exp(-8 * dt)); this.vx *= Math.exp(-10 * dt); return; }
-    if (e.why === 'butter') { this.w *= Math.exp(-dt / 0.2); this.th += angDiff(0, this.th) * (1 - Math.exp(-6 * dt)); }
+    if (e.why === 'jam') { this.w *= Math.exp(-dt / 0.2); this.th += angDiff(0, this.th) * (1 - Math.exp(-6 * dt)); }
     if (e.why === 'water') { this.vx *= Math.exp(-6 * dt); this.vy = Math.min(this.vy + G * dt, 60); this.y += this.vy * dt; this.x += this.vx * dt; return; }
     this.vy += G * dt; this.vx *= Math.exp(-1 * dt); this.x += this.vx * dt; this.y += this.vy * dt;
     this.collide();
@@ -354,7 +399,7 @@ export class Sim {
     if (this.end) return;
     const par = this.lv.par ?? 0.5;
     const stars = win ? 1 + (this.tempted ? 1 : 0) + (this.b >= par ? 1 : 0) : 0;
-    this.end = { win, why, t: this.time, butter: this.b, broke: this.broke, tempted: this.tempted, par, stars };
+    this.end = { win, why, t: this.time, jam: this.b, broke: this.broke, tempted: this.tempted, par, stars, refilled: this.refilled };
     this.emit({ k: 'end', win, why, stars });
   }
 }

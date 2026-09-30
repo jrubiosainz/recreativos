@@ -295,11 +295,18 @@ Object.assign(Room.prototype, {
         break;
       }
       case 'shelf': {
-        const [, , at, w] = d, sy = y(at);
+        // a row of jars; or, where the intro's cat sits, room for a cat, a slice of toast and a roll of tape, with a
+        // couple of jars, some books or the toiletries crowded into the far end
+        const [, , at, w, style] = d, sy = y(at);
         g.fillStyle = WOOD[2]; g.fillRect(x + 6, sy + 3, 3, 8); g.fillRect(x + w - 9, sy + 3, 3, 8);
-        const jars = [['#d9e8e0', 10, 14, '#c9533a'], ['#f0d9a8', 8, 18, '#6b8f3a'], ['#c9533a', 9, 11, '#f2c230'], ['#e6eef2', 12, 16, '#3b7be0']];
-        let u = x + 6;
-        for (const [c, jw, jh, lid] of jars) { g.fillStyle = c; this.R(u, sy - jh, jw, jh, 2); g.fill(); this.ink(0.7); g.fillStyle = lid; g.fillRect(u - 0.5, sy - jh - 2, jw + 1, 2.5); g.fillStyle = rgba('#ffffff', 0.5); g.fillRect(u + 2, sy - jh + 3, 1.4, jh - 6); u += jw + 7; }
+        if (style === 'books') this.books(x + w - 4, sy);
+        else if (style === 'bath') this.toiletries(x + w - 5, sy);
+        else {
+          const all = [['#d9e8e0', 10, 14, '#c9533a'], ['#f0d9a8', 8, 18, '#6b8f3a'], ['#c9533a', 9, 11, '#f2c230'], ['#e6eef2', 12, 16, '#3b7be0']];
+          const jars = style === 'jarsR' ? all.slice(2) : all;
+          let u = style === 'jarsR' ? x + w - 6 - jars.reduce((a, j) => a + j[1] + 7, -7) : x + 6;
+          for (const [c, jw, jh, lid] of jars) { g.fillStyle = c; this.R(u, sy - jh, jw, jh, 2); g.fill(); this.ink(0.7); g.fillStyle = lid; g.fillRect(u - 0.5, sy - jh - 2, jw + 1, 2.5); g.fillStyle = rgba('#ffffff', 0.5); g.fillRect(u + 2, sy - jh + 3, 1.4, jh - 6); u += jw + 7; }
+        }
         this.R(x, sy, w, 3, 0.8); this.fillInk(WOOD[1], 0.8);
         break;
       }
@@ -312,6 +319,13 @@ Object.assign(Room.prototype, {
           g.fillStyle = '#d8d3c6'; this.R(u + (i % 2 ? 6 : cw - 8), top + h - 20, 2, 12, 1); g.fill();
         }
         g.fillStyle = rgba('#000000', 0.14); g.fillRect(x, top + h, w, 5);
+        break;
+      }
+      case 'micro': {
+        // built into the wall units, out of the way (on the worktop it made a stair up to the fridge)
+        const [, , b, w, h] = d, top = y(b + h);
+        g.fillStyle = shade('#86b9a6', -0.3); this.R(x - 4, top - 4, w + 8, h + 8, 2); g.fill(); g.strokeStyle = rgba(INK, 0.4); g.lineWidth = 0.5; g.stroke();
+        this.solid([x, top, w, h, 'micro'], lv);
         break;
       }
       case 'tiles': {
@@ -331,7 +345,7 @@ Object.assign(Room.prototype, {
         g.save(); g.translate(x + 30, cy); g.rotate(-0.08);
         g.fillStyle = '#fffdf6'; g.beginPath(); g.rect(-15, -19, 30, 26); g.fill(); this.ink(0.6);
         g.strokeStyle = '#e07a2e'; g.lineWidth = 1.1; g.beginPath(); g.ellipse(-2, -3, 7, 4, 0, 0, TAU); g.stroke(); g.beginPath(); g.arc(6, -7, 3, 0, TAU); g.stroke();
-        g.fillStyle = '#e8c070'; g.fillRect(-8, -10.5, 10, 3); g.fillStyle = '#ffd84a'; g.fillRect(-7, -11.5, 8, 1.2);
+        g.fillStyle = '#e8c070'; g.fillRect(-8, -10.5, 10, 3); g.fillStyle = '#d2283c'; g.fillRect(-7, -11.5, 8, 1.2);
         g.strokeStyle = '#3b7be0'; g.lineWidth = 0.7; g.beginPath(); g.moveTo(-12, 4); g.quadraticCurveTo(-4, 1, 3, 4); g.stroke();
         g.restore();
         for (const [mx, my, c] of [[x + 30, cy - 19, '#e0463b'], [x + 10, cy + 20, '#3b7be0'], [x + 52, cy + 32, '#f2c230'], [x + 22, cy + 46, '#43b67a']]) { g.fillStyle = c; g.beginPath(); g.arc(mx, my, 3, 0, TAU); g.fill(); this.ink(0.6); g.fillStyle = rgba('#ffffff', 0.5); g.fillRect(mx - 1.5, my - 1.8, 1.4, 1); }
@@ -415,6 +429,39 @@ Object.assign(Room.prototype, {
         break;
       }
     }
+  },
+});
+
+// what crowds the far end of a perch shelf, right-aligned on xr
+Object.assign(Room.prototype, {
+  books(xr, sy) {
+    const g = this.g, B = [[3.6, 16, '#c94a3a'], [4.4, 19, '#2d6f5e'], [3, 14.5, '#e8c070'], [4, 17.5, '#4b5d7a'], [3.4, 15, '#9b3b35']];
+    const px = xr - 5;
+    g.beginPath(); g.moveTo(px - 4.2, sy - 7); g.lineTo(px + 4.2, sy - 7); g.lineTo(px + 3.3, sy); g.lineTo(px - 3.3, sy); g.closePath(); this.fillInk('#c56a3e', 0.6);
+    for (const [a, r] of [[-0.85, 3], [0, 3.8], [0.85, 3]]) { g.save(); g.translate(px, sy - 7); g.rotate(a); g.beginPath(); g.ellipse(0, -r, 1.7, r, 0, 0, TAU); this.fillInk(a ? '#6aa56f' : '#5b9a62', 0.5); g.restore(); }
+    let u = xr - 11;
+    for (let i = B.length - 1; i >= 0; i--) {
+      const [bw, bh, c] = B[i]; u -= bw + 0.3;
+      this.R(u, sy - bh, bw, bh, 0.5); this.fillInk(c, 0.6);
+      g.fillStyle = rgba('#ffffff', 0.4); g.fillRect(u + 0.6, sy - bh + 2.5, bw - 1.2, 0.8); g.fillRect(u + 0.6, sy - 4, bw - 1.2, 0.8);
+    }
+    g.save(); g.translate(u - 0.6, sy); g.rotate(-0.3); this.R(-3.6, -15.5, 3.6, 15.5, 0.5); this.fillInk('#e28a3a', 0.6); g.restore();
+  },
+  toiletries(xr, sy) {
+    const g = this.g;
+    let u = xr - 9;
+    g.lineCap = 'round'; g.lineWidth = 1.2;
+    g.strokeStyle = '#3b7be0'; g.beginPath(); g.moveTo(u + 3, sy - 8); g.lineTo(u + 1.6, sy - 18); g.stroke();
+    g.strokeStyle = '#e0343a'; g.beginPath(); g.moveTo(u + 5.6, sy - 8); g.lineTo(u + 7.4, sy - 17); g.stroke();
+    g.fillStyle = '#ffffff'; g.fillRect(u + 0.6, sy - 21, 1.9, 3.2); g.fillRect(u + 6.6, sy - 20, 1.9, 3.2);
+    g.beginPath(); g.moveTo(u, sy - 11); g.lineTo(u + 9, sy - 11); g.lineTo(u + 8.2, sy); g.lineTo(u + 0.8, sy); g.closePath(); this.fillInk(rgba('#bfe3ea', 0.92), 0.6);
+    u -= 11;
+    this.R(u, sy - 14, 8, 14, 2); this.fillInk('#f2a0b8', 0.6);
+    g.fillStyle = '#f7f3ec'; g.fillRect(u + 3, sy - 18, 2, 4); g.fillRect(u + 3, sy - 18.8, 5.5, 1.5);
+    g.fillStyle = rgba('#ffffff', 0.5); g.fillRect(u + 1.5, sy - 11, 1.2, 8);
+    u -= 10.5;
+    this.R(u, sy - 6, 8.5, 6, 1.2); this.fillInk('#8fd0c0', 0.6);
+    this.R(u - 0.3, sy - 8.2, 9.1, 2.6, 0.8); this.fillInk('#f7f3ec', 0.5);
   },
 });
 

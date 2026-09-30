@@ -3,8 +3,8 @@
 // two tones that can't agree, beating faster the harder the two laws fight, a whirr when the cat spins like a
 // top, and silence when it gives up the fight and sits. The cat is a voice run through a mouth that opens and
 // closes (m-i-a-u): a meow when it's spun, a yowl in the water, a «mrrp» when it sits in the box, then a purr.
-// The butter splats, glass tinkles, ceramic crunches, the rubber duck squeaks, the dog barks and its tags
-// jingle, the box goes «bof».
+// The jam splats and gloops, the squeezy bottles go «pfrrt» and glug, the tape rips, glass tinkles, ceramic
+// crunches, the rubber duck squeaks, the dog barks and its tags jingle, the box goes «bof».
 import { E, gain, filt, pan as panner, chain, glide, clamp } from './audio/core.js';
 
 const R = Math.random, rr = (a, b) => a + (b - a) * R();
@@ -132,7 +132,7 @@ function cardboard(t, peak = 0.22, p = 0) {
   const s = noise(c, 'pink', t), sg = env(c, t, 0.004, 0.04, 0.1, peak * 0.9); chain(s, filt(c, 'bandpass', 420, 1.1), sg, panner(c, p), E.g.bus.sfx); s.stop(t + 0.3);
   const r = noise(c, 'white', t + 0.05), rg = env(c, t + 0.05, 0.03, 0.12, 0.12, peak * 0.14); chain(r, filt(c, 'bandpass', 2400, 0.7), rg, panner(c, p), E.g.bus.sfx); r.stop(t + 0.5);
 }
-// butter meeting a surface: a wet slap, then a squelch sliding down
+// jam meeting a surface: a wet slap, then a squelch sliding down
 function splat(t, peak = 0.14, p = 0) {
   const c = E.ctx, s = noise(c, 'pink', t), f = filt(c, 'lowpass', 1800, 3), g = env(c, t, 0.003, 0.04, 0.1, peak);
   f.frequency.setValueAtTime(2200, t); f.frequency.exponentialRampToValueAtTime(320, t + 0.16);
@@ -269,11 +269,11 @@ function makeBed(level, quiet) {
   chain(pr, gain(c, 0.8), prnG.gain); chain(prn, filt(c, 'lowpass', 600), prnG, prLp);
   chain(pr, prLp, prB, prG, B.cat); lfo(0.55, 0.4, prB.gain);
   pr.start(t); srcs.push(pr, prn);
-  return { out, hOut, hA, hB, hC, hLp, whBp, whG, prG, srcs, room, quiet, clockT: rr(0, 1), dripT: rr(1, 2), crickT: rr(0.2, 1), tick: 0, dogs: [], nudgeT: 0, pawT: 0 };
+  return { out, hOut, hA, hB, hC, hLp, whBp, whG, prG, srcs, room, quiet, clockT: rr(0, 1), dripT: rr(1, 2), crickT: rr(0.2, 1), tick: 0, dogs: [], nudgeT: 0, pawT: 0, plopT: 0, yuckT: -9, fullT: -9 };
 }
 
 // ---------- endings ----------
-// out of butter: the paradox lets go (a slide down) and the cat lands on its feet like any cat, «aww»
+// out of jam: the paradox lets go (a slide down) and the cat lands on its feet like any cat, «aww»
 function letGo(t, peak = 0.08) {
   const c = E.ctx, o = tone(c, 'triangle', 330, t), g = env(c, t, 0.02, 0.35, 0.25, peak);
   o.frequency.exponentialRampToValueAtTime(96, t + 0.6); chain(o, filt(c, 'lowpass', 900), g, E.g.bus.hum); o.start(t); o.stop(t + 1);
@@ -293,6 +293,59 @@ function plummet(t, peak = 0.08) {
   const at = t + 1.35;
   [[520, 1], [1310, 0.5], [2150, 0.3]].forEach(([f, a]) => { const b = tone(c, 'sine', f, at), bg = env(c, at, 0.002, 0.01, 1.1, peak * 0.35 * a); chain(b, filt(c, 'lowpass', 1800), bg, E.g.bus.sfx); b.start(at); b.stop(at + 1.6); });
   thud(at, peak * 0.5, 80);
+}
+
+// ---------- the jam, the bottles, the tape ----------
+// a gloop of jam letting go of the toast: a thick, low «blop»
+function plop(t, peak = 0.05, p = 0) {
+  const c = E.ctx, f0 = rr(260, 420), o = tone(c, 'sine', f0, t), g = env(c, t, 0.002, 0.012, 0.06, peak);
+  o.frequency.exponentialRampToValueAtTime(f0 * 0.55, t + 0.02); o.frequency.exponentialRampToValueAtTime(f0 * 1.5, t + 0.08);
+  chain(o, g, panner(c, p), E.g.bus.sfx); o.start(t); o.stop(t + 0.2);
+  const s = noise(c, 'pink', t), sg = env(c, t, 0.001, 0.01, 0.03, peak * 0.5); chain(s, filt(c, 'lowpass', 900, 2), sg, panner(c, p), E.g.bus.sfx); s.stop(t + 0.1);
+}
+// a squeezy bottle squeezed: jam and air through the nozzle, chopped by the bubbles, «pfrrt»
+function squirt(t, peak = 0.12, p = 0, dur = 0.26) {
+  const c = E.ctx, s = noise(c, 'pink', t), bp = filt(c, 'bandpass', 600, 2.2), g = env(c, t, 0.004, dur * 0.6, dur * 0.4, peak);
+  bp.frequency.setValueAtTime(480, t); bp.frequency.exponentialRampToValueAtTime(1500, t + dur);
+  const lfo = tone(c, 'square', rr(38, 52), t), am = gain(c, 0.5);
+  chain(lfo, gain(c, 0.5), am.gain); chain(s, bp, am, g, panner(c, p), E.g.bus.sfx);
+  lfo.start(t); lfo.stop(t + dur + 0.3); s.stop(t + dur + 0.3);
+  const o = tone(c, 'sawtooth', 95, t), og = env(c, t, 0.003, dur * 0.5, dur * 0.3, peak * 0.35);
+  chain(o, filt(c, 'lowpass', 380, 1.5), og, panner(c, p), E.g.bus.sfx); o.start(t); o.stop(t + dur + 0.2);
+}
+// jam pouring onto the toast: a glug, higher as it fills up, the way a bottle does
+function glug(t, full = 0.5, peak = 0.07, p = 0) {
+  const c = E.ctx, f0 = 160 + full * 260, o = tone(c, 'sine', f0, t), g = env(c, t, 0.004, 0.03, 0.08, peak);
+  o.frequency.exponentialRampToValueAtTime(f0 * 1.8, t + 0.07);
+  chain(o, filt(c, 'lowpass', 1200), g, panner(c, p), E.g.bus.sfx); o.start(t); o.stop(t + 0.2);
+  const s = noise(c, 'pink', t), sg = env(c, t, 0.004, 0.02, 0.06, peak * 0.6);
+  chain(s, filt(c, 'bandpass', 600 + full * 700, 4), sg, panner(c, p), E.g.bus.sfx); s.stop(t + 0.15);
+}
+// duct tape off the roll: a rasp chopped faster and faster, «rrrras»
+function rip(t, dur = 0.34, peak = 0.12, p = 0) {
+  const c = E.ctx, s = noise(c, 'white', t), bp = filt(c, 'bandpass', 2600, 0.9), g = env(c, t, 0.01, dur * 0.7, dur * 0.3, peak);
+  bp.frequency.setValueAtTime(1800, t); bp.frequency.linearRampToValueAtTime(3400, t + dur);
+  const lfo = tone(c, 'sawtooth', 70, t), am = gain(c, 0.5);
+  lfo.frequency.linearRampToValueAtTime(115, t + dur);
+  chain(lfo, gain(c, 0.5), am.gain); chain(s, bp, am, g, panner(c, p), E.g.bus.sfx);
+  lfo.start(t); lfo.stop(t + dur + 0.3); s.stop(t + dur + 0.3);
+}
+// the long way down: a slide whistle, wobbling
+function whistle(t, dur = 0.6, peak = 0.045, from = 1500, to = 420) {
+  const c = E.ctx, o = tone(c, 'sine', from, t), g = env(c, t, 0.03, dur * 0.8, dur * 0.2, peak);
+  o.frequency.exponentialRampToValueAtTime(to, t + dur);
+  const v = tone(c, 'sine', 7, t); chain(v, gain(c, 18), o.frequency); v.start(t); v.stop(t + dur + 0.2);
+  chain(o, g, E.g.bus.sfx); o.start(t); o.stop(t + dur + 0.2);
+}
+// the paradox taking hold: two tones swelling up out of nothing, not quite agreeing
+function engage(t, peak = 0.07) {
+  const c = E.ctx, lp = filt(c, 'lowpass', 500), g = env(c, t, 0.25, 0.2, 0.5, peak);
+  lp.frequency.setValueAtTime(300, t); lp.frequency.exponentialRampToValueAtTime(1600, t + 0.45);
+  chain(lp, g, E.g.bus.sfx);
+  for (const [f, d] of [[120, 0], [124, 1]]) {
+    const o = tone(c, d ? 'triangle' : 'sine', f, t); o.frequency.exponentialRampToValueAtTime(f * 2.1, t + 0.5);
+    chain(o, lp); o.start(t); o.stop(t + 1.3);
+  }
 }
 
 export const Audio = {
@@ -350,7 +403,21 @@ export const Audio = {
       case 'spin': meow(t, MEOW.spun); break;
       case 'gust': whoosh(t, 1.5, 0.16, (e.dir || 0) * 0.6, 260, 1100); break;
       case 'low': meow(t, MEOW.worried); break;
-      case 'nobutter': letGo(t); break;
+      case 'nojam': letGo(t); break;
+      case 'drip': if (t - b.plopT > 0.14) { b.plopT = t; plop(t, 0.045, p); } break;
+      case 'squirt': squirt(t, 0.12, p); if (t - b.yuckT > 2.2) { b.yuckT = t; meow(t + 0.12, MEOW.yelp); } break;
+      case 'refill':
+        glug(t, sim.b, 0.07, p); squirt(t, 0.045, p, 0.3);
+        if (e.full && t - b.fullT > 2.5) { b.fullT = t; bell(t + 0.05, 1568, 0.05, 0.8); bell(t + 0.13, 2093, 0.045, 0.8); meow(t + 0.25, MEOW.mrr); }
+        break;
+      case 'hop': whoosh(t, 0.28, 0.05, p, 380, 1500); pat(t + 0.02, 0.05, p); break;
+      case 'leap': whoosh(t, 1.1, 0.07, 0, 250, 900); break;
+      case 'tape': rip(t, 0.3 + (e.long ? 0.12 : 0), 0.11, p); break;
+      case 'engage': engage(t); break;
+      case 'fall': whistle(t, e.dur || 0.6); break;
+      case 'brake': pat(t, 0.1, p); whoosh(t, 0.3, 0.05, p, 700, 250); break;
+      case 'slap': pat(t, 0.11, p); plop(t + 0.012, 0.05, p); break;
+      case 'mew': meow(t, { ...(MEOW[e.m] || MEOW.mrrp), p }); break;
       case 'smear': splat(t, 0.13, p); break;
       case 'paw': if (t - b.pawT > 0.08) { b.pawT = t; pat(t, clamp(0.03 + (e.v || 0) / 2500, 0.03, 0.1)); } break;
       case 'bump': thud(t, clamp(0.05 + (e.v || 0) / 1600, 0.05, 0.25), 95, p); break;
@@ -369,7 +436,7 @@ export const Audio = {
       case 'knock': thud(t, 0.2, 110, p); meow(t + 0.04, MEOW.yelp); break;
       case 'end':
         if (e.win) { [784, 988, 1175, 1568].forEach((fq, i) => bell(t + 0.35 + i * 0.09, fq, 0.07, 0.9)); meow(t + 0.7, MEOW.happy); }
-        else if (e.why === 'butter') { aww(t + 0.35); meow(t + 1.2, MEOW.sad); }
+        else if (e.why === 'jam') { aww(t + 0.35); meow(t + 1.2, MEOW.sad); }
         else if (e.why === 'water') meow(t + 1, MEOW.sad);
         else if (e.why === 'fell') plummet(t);
         break;

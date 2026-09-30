@@ -1,6 +1,6 @@
-// The HUD is what's on the fridge door while the cat flies: the room's note in the corner, the butter in its
-// own wrapper (the block shrinks from the knife end; a star magnet on the rim marks what the third star needs,
-// and falls off when there's less) and the red magnet that pauses. On a touchscreen, two round pads in the
+// The HUD is what's on the fridge door while the cat flies: the room's note in the corner, the jam in a jar lying
+// on its side (the jam inside goes down as it's used and comes back at a bottle; a star magnet on the lid marks
+// what the third star needs, and falls off when there's less) and the red magnet that pauses. On a touchscreen, two round pads in the
 // bottom corners say which half of the screen turns the cat which way, and light up while held.
 import { t, getLang } from '../i18n.js';
 import { el, esc, wire, soundBtn, bindMute, show, star, ICON, NOTE } from './dom.js';
@@ -12,8 +12,8 @@ export class Hud {
     this.node = el(`<section class="scr play" aria-label="${esc(name)}">
       <div class="hud">
         <div class="lvnote" style="--c:${NOTE.paper[i]};--m:${NOTE.mag[i]}"><span class="pin" aria-hidden="true"></span><b aria-hidden="true">${level.n}</b><span>${esc(name)}</span></div>
-        <div class="gauge" role="meter" aria-label="${esc(t('hud.butter'))}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
-          <div class="wrap" aria-hidden="true"><span class="block"></span><span class="par" style="--p:${this.par}">${star(true)}</span></div>
+        <div class="gauge" role="meter" aria-label="${esc(t('hud.jam'))}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+          <div class="jar" aria-hidden="true"><span class="lid"></span><span class="glass"><span class="fill"><i></i></span></span><span class="par" style="--p:${this.par}">${star(true)}</span></div>
           <span class="pct" aria-hidden="true"></span>
         </div>
         <button class="rb" data-act="pause" aria-label="${esc(t('hud.pause'))}" title="${esc(t('hud.pause'))}">${ICON.pause}</button>
@@ -21,7 +21,7 @@ export class Hud {
       <div class="pads" aria-hidden="true"><span class="tpad l" title="${esc(t('hud.left'))}">${ICON.turnL}</span><span class="tpad r" title="${esc(t('hud.right'))}">${ICON.turnR}</span></div>
     </section>`);
     const $ = (s) => this.node.querySelector(s);
-    this.gauge = $('.gauge'); this.block = $('.block'); this.pct = $('.pct'); this.parEl = $('.par');
+    this.gauge = $('.gauge'); this.fill = $('.fill'); this.pct = $('.pct'); this.parEl = $('.par');
     this.padL = $('.tpad.l'); this.padR = $('.tpad.r');
     this.last = { pct: -1, under: null, low: null, l: false, r: false };
     wire(this.node, { pause: () => onPause() });
@@ -31,7 +31,8 @@ export class Hud {
   update() {
     const s = this.sim, L = this.last, b = Math.max(0, Math.min(1, s.b)), pct = Math.round(b * 100);
     if (pct !== L.pct) {
-      this.block.style.setProperty('--b', b.toFixed(3));
+      if (pct > L.pct && L.pct >= 0) { this.gauge.classList.add('up'); clearTimeout(this.upT); this.upT = setTimeout(() => this.gauge.classList.remove('up'), 450); }
+      this.fill.style.setProperty('--b', b.toFixed(3));
       this.pct.innerHTML = `${pct}<small>%</small>`;
       this.gauge.setAttribute('aria-valuenow', String(pct));
       L.pct = pct;

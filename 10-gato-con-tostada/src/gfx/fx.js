@@ -1,5 +1,5 @@
 // What the flat shouts (¡MIAU!, ¡CRAS!, ¡GUAU!, ¡PLAF!) in fat fridge-magnet letters, and the bits that fly:
-// butter, glass, water, dust, steam, a tuft of fur, and the confetti of a win. Device pixels.
+// jam, glass, water, dust, steam, a tuft of fur, and the confetti of a win. Device pixels.
 import { t } from '../i18n.js';
 import { F } from '../fonts.js';
 import { clamp, ease, TAU, mix } from '../util.js';
@@ -80,7 +80,7 @@ export class Fx {
       this.ps.push({ k: 2, x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 40 * this.d, g: 520 * this.d, t: 0, life: 0.5 + Math.random() * 0.35, c: '#ffffff', r: (1.2 + Math.random() * 2.6) * this.d });
     }
   }
-  // k 3 butter blobs · 4 shards · 5 dust · 6 fur · 7 steam
+  // k 3 jam blobs · 4 shards · 5 dust · 6 fur · 7 steam
   bits([x, y], k, color, n = 10, v0 = 1, up = 0.6) {
     const d = this.d;
     for (let j = 0; j < n; j++) {

@@ -1,8 +1,8 @@
-// GATO CON TOSTADA: cats always land on their feet, toast always lands butter side down, and somebody has taped
-// a buttered slice to a cat's back. Neither law gives way, so it hovers. You turn it (that's all you do): tilted
-// it travels, level it stops, spun it climbs, and on its tail it gives up the fight and sits. It only really sits
-// in one place: the cardboard box. This file is the conductor: the fixed-step clock, the two-way turn, the
-// screens, the title's attract loop, the landing, sharing, QA entry points.
+// GATO CON TOSTADA: cats always land on their feet, toast always lands jam side down, and somebody has taped a
+// slice of toast and jam to a cat's back. Neither law gives way, so it hovers. You turn it (that's all you do):
+// tilted it travels, level it stops, spun it climbs, and on its tail it gives up the fight and sits. It only really
+// sits in one place: the cardboard box. This file is the conductor: the fixed-step clock, the two-way turn, the
+// screens, each room's intro (the leap and the tape), the title's attract loop, the landing, sharing, QA entry points.
 import { Sim, DT } from './sim.js';
 import { LEVELS } from './levels.js';
 import { Bot } from './bot.js';
@@ -16,6 +16,7 @@ import { titleScreen } from './ui/title.js';
 import { Hud, pauseCard } from './ui/play.js';
 import { resultScreen } from './ui/result.js';
 import { Tutorial } from './tutorial.js';
+import { Intro } from './intro.js';
 import { shareResult, makeCard } from './share.js';
 import { Audio } from './audio.js';
 import { clamp } from './util.js';
@@ -26,7 +27,7 @@ const save = loadSave();
 setLang(q.get('lang') || save.lang || detectLang());
 const forceMute = q.get('mute') === '1', skipTut = q.get('skip') === '1';
 const N = LEVELS.length;
-const S = { state: 'boot', i: 0, level: null, sim: null, scene: null, hud: null, tut: null, bot: null, att: null, acc: 0, endShown: false, shot: null, rec: null, pauseNode: null, qa: false, attract: false, quiet: false, sound: false };
+const S = { state: 'boot', i: 0, level: null, sim: null, scene: null, hud: null, tut: null, bot: null, att: null, acc: 0, endShown: false, shot: null, rec: null, pauseNode: null, qa: false, attract: false, quiet: false, sound: false, intro: null, introLv: -1, skipNode: null, armTut: null };
 // the turn: arrow keys (or A/D) held, and fingers (or the mouse) held on either half of the screen
 const Keys = { l: false, r: false }, ptrs = new Map();
 let W = 1, H = 1, dpr = 1, last = performance.now(), lastPointer = matchMedia('(pointer: coarse)').matches ? 'touch' : 'mouse';
@@ -141,6 +142,7 @@ function leavePlay() {
   S.hud?.finish(); S.hud = null;
   S.pauseNode?.remove(); S.pauseNode = null;
   document.body.classList.remove('paused');
+  dropIntro();
   UI.hint(null);
   Audio.stop();
   S.sound = false;
@@ -156,10 +158,47 @@ function begin(i) {
   S.bot = q.get('bot') === '1' ? new Bot(sim, q.get('style') || 'sharp') : null;
   S.hud = new Hud({ level: lv, sim, onPause: pause });
   S.hud.mount();
-  S.tut = skipTut || (S.bot && q.get('tut') !== '1') ? null : new Tutorial({ level: lv, sim, save, touch: isTouch(), onSeen: (k) => { if (!save.hints.includes(k)) { save.hints.push(k); writeSave(save); } } });
+  S.armTut = () => { S.tut = skipTut || (S.bot && q.get('tut') !== '1') ? null : new Tutorial({ level: lv, sim, save, touch: isTouch(), onSeen: (k) => { if (!save.hints.includes(k)) { save.hints.push(k); writeSave(save); } } }); };
   document.activeElement?.blur?.();
   if (Audio.live) { S.sound = true; Audio.start(lv); }
+  // the intro, unless asked not to (and never for the autopilot, QA shots or reduced motion); the room again: the short cut
+  const want = q.get('intro') === '1' || (q.get('intro') !== '0' && !S.qa && !S.bot && !reduce());
+  if (want && lv.perch) startIntro(S.introLv === i); else { S.armTut(); S.armTut = null; }
   last = performance.now();
+}
+
+// ---------- the intro ----------
+function startIntro(short) {
+  const it = new Intro(S.level, S.sim, { short });
+  S.intro = it; S.introLv = S.i; S.scene.intro = it; S.scene.snap();
+  document.body.classList.add('intro');
+  canvas.setAttribute('aria-label', t('intro.aria', { from: t('perch.' + it.P.kind) }));
+  S.skipNode?.remove();
+  S.skipNode = UI.el(`<button class="skip" type="button">${UI.esc(t('intro.skip'))}${UI.ICON.next}</button>`);
+  S.skipNode.addEventListener('click', () => skipIntro());
+  document.getElementById('ui').appendChild(S.skipNode);
+}
+function dropIntro() {
+  S.intro = null; if (S.scene) S.scene.intro = null;
+  document.body.classList.remove('intro');
+  S.skipNode?.remove(); S.skipNode = null;
+  canvas.setAttribute('aria-label', t('canvas'));
+}
+// the cat has come to rest where the room begins: the room is yours
+function endIntro() {
+  if (!S.intro) return;
+  // the cushion under the puppet carries on under the real cat (the sim works its own out on its first step)
+  S.sim.hover = { ...S.intro.p.hover };
+  dropIntro();
+  S.armTut?.(); S.armTut = null;
+  S.acc = 0;
+}
+function skipIntro() {
+  if (!S.intro || S.state !== 'play') return;
+  S.intro.skip();
+  S.scene.cat.tail = null;
+  endIntro();
+  S.scene.snap();
 }
 
 // ---------- pause ----------
@@ -271,6 +310,7 @@ function frame(ms) {
   if (!live || !S.sim) return;
   if (S.attract && S.att?.due()) freshAttract();
   const sc = S.scene, sim = S.sim;
+  if (S.intro) { introFrame(dt); return; }
   S.acc += dt;
   let n = 0;
   while (S.acc >= DT && n < 24) { step(); S.acc -= DT; n++; }
@@ -283,6 +323,16 @@ function frame(ms) {
   S.tut?.update(dt);
   if (sim.end && !S.shot && sim.time - sim.end.t > 0.35) captureShot();
   if (sim.end && !S.endShown && sim.time - sim.end.t > 1.6) showResult();
+}
+// the intro plays on its puppet; the sim holds its breath until the cat comes to rest on its start
+function introFrame(dt) {
+  const it = S.intro, sc = S.scene;
+  for (const e of it.update(dt)) { sc.introEvent(e); if (!S.quiet) Audio.event(e, it.p); if (e.k === 'brake') buzz(25); }
+  if (!S.quiet) Audio.frame(it.p, dt);
+  if (it.done) endIntro();
+  sc.update(dt);
+  sc.draw();
+  S.hud?.update();
 }
 // a fanless laptop or an old phone: drop the resolution rather than drop frames
 function watchQuality(dt) {
@@ -304,6 +354,7 @@ canvas.addEventListener('pointerdown', (e) => {
   if (S.state !== 'play' || !S.sim || S.sim.end || S.bot) return;
   if (e.pointerType === 'mouse' && e.button !== 0) return;
   e.preventDefault();
+  if (S.intro) { skipIntro(); return; }
   try { canvas.setPointerCapture(e.pointerId); } catch { /* a pointer the browser no longer tracks */ }
   ptrs.set(e.pointerId, sideOf(e));
 });
@@ -320,6 +371,10 @@ window.addEventListener('keydown', (e) => {
   if (e.key !== 'Tab' && lastPointer !== 'mouse') { lastPointer = 'mouse'; document.body.classList.toggle('touch', isTouch()); }
   unlockAudio();
   const k = e.key, side = TURN[e.code] || TURN[k];
+  if (S.intro && S.state === 'play' && !['Escape', 'p', 'P', 'Tab', 'Shift'].includes(k) && !e.repeat) {
+    if (k === ' ' || k === 'Enter') e.preventDefault();
+    skipIntro();
+  }
   if (side && S.state === 'play') { e.preventDefault(); Keys[side] = true; return; }
   if (S.state === 'play' && (k === 'Escape' || k === 'p' || k === 'P')) { e.preventDefault(); pause(); }
   else if (S.state === 'play' && (k === 'r' || k === 'R') && !e.repeat) { e.preventDefault(); begin(S.i); }
@@ -344,6 +399,7 @@ function fillSave(n) {
 }
 // jump ahead without sound; the scene keeps up so the crumbs and the shouts are where they'd be
 function fastForward(T, after = 0) {
+  if (S.intro) skipIntro();
   const sim = S.sim, sc = S.scene;
   S.quiet = true;
   let n = 0;
@@ -354,6 +410,25 @@ function fastForward(T, after = 0) {
   S.quiet = false;
   S.acc = 0;
   S.hud?.update();
+}
+// QA: the intro from the top, played silently up to time T at 60 fps (so the rig, the tail and the crumbs are where
+// they'd be), then left there when hold is set
+function introSeek(T, { short = false, hold = true } = {}) {
+  if (!S.level?.perch || !S.sim) return false;
+  S.state = 'play'; S.tut?.dispose(); S.tut = null; UI.hint(null);
+  S.scene.load(S.level, S.sim); S.scene.resize(W, H, dpr);
+  startIntro(short);
+  S.quiet = true;
+  while (S.intro && S.intro.t < T - 1e-9) {
+    const it = S.intro, dt = Math.min(1 / 60, T - it.t);
+    for (const e of it.update(dt)) S.scene.introEvent(e);
+    if (it.done) endIntro();
+    S.scene.update(dt);
+  }
+  S.quiet = false;
+  if (hold) S.state = 'hold';
+  S.scene.draw();
+  return S.intro ? +S.intro.t.toFixed(3) : 'done';
 }
 async function qaEntry() {
   const scr = q.get('screen'); if (!scr) return false;
@@ -392,7 +467,7 @@ async function boot() {
   S.scene = new Scene(canvas, { reduce: reduce() });
   Audio.setMuted(isMuted());
   window.__game = {
-    S, Keys, ptrs, save, begin, goTitle, pause, resume, showResult, fastForward, Audio, makeCard,
+    S, Keys, ptrs, save, begin, goTitle, pause, resume, showResult, fastForward, Audio, makeCard, introSeek, skipIntro,
     cardURL: () => S.sim?.end && makeCard({ level: S.level, sim: S.sim, shot: S.shot }).toDataURL('image/jpeg', 0.85),
   };
   const qa = await qaEntry().catch((err) => { console.error(err); return false; });

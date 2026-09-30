@@ -1,11 +1,12 @@
 // Everything in the room that moves or reacts, drawn live over the painted room: water with a real surface, the
-// hob's glow, the loose objects and their wreckage, butter smears, the dog, the cucumber, the wind, and the box's
-// front lip that hides the bottom half of a sitting cat.
+// hob's glow, the loose objects and their wreckage, jam smears and gloops, the squeezy jam bottles and their jets,
+// the dog, the cucumber, the wind, and the box's front lip that hides the bottom half of a sitting cat.
 import { TAU, clamp, lerp, rgba, shade, mulberry32, ellipse, roundRect } from '../util.js';
 import { INK } from './room.js';
 import { star } from './cat.js';
 
 const SPILL = { milk: '#fbfaf3', oil: '#e2b62a', vase: '#9cc9ef', mug: '#6b3e1f', bottle: '#bfe6d8', pot: '#5a3b24' };
+const JAM = '#d2283c', JAMD = '#8e1426', JAML = '#f25a68';
 const SHARD = { milk: '#dcebf5', oil: '#b9d39a', vase: '#4f7fc4', mug: '#f4efe6', bowl: '#f2ead8', bottle: '#9fd8c8', gnome: '#d8423a', pot: '#c8643a' };
 
 export class Props {
@@ -15,6 +16,7 @@ export class Props {
     this.smears = []; this.dots = []; this.wreck = new Map(); this.drops = [];
     this.pups = sim.dogs.map(() => ({ ph: 0, mouth: 0, wag: 0 }));
     this.tap = 1.4; this.rng = mulberry32(4242);
+    this.squirts = sim.jars.map(() => -9); this.hit = sim.jars.map(() => true); this.spray = 0; this.bs = null;
   }
   event(e) {
     const s = this.sim;
@@ -29,6 +31,8 @@ export class Props {
       case 'splash': this.poke(e.x, e.y, 18, 26); break;
       case 'woof': for (const d of this.pups) d.mouth = 1; break;
       case 'fell': if (s.objs[e.id]) this.poke(e.x, e.y, 6, 10); break;
+      case 'drip': this.fling(e.x, e.y, s.vx * 0.85 + (this.rng() - 0.5) * 18, s.vy * 0.85 + 12, 1.1 + this.rng() * 0.7, true); break;
+      case 'squirt': this.squirts[e.id] = this.t; this.hit[e.id] = false; break;
     }
   }
   // push a water surface down around x
@@ -38,8 +42,8 @@ export class Props {
       for (let i = 0; i <= W.n; i++) { const cx = w.x + (i / W.n) * w.w, d = Math.abs(cx - x); if (d < rad) W.v[i] += amt * 10 * (1 - d / rad); }
     }
   }
-  // a flick of butter leaving a spinning cat
-  fling(x, y, vx, vy) { this.drops.push({ x, y, vx, vy, t: 0, r: 0.6 + this.rng() * 0.8 }); if (this.drops.length > 60) this.drops.shift(); }
+  // a flick of jam leaving a spinning cat, or a gloop running off an upside-down toast
+  fling(x, y, vx, vy, r, gloop = false) { this.drops.push({ x, y, vx, vy, t: 0, r: r ?? 0.6 + this.rng() * 0.8, gloop }); if (this.drops.length > 70) this.drops.shift(); }
 
   update(dt) {
     const s = this.sim; this.t += dt;
@@ -61,15 +65,16 @@ export class Props {
       p.t += dt; p.vy += 981 * dt; p.x += p.vx * dt; p.y += p.vy * dt;
       if (p.water) { for (const W of this.waves) if (p.x > W.w.x && p.x < W.w.x + W.w.w && p.y > W.w.y) { this.poke(p.x, W.w.y, 3, 6); p.t = 9; } }
       else if (p.vy > 0) {
-        // a flick of butter lands where it lands: a dot on the floor, a ring on the water
+        // jam lands where it lands: a dot on the floor, a ring on the water
         const q = s.probe(p.x, y0);
         if (isFinite(q.y) && p.y >= q.y) {
           p.t = 9;
-          if (q.water) this.poke(p.x, q.y, 1.5, 5);
-          else { this.dots.push({ x: p.x, y: q.y, r: p.r, t: this.t }); if (this.dots.length > 90) this.dots.shift(); }
+          if (q.water) this.poke(p.x, q.y, p.gloop ? 3 : 1.5, 5);
+          else { this.dots.push({ x: p.x, y: q.y, r: p.r * (p.gloop ? 1.5 : 1), t: this.t, g: p.gloop }); if (this.dots.length > 110) this.dots.shift(); }
         }
       }
     }
+    this.spatter(dt);
     this.drops = this.drops.filter((p) => p.t < 1.4 && p.y < s.fallY + 50);
     s.dogs.forEach((d, i) => {
       const D = this.pups[i]; D.ph += dt * (d.jump ? 2 : 11); D.mouth = Math.max(0, D.mouth - dt * 2.6); D.wag += dt * (d.bark > 0 ? 26 : 12);
@@ -77,7 +82,7 @@ export class Props {
   }
 }
 
-// ---------------------------------------------------------------- surfaces: water, hob, butter
+// ---------------------------------------------------------------- surfaces: water, hob, jam
 Object.assign(Props.prototype, {
   ink(g, k = 1) { g.strokeStyle = INK; g.lineWidth = Math.max(0.55, this.px * 1.1) * k; g.stroke(); },
   fillInk(g, c, k = 1) { g.fillStyle = c; g.fill(); this.ink(g, k); },
@@ -124,7 +129,9 @@ Object.assign(Props.prototype, {
   smearDecals(g) {
     for (const m of this.dots) {
       const age = this.t - m.t, a = clamp(1 - (age - 18) / 6) * 0.9; if (a <= 0) continue;
-      ellipse(g, m.x, m.y - 0.25, m.r * 1.5 * Math.min(1, 0.4 + age * 10), 0.6); g.fillStyle = rgba('#ffd84a', a); g.fill();
+      const k = Math.min(1, 0.4 + age * 10);
+      ellipse(g, m.x, m.y - 0.3, m.r * 1.5 * k, m.g ? 0.85 : 0.6); g.fillStyle = rgba(JAM, a); g.fill();
+      if (m.g) { ellipse(g, m.x - m.r * 0.4, m.y - 0.6, m.r * 0.45 * k, 0.22); g.fillStyle = rgba('#ffffff', a * 0.5); g.fill(); }
     }
     for (const m of this.smears) {
       const age = this.t - m.t, a = clamp(1 - (age - 18) / 6) * 0.85; if (a <= 0) continue;
@@ -133,8 +140,8 @@ Object.assign(Props.prototype, {
       g.beginPath(); g.moveTo(-m.l / 2 * k, 0);
       g.bezierCurveTo(-m.l / 4, -1.8, m.l / 4, -1.4 - m.s, m.l / 2 * k, 0);
       g.bezierCurveTo(m.l / 4, 0.8, -m.l / 4, 0.9, -m.l / 2 * k, 0);
-      g.fillStyle = rgba('#ffd84a', a); g.fill();
-      g.fillStyle = rgba('#ffffff', a * 0.55); g.fillRect(-m.l * 0.2, -0.9, m.l * 0.25, 0.4);
+      g.fillStyle = rgba(JAM, a); g.fill();
+      g.fillStyle = rgba('#ffffff', a * 0.5); g.fillRect(-m.l * 0.2, -0.9, m.l * 0.25, 0.4);
       g.restore();
     }
   },
@@ -333,6 +340,131 @@ Object.assign(Props.prototype, {
 });
 
 // ---------------------------------------------------------------- in front of the cat: box lip, water, wind, drops
+// ---------------------------------------------------------------- the squeezy jam bottles and their jets
+Object.assign(Props.prototype, {
+  // a point on the cat, from its own frame to the room's
+  onCat(lx, ly) { const s = this.sim, c = Math.cos(s.th), n = Math.sin(s.th); return [s.x + lx * c - ly * n, s.y + lx * n + ly * c]; },
+  // how low the cat reaches straight above x: its body is a capsule, padded by the toast when it's jam-down
+  catBottom(x) {
+    const s = this.sim, c = Math.cos(s.th), n = Math.sin(s.th), r = 13 + 4 * clamp(-c);
+    let yb = -Infinity;
+    for (let i = 0; i <= 8; i++) {
+      const u = -1 + i / 4, cx = s.x + u * 15 * c, cy = s.y + u * 15 * n, dx = Math.abs(cx - x);
+      if (dx < r) yb = Math.max(yb, cy + Math.sqrt(r * r - dx * dx));
+    }
+    return yb;
+  },
+  // the bottle's shape this frame: squashed by the paradox leaning on it, and never through the cat
+  bottleShape(j) {
+    const s = this.sim, ago = this.t - this.squirts[j.id];
+    const kick = ago < 0.35 ? Math.sin(ago * 38) * (0.35 - ago) * 0.45 : 0;
+    const near = !j.on && s.b < 0.8 && !s.end && Math.abs(s.x - j.x) < 170;
+    let hk = 1 - 0.24 * clamp(j.sq + kick) + (near ? Math.sin(this.t * 5.5) * 0.025 : 0);
+    if (s.y < j.y - 2) { const room = j.y - this.catBottom(j.x) - 5.6; hk = Math.min(hk, Math.max(0.5, room / 14)); }
+    const Hb = 14 * hk;
+    return { Hb, hw: 4.3 * (1 + 0.85 * (1 - hk)), tip: j.y - Hb - 5.6, near };
+  },
+  bottles(g) {
+    const t = this.t;
+    this.bs = this.sim.jars.map((j) => {
+      const B = this.bottleShape(j), { Hb, hw } = B, bul = (hw - 4.3) * 0.9;
+      g.save(); g.translate(j.x, j.y);
+      ellipse(g, 0, 0.2, hw * 1.35, 1); g.fillStyle = rgba('#000000', 0.2); g.fill();
+      // soft red plastic full of jam, fatter at the hips when it's squeezed
+      g.beginPath(); g.moveTo(-hw + 1.3, 0); g.quadraticCurveTo(-hw, 0, -hw, -1.3);
+      g.quadraticCurveTo(-hw - bul, -Hb * 0.36, -hw, -Hb * 0.72); g.quadraticCurveTo(-hw, -Hb, -hw * 0.5, -Hb);
+      g.lineTo(hw * 0.5, -Hb); g.quadraticCurveTo(hw, -Hb, hw, -Hb * 0.72);
+      g.quadraticCurveTo(hw + bul, -Hb * 0.36, hw, -1.3); g.quadraticCurveTo(hw, 0, hw - 1.3, 0); g.closePath();
+      const gr = g.createLinearGradient(-hw, 0, hw, 0);
+      gr.addColorStop(0, JAMD); gr.addColorStop(0.3, JAM); gr.addColorStop(0.62, JAML); gr.addColorStop(1, JAMD);
+      g.fillStyle = gr; g.fill();
+      g.save(); g.clip();
+      g.fillStyle = rgba('#ffe0e4', 0.32); g.fillRect(-hw - 2, -Hb - 1, hw * 2 + 4, Hb * 0.17 + 1);
+      g.fillStyle = rgba('#ffffff', 0.42); roundRect(g, -hw * 0.66, -Hb * 0.9, hw * 0.24, Hb * 0.74, hw * 0.12); g.fill();
+      g.restore();
+      this.ink(g, 0.95);
+      // the label: a strawberry on cream
+      const ly = -Hb * 0.64, lh = Hb * 0.32;
+      roundRect(g, -hw * 0.94, ly, hw * 1.88, lh, 0.7); this.fillInk(g, '#fbf1dc', 0.6);
+      const sx = hw * 0.05, sy = ly + lh * 0.56, sr = Math.min(1.9, lh * 0.32);
+      g.beginPath(); g.moveTo(sx, sy + sr * 1.25);
+      g.bezierCurveTo(sx - sr * 1.5, sy + sr * 0.2, sx - sr * 1.1, sy - sr * 1.05, sx, sy - sr * 0.8);
+      g.bezierCurveTo(sx + sr * 1.1, sy - sr * 1.05, sx + sr * 1.5, sy + sr * 0.2, sx, sy + sr * 1.25); g.closePath();
+      this.fillInk(g, JAM, 0.45);
+      g.fillStyle = '#ffe3a3'; for (const [u, v] of [[-0.45, -0.1], [0.4, 0], [0, 0.45]]) { ellipse(g, sx + u * sr, sy + v * sr, 0.2, 0.13); g.fill(); }
+      g.beginPath(); g.moveTo(sx - sr * 0.8, sy - sr * 0.95); g.lineTo(sx, sy - sr * 0.55); g.lineTo(sx + sr * 0.8, sy - sr * 0.95); g.lineTo(sx, sy - sr * 1.4); g.closePath();
+      g.fillStyle = '#5a9a3a'; g.fill();
+      // the flip-top cap and its nozzle
+      roundRect(g, -hw * 0.56, -Hb - 3.2, hw * 1.12, 3.4, 0.9); this.fillInk(g, '#f6f1e7', 0.8);
+      g.fillStyle = rgba('#000000', 0.12); g.fillRect(-hw * 0.5, -Hb - 1.1, hw, 0.8);
+      g.beginPath(); g.moveTo(-1.4, -Hb - 3.1); g.lineTo(-0.5, -Hb - 5.6); g.lineTo(0.5, -Hb - 5.6); g.lineTo(1.4, -Hb - 3.1); g.closePath();
+      this.fillInk(g, '#f6f1e7', 0.7);
+      // a bead of jam on the nozzle when the toast is running low and a bottle is near
+      if (B.near || j.on) {
+        const k = j.on ? 1 : (t * 0.8) % 1, r = 0.35 + 0.75 * k;
+        g.beginPath(); g.arc(0, -Hb - 5.6 - r * 0.6, r, 0, TAU); g.fillStyle = JAM; g.fill();
+        g.fillStyle = rgba('#ffffff', 0.6); ellipse(g, -r * 0.3, -Hb - 5.6 - r, r * 0.3, r * 0.2); g.fill();
+      }
+      g.restore();
+      return B;
+    });
+  },
+  // a stream of jam: out of the nozzle straight up, bending onto whatever it's aimed at. a..b is the stretch that's in
+  // the air, from 0 at the nozzle to 1 at the target
+  stream(g, x0, y0, x1, y1, a, b, w) {
+    if (b - a < 0.02) return;
+    const t = this.t, cy = y0 - Math.max(3, (y0 - y1) * 0.6), N = 14;
+    g.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const u = a + (b - a) * (i / N), v = 1 - u;
+      const x = v * v * x0 + 2 * v * u * x0 + u * u * x1 + Math.sin(u * 10 - t * 28) * 0.45 * Math.sin(u * Math.PI);
+      const y = v * v * y0 + 2 * v * u * cy + u * u * y1;
+      i ? g.lineTo(x, y) : g.moveTo(x, y);
+    }
+    g.lineCap = 'round'; g.lineJoin = 'round';
+    g.strokeStyle = INK; g.lineWidth = w + Math.max(0.55, this.px * 1.1) * 2; g.stroke();
+    g.strokeStyle = JAM; g.lineWidth = w; g.stroke();
+    g.strokeStyle = rgba(JAML, 0.9); g.lineWidth = w * 0.38; g.stroke();
+  },
+  // over a bottle jam-down, the toast gets a steady jet on its face; feet-down, a squirt in the belly
+  jets(g) {
+    const s = this.sim; if (!s.jars.length) return;
+    s.jars.forEach((j, i) => {
+      const B = (this.bs && this.bs[i]) || this.bottleShape(j), x0 = j.x, y0 = B.tip - 0.3;
+      if (j.catch && s.y < j.y) {
+        const [x1, y1] = this.onCat(-6.4, -15.4);
+        if (y1 < y0 - 1) {
+          this.stream(g, x0, y0, x1, y1, 0, 1, 1.2 + 1.1 * j.sq);
+          const r = 1.5 + j.sq * 1.2, wob = Math.sin(this.t * 30) * 0.25;
+          ellipse(g, x1, y1, r * (1.5 + wob), r * (0.75 - wob * 0.5), s.th); this.fillInk(g, JAM, 0.7);
+          ellipse(g, x1 - 0.4, y1 - 0.2, r * 0.5, r * 0.22, s.th); g.fillStyle = rgba('#ffffff', 0.55); g.fill();
+        }
+      }
+      const ago = this.t - this.squirts[j.id];
+      if (ago >= 0 && ago < 0.3) {
+        const [x1, y1] = this.onCat(-3, 10);
+        if (y1 < y0 - 1) this.stream(g, x0, y0, x1, y1, clamp((ago - 0.1) / 0.2), clamp(ago / 0.07), 1.9);
+      }
+    });
+  },
+  // the jet spits a little where it hits the toast; a squirt bursts on the belly
+  spatter(dt) {
+    const s = this.sim;
+    s.jars.forEach((j, i) => {
+      if (j.catch && s.y < j.y && (this.spray -= dt) <= 0) {
+        this.spray = 0.08 + this.rng() * 0.09;
+        const [x, y] = this.onCat(-6.4 + (this.rng() - 0.5) * 12, -16);
+        this.fling(x, y, (this.rng() - 0.5) * 80 + s.vx * 0.5, -15 - this.rng() * 45, 0.45 + this.rng() * 0.45);
+      }
+      if (this.t - this.squirts[i] >= 0.07 && !this.hit[i]) {
+        this.hit[i] = true;
+        const [x, y] = this.onCat(-3, 10);
+        for (let k = 0; k < 5; k++) this.fling(x + (this.rng() - 0.5) * 6, y, (this.rng() - 0.5) * 110 + s.vx * 0.5, -25 - this.rng() * 55, 0.6 + this.rng() * 0.5);
+      }
+    });
+  },
+});
+
 Object.assign(Props.prototype, {
   boxLip(g) {
     const B = this.sim.box; if (!B) return;
@@ -369,10 +501,16 @@ Object.assign(Props.prototype, {
   },
   dropsDraw(g) {
     for (const p of this.drops) {
-      g.beginPath(); g.arc(p.x, p.y, p.r * (p.water ? 0.9 : 1), 0, TAU);
-      g.fillStyle = p.water ? 'rgba(190,230,255,0.9)' : '#ffd84a'; g.fill();
+      if (p.water) { g.beginPath(); g.arc(p.x, p.y, p.r * 0.9, 0, TAU); g.fillStyle = 'rgba(190,230,255,0.9)'; g.fill(); continue; }
+      // jam: a bead, drawn out into a teardrop along its fall
+      const v = Math.hypot(p.vx, p.vy) || 1, L = p.r * (1 + Math.min(1.6, v / 260)), a = Math.atan2(p.vy, p.vx);
+      g.save(); g.translate(p.x, p.y); g.rotate(a);
+      g.beginPath(); g.arc(0, 0, p.r, -Math.PI / 2, Math.PI / 2); g.quadraticCurveTo(-L * 1.2, p.r * 0.2, -L * 1.6, 0); g.quadraticCurveTo(-L * 1.2, -p.r * 0.2, 0, -p.r);
+      g.fillStyle = JAM; g.fill();
+      if (p.gloop) { g.fillStyle = rgba('#ffffff', 0.55); ellipse(g, p.r * 0.2, -p.r * 0.35, p.r * 0.35, p.r * 0.2); g.fill(); }
+      g.restore();
     }
   },
-  drawBack(g, o = {}) { this.px = o.px || this.px; this.hobs(g); this.smearDecals(g); this.cukes(g); this.objects(g); this.dogs(g); },
-  drawFront(g, o = {}) { this.boxLip(g); this.water(g); this.dropsDraw(g); if (o.view && o.fx !== false) this.gusts(g, o.view); },
+  drawBack(g, o = {}) { this.px = o.px || this.px; this.hobs(g); this.smearDecals(g); this.cukes(g); this.bottles(g); this.objects(g); this.dogs(g); },
+  drawFront(g, o = {}) { this.jets(g); this.boxLip(g); this.water(g); this.dropsDraw(g); if (o.view && o.fx !== false) this.gusts(g, o.view); },
 });

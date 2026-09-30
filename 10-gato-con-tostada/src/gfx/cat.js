@@ -1,14 +1,16 @@
 // The cat, drawn from the sim's capsule (±15 cm along the body, 13 cm thick) with a slice of toast taped to its
-// back, butter side up. Everything visual that the sim doesn't need lives here: the tail's spring chain, the
-// paddling legs, squash, blinks, and a face that tells you what the cat thinks of all this.
+// back, jam side up. Everything visual that the sim doesn't need lives here: the tail's spring chain, the
+// paddling legs, squash, blinks, and a face that tells you what the cat thinks of all this. The intro's puppet can
+// ask for a little more: facing left (flip), standing still (stand), a squash of its own, no toast yet, tape half on.
 import { K } from '../sim.js';
 import { TAU, clamp, lerp, angDiff, damp, rgba, mulberry32, ellipse, roundRect } from '../util.js';
 import { INK } from './room.js';
 
 export const C = {
   fur: '#f08a3c', furD: '#cf6a26', stripe: '#c2561a', belly: '#fbe3c4', ear: '#f5a898', nose: '#e8727e', eye: '#f2c230',
-  crust: '#b86a2c', crumb: '#f3d49a', butter: '#ffd84a', butterD: '#e8b820', tape: '#b9bcc0', tapeD: '#8f9398',
+  crust: '#b86a2c', crumb: '#f3d49a', jam: '#d2283c', jamD: '#8e1426', jamL: '#f25a68', seed: '#ffe3a3', tape: '#b9bcc0', tapeD: '#8f9398',
 };
+const SEEDS = [[-0.7, -0.3], [-0.35, 0.45], [0.05, -0.5], [0.3, 0.3], [0.62, -0.2], [-0.05, 0.1], [0.85, 0.35], [-0.9, 0.2]];
 const TAIL = 8, SEG = 4.2;
 const LEGS = [
   // hip, length, width, phase, far?, sit paw
@@ -23,7 +25,7 @@ export class CatViz {
   reset() {
     this.tail = null; this.t = 0; this.sq = 0; this.sqv = 0;
     this.blink = 0; this.nextBlink = 1.5; this.face = null; this.faceT = 0;
-    this.phase = 0; this.amp = 0; this.sitK = 0; this.headRot = 0; this.ears = 0; this.puff = 0; this.wet = 0;
+    this.phase = 0; this.amp = 0; this.sitK = 0; this.headRot = 0; this.ears = 0; this.puff = 0; this.wet = 0; this.splat = 0;
   }
   kick(a) { this.sqv += a * 30; }
   setFace(f, t) { this.face = f; this.faceT = t; }
@@ -39,29 +41,32 @@ export class CatViz {
       case 'splash': this.wet = 1; this.setFace('wet', 99); break;
       case 'tempt': this.setFace('smug', 1.4); break;
       case 'break': if (this.face !== 'smug') this.setFace('oops', 0.9); break;
-      case 'end': if (e.win) this.setFace('happy', 99); else if (e.why === 'butter') this.setFace('sad', 99); break;
+      case 'squirt': this.splat = 1; this.setFace('yuck', 0.9); break;
+      case 'refill': if (!this.face) this.setFace('purr', 0.5); break;
+      case 'hop': this.kick(-0.14); break;
+      case 'end': if (e.win) this.setFace('happy', 99); else if (e.why === 'jam') this.setFace('sad', 99); break;
     }
   }
   update(dt, s) {
     this.t += dt;
-    this.sqv += (-260 * this.sq - 16 * this.sqv) * dt; this.sq = clamp(this.sq + this.sqv * dt, -0.3, 0.3);
+    if (s.squash != null) { this.sq = s.squash; this.sqv = 0; }
+    else { this.sqv += (-260 * this.sq - 16 * this.sqv) * dt; this.sq = clamp(this.sq + this.sqv * dt, -0.3, 0.3); }
     if ((this.faceT -= dt) <= 0) this.face = null;
     if ((this.nextBlink -= dt) <= 0) { this.blink = 0.13; this.nextBlink = 1.8 + this.rng() * 3.2; }
     this.blink = Math.max(0, this.blink - dt);
-    this.puff = Math.max(0, this.puff - dt * 0.8);
+    this.puff = Math.max(0, this.puff - dt * 0.8); this.splat = Math.max(0, this.splat - dt * 0.28);
     const sp = Math.hypot(s.vx, s.vy), sitting = !!s.sit || !!(s.end && s.end.win);
     this.ears = damp(this.ears, clamp((sp - 140) / 180) + (this.face === 'fright' || this.face === 'hot' ? 1 : 0), 10, dt);
     this.sitK = damp(this.sitK, sitting ? 1 : 0, 9, dt);
-    this.amp = damp(this.amp, sitting ? 0 : clamp(0.25 + Math.abs(s.vx) / 260, 0, 0.9), 6, dt);
+    this.amp = s.stand ? damp(this.amp, 0, 18, dt) : damp(this.amp, sitting ? 0 : clamp(0.25 + Math.abs(s.vx) / 260, 0, 0.9), 6, dt);
     this.phase += dt * (6 + Math.abs(s.vx) / 22);
     const level = angDiff(0, s.th), spinning = Math.abs(s.w) > 5;
-    this.headRot = damp(this.headRot, spinning ? 0 : lerp(clamp(level * 0.3, -0.45, 0.45), level, this.sitK), 10, dt);
+    this.headRot = damp(this.headRot, spinning ? 0 : lerp(clamp(level * 0.3, -0.45, 0.45), level, this.sitK) * (s.flip || 1), 10, dt);
     this.tailStep(dt, s);
   }
   // the tail: each link chases where the body wants it, the tip lazier than the root, then keeps its length
   tailStep(dt, s) {
-    const c = Math.cos(s.th), n = Math.sin(s.th), sq = this.sq;
-    const W = (lx, ly) => [s.x + (lx * (1 + sq)) * c - (ly * (1 - sq)) * n, s.y + (lx * (1 + sq)) * n + (ly * (1 - sq)) * c];
+    const W = (lx, ly) => this.toWorld(s, lx, ly);
     const sway = Math.sin(this.t * (this.sitK > 0.5 ? 2.2 : 5)) * (this.sitK > 0.5 ? 0.5 : 0.18);
     const rest = [], base = [-23, -3];
     let px = base[0], py = base[1], a = lerp(Math.PI + 0.05, Math.PI / 2 + 0.55, this.sitK);
@@ -89,9 +94,11 @@ export class CatViz {
     const h = s.hover; if (!h || h.none || s.sit || s.end) return;
     const f = clamp(s.fight) * (0.5 + 0.5 * clamp(1 - h.h / K.reach)) * (0.8 + 0.4 * s.charge);
     if (f < 0.03) return;
-    const low = s.lowY(), gy = h.gy, ex = s.extX() * 0.9, x = s.x, hgt = gy - low;
+    const low = s.lowY(), ex = s.extX() * 0.9, x = s.x;
+    // the column trails a moving cat; on a run-up it reaches forward onto the step's edge, like a ramp
+    const R = h.run, gy = R ? Math.max(R.y, low + 6) : h.gy, hgt = gy - low;
     if (hgt < 1) return;
-    const lean = clamp(-s.vx * 0.06, -14, 14); // the column trails a moving cat
+    const lean = R ? R.x + R.dir * ex * 0.9 - x : clamp(-s.vx * 0.06, -14, 14);
     ctx.save();
     const col = ctx.createLinearGradient(0, low, 0, gy);
     col.addColorStop(0, 'rgba(255,220,110,0)'); col.addColorStop(0.55, `rgba(255,214,90,${(0.16 * f).toFixed(3)})`); col.addColorStop(1, `rgba(255,196,60,${(0.42 * f).toFixed(3)})`);
@@ -197,12 +204,21 @@ Object.assign(CatViz.prototype, {
     for (const x of [-18, -12, -6, 0.5, 7]) { g.beginPath(); g.moveTo(x + 1.5, -12); g.quadraticCurveTo(x - 1, -7, x - 0.4, -3.6); g.stroke(); }
     g.strokeStyle = rgba('#ffffff', 0.22); g.lineWidth = 1.6; g.beginPath(); g.moveTo(-19, -7.4); g.bezierCurveTo(-12, -9.8, 0, -9.4, 9, -7.6); g.stroke();
     if (this.wet > 0) { g.fillStyle = `rgba(52,40,70,${0.3 * this.wet})`; g.fillRect(-30, -14, 50, 26); }
+    // a squirt of jam in the belly, sliding off
+    if (this.splat > 0) {
+      const a = Math.min(1, this.splat * 1.6), k = 1 - this.splat, x = -2, y = 7.2 + k * 1.5;
+      g.fillStyle = rgba(C.jam, a); g.beginPath();
+      for (let i = 0; i <= 10; i++) { const q = (i / 10) * TAU, r = 3.6 * (1 + 0.28 * Math.sin(q * 4 + 1)); i ? g.lineTo(x + Math.cos(q) * r * 1.5, y + Math.sin(q) * r * 0.75) : g.moveTo(x + Math.cos(q) * r * 1.5, y + Math.sin(q) * r * 0.75); }
+      g.fill();
+      for (const [ddx, L] of [[-3.5, 3], [1.8, 4.5], [4.6, 2.2]]) { ellipse(g, x + ddx, y + 1.5 + L * (0.4 + k), 0.9, L * 0.5 + k * 2); g.fill(); }
+      g.fillStyle = rgba('#ffffff', a * 0.6); ellipse(g, x - 2, y - 0.8, 1.6, 0.5); g.fill();
+    }
     g.restore();
     BODY(g); g.strokeStyle = INK; g.lineWidth = lw; g.stroke();
   },
 });
 
-// ---------------------------------------------------------------- toast, butter, tape
+// ---------------------------------------------------------------- toast, jam, tape
 // The slice lies on the back, seen a little from above: its face is a squashed loaf shape, the crown (two
 // shoulders over a neck) at the tail end, and under it the crust's edge. Clockwise, like BODY, so the two
 // can share a clip.
@@ -222,8 +238,17 @@ const SLICE = (g, y0, y1, begin = true) => {
 const PORES = [[-15.5, -15.2], [-12, -13.6], [-9, -15.8], [-3.5, -13.4], [0.5, -15.6], [4, -14.2], [-17.2, -13.4], [2.5, -12.9]];
 Object.assign(CatViz.prototype, {
   toast(g, lw, s) {
-    const b = clamp(s.b), t = this.t;
-    // the crust's edge, then the face
+    const b = clamp(s.b), t = this.t, k = s.tape;
+    this.slice(g, lw);
+    // duct tape round the lot: over the slice, down the flank, under the belly (the intro winds it on)
+    g.save(); BODY(g); SLICE(g, TTOP, TMID, false); SLICE(g, TTOP + TH, TMID + TH, false); g.clip();
+    this.tape(g, -15.6, 3.5, k ? k[0] : 1); this.tape(g, 1.4, 3.5, k ? k[1] : 1, true);
+    g.restore();
+    if (b > 0.01) this.jam(g, lw, s, b, t);
+    else { g.strokeStyle = rgba('#ffffff', 0.35); g.lineWidth = 0.5; g.beginPath(); g.moveTo(-11, -15.6); g.lineTo(-2, -15.9); g.stroke(); }
+  },
+  // the crust's edge, then the face
+  slice(g, lw) {
     SLICE(g, TTOP + TH, TMID + TH); g.fillStyle = C.crust; g.fill(); g.strokeStyle = INK; g.lineWidth = lw; g.stroke();
     const face = g.createRadialGradient(-6, -14.8, 1, -6, -14.8, 16);
     face.addColorStop(0, '#f7d993'); face.addColorStop(0.7, '#eab565'); face.addColorStop(1, '#d48f45');
@@ -232,47 +257,77 @@ Object.assign(CatViz.prototype, {
     g.strokeStyle = INK; g.lineWidth = lw; g.stroke();
     g.fillStyle = rgba('#a8622a', 0.45);
     for (const [x, y] of PORES) { ellipse(g, x, y, 0.42, 0.22); g.fill(); }
-    // duct tape round the lot: over the slice, down the flank, under the belly
-    g.save(); BODY(g); SLICE(g, TTOP, TMID, false); SLICE(g, TTOP + TH, TMID + TH, false); g.clip();
-    for (const x0 of [-15.6, 1.4]) this.tape(g, x0, 3.5);
-    g.restore();
-    if (b > 0.01) this.butter(g, lw, b, t);
-    else { g.strokeStyle = rgba('#ffffff', 0.35); g.lineWidth = 0.5; g.beginPath(); g.moveTo(-11, -15.6); g.lineTo(-2, -15.9); g.stroke(); }
   },
-  tape(g, x0, w) {
-    const y0 = TTOP - 3, y1 = 11, sk = 0.9;
-    g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + w, y0); g.lineTo(x0 + w + sk, y1); g.lineTo(x0 + sk, y1); g.closePath();
+  // a slice lying about or flying, jam side up at a = 0, centred on (x, y)
+  looseToast(g, x, y, a, s, o = {}) {
+    const lw = Math.max(0.7, (o.px || 0.4) * 1.15), f = o.flip || 1;
+    g.save(); g.lineJoin = 'round'; g.translate(x, y); g.rotate(a); g.scale(f, 1); g.translate(6.3, 13.4);
+    this.slice(g, lw);
+    if (s.b > 0.01) this.jam(g, lw, { th: a, sag: 0, flip: f }, clamp(s.b), this.t);
+    g.restore();
+  },
+  // band k of the way on, from the top of the slice down the flank to under the belly (or, up, the other way)
+  tape(g, x0, w, k = 1, up = false) {
+    if (k <= 0) return;
+    k = Math.min(1, k);
+    const Y0 = TTOP - 3, Y1 = 11, ya = up ? lerp(Y1, Y0, k) : Y0, yb = up ? Y1 : lerp(Y0, Y1, k), sk = (y) => (0.9 * (y - Y0)) / (Y1 - Y0);
+    g.beginPath(); g.moveTo(x0 + sk(ya), ya); g.lineTo(x0 + w + sk(ya), ya); g.lineTo(x0 + w + sk(yb), yb); g.lineTo(x0 + sk(yb), yb); g.closePath();
     g.fillStyle = C.tape; g.fill();
     g.strokeStyle = rgba(C.tapeD, 0.5); g.lineWidth = 0.22;
-    for (let y = y0 + 1; y < y1; y += 1.7) { g.beginPath(); g.moveTo(x0 - 0.2, y); g.lineTo(x0 + w + 1, y - 0.5); g.stroke(); }
-    g.strokeStyle = rgba('#ffffff', 0.55); g.lineWidth = 0.6; g.beginPath(); g.moveTo(x0 + 0.8, y0); g.lineTo(x0 + 0.8 + sk, y1); g.stroke();
+    for (let y = Y0 + 1; y < yb; y += 1.7) { if (y < ya) continue; g.beginPath(); g.moveTo(x0 - 0.2, y); g.lineTo(x0 + w + 1, y - 0.5); g.stroke(); }
+    g.strokeStyle = rgba('#ffffff', 0.55); g.lineWidth = 0.6; g.beginPath(); g.moveTo(x0 + 0.8 + sk(ya), ya); g.lineTo(x0 + 0.8 + sk(yb), yb); g.stroke();
     g.strokeStyle = INK; g.lineWidth = 0.45;
-    g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + sk, y1); g.moveTo(x0 + w, y0); g.lineTo(x0 + w + sk, y1); g.stroke();
+    g.beginPath(); g.moveTo(x0 + sk(ya), ya); g.lineTo(x0 + sk(yb), yb); g.moveTo(x0 + w + sk(ya), ya); g.lineTo(x0 + w + sk(yb), yb); g.stroke();
+    if (k < 1) { const y = up ? ya : yb; g.strokeStyle = C.tapeD; g.lineWidth = 0.6; g.beginPath(); g.moveTo(x0 + sk(y), y); g.lineTo(x0 + w + sk(y), y); g.stroke(); }
     // where the tape leaves the slice for the fur, a shadow
-    g.fillStyle = rgba('#000000', 0.16); g.fillRect(x0 - 1, TMID + TH - 0.2, w + 2, 0.9);
+    if (ya < TMID + TH && yb > TMID + TH + 0.8) { g.fillStyle = rgba('#000000', 0.16); g.fillRect(x0 - 1, TMID + TH - 0.2, w + 2, 0.9); }
   },
-  // the pat and its puddle: both shrink as the butter smears and flies off
-  butter(g, lw, b, t) {
-    const cx = -6.4, cy = -14.3, pw = lerp(5, 17, b), pd = lerp(1.6, 3.2, b);
+  // the jam: a glossy spread with seeds and a chunk of strawberry, smaller as it's used up. Its drips always hang
+  // towards the floor: feet down they run over the crust's front edge; turned over, the whole spread sags off the
+  // face and hangs in drips that stretch and let go (the sim drops them as gloops)
+  jam(g, lw, s, b, t) {
+    const cx = -6.4, cy = -14.3, pw = lerp(6, 21, b), pd = lerp(1.9, 3.7, b);
+    const dx = Math.sin(s.th) * (s.flip || 1), dy = Math.cos(s.th), out = clamp(s.sag || 0) * clamp(-dy * 1.3);
+    const ox = cx + dx * out * 1.2, oy = cy + dy * out * 1.4;
+    const pt = (a, k = 1) => {
+      const ca = Math.cos(a), sa = Math.sin(a), r = (1 + 0.11 * Math.sin(a * 3 + 1.3) + 0.07 * Math.sin(a * 5 + t * 0.9)) * k;
+      const f = Math.max(0, ca * dx + sa * dy) * out * 2.6;
+      return [ox + ca * pw * 0.5 * r + dx * f, oy + sa * pd * 0.5 * r + dy * f];
+    };
     g.beginPath();
-    for (let i = 0; i <= 12; i++) {
-      const a = (i / 12) * TAU, r = 1 + 0.12 * Math.sin(a * 3 + 1.3) + 0.08 * Math.sin(a * 5 + t * 0.8);
-      const x = cx + Math.cos(a) * pw * 0.5 * r, y = cy + Math.sin(a) * pd * 0.5 * r;
-      i ? g.lineTo(x, y) : g.moveTo(x, y);
+    for (let i = 0; i <= 16; i++) { const [x, y] = pt((i / 16) * TAU); i ? g.lineTo(x, y) : g.moveTo(x, y); }
+    g.closePath();
+    const gr = g.createLinearGradient(0, oy - pd, 0, oy + pd);
+    gr.addColorStop(0, C.jamL); gr.addColorStop(0.45, C.jam); gr.addColorStop(1, C.jamD);
+    g.fillStyle = gr; g.fill(); g.strokeStyle = INK; g.lineWidth = lw * 0.7; g.stroke();
+    // a chunk of strawberry, the seeds, and the shine
+    if (b > 0.3) {
+      ellipse(g, ox - pw * 0.16, oy - pd * 0.05, pw * 0.12, pd * 0.3, -0.2); g.fillStyle = C.jamD; g.fill();
+      ellipse(g, ox - pw * 0.19, oy - pd * 0.14, pw * 0.05, pd * 0.1, -0.2); g.fillStyle = rgba('#ffb0b8', 0.8); g.fill();
     }
-    g.closePath(); g.fillStyle = rgba(C.butter, 0.9); g.fill(); g.strokeStyle = rgba(C.butterD, 0.9); g.lineWidth = 0.35; g.stroke();
-    g.strokeStyle = rgba('#ffffff', 0.7); g.lineWidth = 0.4; g.beginPath(); g.ellipse(cx - pw * 0.12, cy - pd * 0.12, pw * 0.3, pd * 0.22, 0, Math.PI * 1.1, Math.PI * 1.7); g.stroke();
-    // the pat, a small block seen from the same angle
-    const w = lerp(2.2, 7.4, b), hgt = lerp(0.5, 2.3, b), dep = w * 0.42, x = cx - w / 2 + 0.6, yb = cy + dep * 0.35;
-    g.beginPath(); g.moveTo(x, yb - hgt); g.lineTo(x + w, yb - hgt); g.lineTo(x + w, yb); g.lineTo(x, yb); g.closePath();
-    g.fillStyle = '#f7c832'; g.fill(); g.strokeStyle = INK; g.lineWidth = lw * 0.75; g.stroke();
-    roundRect(g, x, yb - hgt - dep, w, dep, Math.min(0.9, dep * 0.4)); g.fillStyle = '#fff1a8'; g.fill(); g.stroke();
-    g.fillStyle = rgba('#ffffff', 0.85); roundRect(g, x + 0.6, yb - hgt - dep + 0.35, Math.max(0.5, w * 0.36), Math.max(0.25, dep * 0.22), 0.2); g.fill();
-    // drips over the front edge while there is plenty
-    if (b > 0.45) for (const [dx, ph] of [[cx + pw * 0.34, 0], [cx - pw * 0.3, 2.1]]) {
-      const L = (0.8 + 2.4 * (b - 0.45)) * (0.75 + 0.25 * Math.sin(t * 2.6 + ph)), y = TMID - 0.3;
-      g.beginPath(); g.moveTo(dx - 0.8, y); g.lineTo(dx + 0.8, y); g.quadraticCurveTo(dx + 0.8, y + L, dx, y + 0.6 + L); g.quadraticCurveTo(dx - 0.8, y + L, dx - 0.8, y);
-      g.fillStyle = C.butter; g.fill();
+    g.fillStyle = C.seed;
+    for (const [u, v] of SEEDS) { if (Math.abs(u) > b + 0.25) continue; ellipse(g, ox + u * pw * 0.42, oy + v * pd * 0.36, 0.28, 0.17); g.fill(); }
+    g.strokeStyle = rgba('#ffffff', 0.8); g.lineWidth = 0.45; g.lineCap = 'round';
+    g.beginPath(); g.ellipse(ox - pw * 0.05, oy - pd * 0.08, pw * 0.3, pd * 0.24, 0, Math.PI * 1.12, Math.PI * 1.62); g.stroke();
+    // drips, pointing at the floor
+    const drip = (ax, ay, L, w) => {
+      if (L < 0.15) return;
+      const ux = dx, uy = dy, nx = -uy, ny = ux, ex = ax + ux * L, ey = ay + uy * L, r = w * (0.85 + 0.35 * Math.min(1, L / 3)), a0 = Math.atan2(ny, nx);
+      g.beginPath(); g.moveTo(ax + nx * w, ay + ny * w);
+      g.quadraticCurveTo(ex + nx * w * 0.3 - ux * r, ey + ny * w * 0.3 - uy * r, ex + nx * r, ey + ny * r);
+      g.arc(ex, ey, r, a0, a0 - Math.PI, true);
+      g.quadraticCurveTo(ex - nx * w * 0.3 - ux * r, ey - ny * w * 0.3 - uy * r, ax - nx * w, ay - ny * w);
+      g.closePath(); g.fillStyle = C.jam; g.fill();
+      g.fillStyle = rgba('#ffffff', 0.6); ellipse(g, ex - nx * r * 0.35 - ux * r * 0.3, ey - ny * r * 0.35 - uy * r * 0.3, r * 0.28, r * 0.2); g.fill();
+    };
+    if (dy > 0.25) {
+      if (b > 0.45) for (const [k, ph] of [[0.34, 0], [-0.3, 2.1]]) drip(cx + pw * k, TMID - 0.4, (0.8 + 2.6 * (b - 0.45)) * (0.75 + 0.25 * Math.sin(t * 2.6 + ph)), 0.75);
+    } else if (out > 0.05) {
+      const n = out > 0.55 ? 3 : 2, rate = 0.7 + 1.3 * out;
+      for (let i = 0; i < n; i++) {
+        const [ax, ay] = pt(Math.atan2(dy, dx) + (i - (n - 1) / 2) * 0.55, 0.92), u = (t * rate + i * 0.37) % 1;
+        drip(ax, ay, out * (1.2 + 6 * u * u), 0.7 + 0.25 * out);
+      }
     }
   },
 });
@@ -294,6 +349,7 @@ const FACE = {
   ouch: { eyes: 'wince', mouth: 'frown' },
   sad: { eyes: 'open', lid: 0.28, slant: -0.6, pupil: 'round', mouth: 'frown', tear: 1 },
   wet: { eyes: 'open', lid: 0.58, slant: 0.05, pupil: 'slit', mouth: 'flat', droop: 1 },
+  yuck: { eyes: 'squeeze', mouth: 'wavy', droop: 1 },
 };
 const EYES = [{ x: 1.6, y: -1.9, rx: 2.55, ry: 2.55, inner: 1 }, { x: 8.3, y: -2, rx: 1.75, ry: 2.4, inner: -1 }];
 
@@ -335,7 +391,7 @@ Object.assign(CatViz.prototype, {
   },
   face2(g, lw, s, F) {
     const t = this.t, A = s.th + this.headRot, ca = Math.cos(-A), sa = Math.sin(-A);
-    const lx = clamp((s.vx * ca - s.vy * sa) / 380, -1, 1), ly = clamp((s.vx * sa + s.vy * ca) / 380, -1, 1);
+    const lx = clamp((s.vx * ca - s.vy * sa) / 380, -1, 1) * (s.flip || 1), ly = clamp((s.vx * sa + s.vy * ca) / 380, -1, 1);
     g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = INK;
     for (const E of EYES) this.eye(g, lw, E, F, lx, ly, t);
     // nose, mouth, whiskers
@@ -409,20 +465,22 @@ Object.assign(CatViz.prototype, {
     }
     g.stroke();
   },
-  headWorld(s) {
-    const k = this.sitK, lx = lerp(18, 17, k) * (1 + this.sq), ly = lerp(-3, 0, k) * (1 - this.sq), c = Math.cos(s.th), n = Math.sin(s.th);
-    return [s.x + lx * c - ly * n, s.y + lx * n + ly * c];
+  headWorld(s) { const k = this.sitK; return this.toWorld(s, lerp(18, 17, k), lerp(-3, 0, k)); },
+  // a point on the cat (its own cm: head along +x, back along -y) in the room, squash and all
+  toWorld(s, lx, ly) {
+    const c = Math.cos(s.th), n = Math.sin(s.th), X = lx * (1 + this.sq) * (s.flip || 1), Y = ly * (1 - this.sq);
+    return [s.x + X * c - Y * n, s.y + X * n + Y * c];
   },
   draw(g, s, o = {}) {
     const lw = Math.max(0.7, (o.px || 0.4) * 1.15);
     if (Math.abs(s.w) > 7 && !s.end) this.ghosts(g, s);
     g.save(); g.lineJoin = 'round';
     this.drawTail(g, lw);
-    g.translate(s.x, s.y); g.rotate(s.th); g.scale(1 + this.sq, 1 - this.sq);
+    g.translate(s.x, s.y); g.rotate(s.th); g.scale((1 + this.sq) * (s.flip || 1), 1 - this.sq);
     const P = this.pose(s);
     for (const p of P) if (p.L.far) this.leg(g, p, lw, true);
     this.body(g, lw, s);
-    this.toast(g, lw, s);
+    if (!s.noToast) this.toast(g, lw, s);
     for (const p of P) if (!p.L.far) this.leg(g, p, lw, false);
     this.head(g, lw, s);
     g.restore();
@@ -430,7 +488,7 @@ Object.assign(CatViz.prototype, {
   },
   ghosts(g, s) {
     for (let i = 1; i <= 2; i++) {
-      g.save(); g.globalAlpha = 0.18 / i; g.translate(s.x, s.y); g.rotate(s.th - s.w * 0.018 * i);
+      g.save(); g.globalAlpha = 0.18 / i; g.translate(s.x, s.y); g.rotate(s.th - s.w * 0.018 * i); g.scale(s.flip || 1, 1);
       BODY(g); g.fillStyle = C.fur; g.fill(); ellipse(g, 18, -3, 10.2, 8.9); g.fill();
       SLICE(g, TTOP, TMID + TH); g.fillStyle = C.crust; g.fill();
       g.restore();
@@ -445,9 +503,9 @@ Object.assign(CatViz.prototype, {
     }
   },
   shadow(g, s) {
-    const h = s.hover; if (!h || !isFinite(h.gy) || h.water) return;
-    const d = h.gy - s.lowY(); if (d > 170 || d < -8) return;
+    const h = s.hover; if (!h || !isFinite(h.by) || h.water) return;
+    const d = h.by - s.lowY(); if (d > 170 || d < -8) return;
     const a = 0.24 * (1 - clamp(d / 170)), w = s.extX() * (0.9 + d / 220);
-    ellipse(g, s.x, h.gy - 0.4, w, 2.2 + d / 70); g.fillStyle = `rgba(40,20,10,${a.toFixed(3)})`; g.fill();
+    ellipse(g, s.x, h.by - 0.4, w, 2.2 + d / 70); g.fillStyle = `rgba(40,20,10,${a.toFixed(3)})`; g.fill();
   },
 });
