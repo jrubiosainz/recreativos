@@ -129,7 +129,7 @@ a { color: inherit; }
 .prog-h h2 { margin: 0; font: 400 clamp(29px, 8vw, 50px)/1 var(--slab); text-transform: uppercase; letter-spacing: -.005em; text-wrap: balance; }
 /* without the open cover, the contents fold into a strip of dates: one pennant per day, in its ink */
 .strip { flex: 1 0 100%; margin-top: clamp(10px, 3vw, 16px); }
-.strip ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
+.strip ol { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; }
 .strip a {
   --c: var(--red); --on: #fff; display: grid; place-items: center; min-height: 46px; padding-bottom: 7px;
   background: var(--c); color: var(--on); font: 400 clamp(16px, 4.4vw, 24px)/1 var(--slab); text-decoration: none;

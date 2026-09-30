@@ -197,7 +197,7 @@ function marks(animate) {
     memo.seen[g.slug] = now;
   });
   const been = $('#been');
-  been.textContent = t.been(n);
+  been.textContent = t.been(n, GAMES.length);
   been.hidden = !n;
   if (!still && n > before) { been.classList.add('pend'); wake.observe(been); }
   writeMemo();

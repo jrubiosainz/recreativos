@@ -1,0 +1,51 @@
+<!doctype html>
+<!--
+  A LA FRANCESA · design contract
+  World   An office building at six in the evening, floor by floor, top to bottom: a miniature diorama seen from
+          above, low-poly and toon-lit (three.js), with the people's sightlines painted on the carpet as light.
+          The 3D floor is the source of truth: the desks, the glass fishbowls, the birthday in the kitchen, Don
+          Ramón's rounds, the ping-pong table, the lobby. The DOM is the building's own hardware: the title is
+          the lift lobby's pillar (a felt letter board with the directory in white plastic letters, and the
+          brushed-steel call panel under it whose floor buttons are the level select), the HUD is the lift's
+          amber dot-matrix floor indicator, a wall-clock pill and a steel phone button, the tutorial is laminated
+          AVISO notices taped up, the pause is the «VUELVO EN 5 MINUTOS» sheet, getting out is the lift panel
+          rolling down a floor, getting caught is a meeting invite from whoever caught you.
+  Type    Rubik 400–800 everywhere (the round-shouldered plastic letters of the felt board, the numbers engraved
+          on the lift buttons); the invite deliberately parodies the operating system's own calendar face.
+  Colour  felt #1B1A1C, letters #F2EFE6; steel #C9CCD1 → #8D9199, steel ink #2C2F35; LED amber #FFB02E, unlit
+          #5A3A0C on #140D08; SALIDA green #1FA45A glowing #5DFF9B; AVISO paper #FBFAF5; invite blue #2F7DE1 on
+          #F7F8FA, ink #1F2330, grey #5D6472; each floor adds its own accent from the carpet.
+  Shape   screws in the corners of steel; tape on paper; round lift buttons with a lit ring; LEDs in threes;
+          the comic bubble with a tail on the speaker's head.
+  Motion  the floor carries the motion (it assembles, people drop in, you tiptoe out). The DOM moves like the
+          hardware: buttons press in, the display rolls, notices are taped up and taken down. Reduced motion
+          keeps every reading and freezes the lobby's demo.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1B1A1C">
+<meta name="color-scheme" content="dark">
+<title>A LA FRANCESA · Son las 18:00. Vete sin que te vean.</title>
+<meta name="description" content="Son las seis, tu jornada ha terminado y la oficina entera sigue ahí. Baja las seis plantas hasta la calle sin que nadie te vea: quien te ve, te mete en una reunión.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A LA FRANCESA · Son las 18:00. Vete sin que te vean.">
+<meta property="og:description" content="Un juego de sigilo en una oficina en miniatura: de puntillas, disimulando junto a la impresora, con un vídeo gracioso al grupo. Si te pillan, te invitan a una reunión.">
+<meta property="og:image" content="https://jrubiosainz.github.io/recreativos/11-a-la-francesa/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El vestíbulo de A LA FRANCESA: un tablero de fieltro con las seis plantas y la botonera del ascensor. Al lado, en la planta de Dirección a las seis de la tarde, un empleado con chaqueta mostaza se esconde de puntillas detrás de un busto mientras el jefe pasa mirando.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231FA45A'/%3E%3Ccircle cx='30' cy='13' r='5.5' fill='%23fff'/%3E%3Cpath d='M14 31l8-9 10 1.6 5.5 9 8 2.5M32 23.6l-5.5 14.4 8.8 6.6-3.3 12M26.5 38l-7 10-9 .6' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Rubik-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Una oficina en miniatura vista desde arriba, a la hora de salir."></canvas>
+<main id="ui"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">A LA FRANCESA necesita JavaScript para funcionar.</p></noscript>
+<script type="module" src="game.min.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-// The ten games, in the order they were made. Titles, lines and level names come from each game's own
+// The games, in the order they were made. Titles, lines and level names come from each game's own
 // i18n and README; `save`/`box` point at the localStorage record each game keeps (same origin).
 export const GAMES = [
   {
@@ -50,6 +50,11 @@ export const GAMES = [
     slug: '10-gato-con-tostada', n: 6, save: 'gatotostada.v1', box: 'lv',
     es: { t: 'GATO CON TOSTADA', line: 'Si quepo, me siento.', pitch: 'Los gatos caen de pie; las tostadas, del lado de la mermelada. Átale una a un gato y flota. Siéntalo de culo en la caja.', how: 'Gira a un lado o al otro', unit: 'habitaciones' },
     en: { t: 'CAT WITH TOAST', line: 'If I fits, I sits.', pitch: 'Cats land on their feet; toast lands jam side down. Tape one to the other and it hovers. Sit it in the box, bottom first.', how: 'Turn it left or right', unit: 'rooms' },
+  },
+  {
+    slug: '11-a-la-francesa', n: 6, save: 'alafrancesa.v1', box: 'lv',
+    es: { t: 'A LA FRANCESA', line: 'Son las 18:00. Vete sin que te vean.', pitch: 'Tu jornada ha terminado y la oficina entera sigue ahí. Baja las seis plantas de puntillas, disimulando. Quien te ve, te mete en una reunión.', how: 'Anda, ve de puntillas o disimula', unit: 'plantas' },
+    en: { t: 'FRENCH EXIT', line: 'It’s 6 pm. Leave without being seen.', pitch: 'Your day is done and the whole office is still here. Tiptoe down six floors, looking busy. Whoever sees you drags you into a meeting.', how: 'Walk, tiptoe or look busy', unit: 'floors' },
   },
 ];
 
