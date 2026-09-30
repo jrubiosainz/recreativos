@@ -8,7 +8,7 @@ const S = {
     canvas: 'Un piso visto en sección. Un gato naranja con una tostada con mermelada atada a la espalda flota sin poder aterrizar.',
     law1: 'Los gatos siempre caen de pie.',
     law2: 'Las tostadas, del lado de la mermelada.',
-    pitch: 'Alguien le ha atado una tostada a un gato. <b>Ninguna ley gana: el gato flota.</b>',
+    pitch: 'Un gato se ha atado una tostada a la espalda. <b>Ninguna ley gana: el gato flota.</b>',
     how: '<b>Gíralo</b> para moverlo. Para bajar, <b>siéntalo de culo en la caja</b>.',
     lv: {
       desayuno: 'No tirar el vaso de leche. (Ja.)',
@@ -94,7 +94,7 @@ const S = {
     canvas: 'A flat seen in cross-section. A ginger cat with a slice of toast and jam taped to its back hovers, unable to land.',
     law1: 'Cats always land on their feet.',
     law2: 'Toast always lands jam side down.',
-    pitch: 'Somebody taped a slice of toast to a cat. <b>Neither law wins, so the cat hovers.</b>',
+    pitch: 'A cat taped a slice of toast to its back. <b>Neither law wins, so the cat hovers.</b>',
     how: '<b>Turn it</b> to move it. To get down, <b>sit it on its bottom in the box</b>.',
     lv: {
       desayuno: 'Do NOT knock the milk off. (Ha.)',

@@ -1,5 +1,5 @@
-// GATO CON TOSTADA: cats always land on their feet, toast always lands jam side down, and somebody has taped a
-// slice of toast and jam to a cat's back. Neither law gives way, so it hovers. You turn it (that's all you do):
+// GATO CON TOSTADA: cats always land on their feet, toast always lands jam side down, and a cat has taped a
+// slice of toast and jam to its own back. Neither law gives way, so it hovers. You turn it (that's all you do):
 // tilted it travels, level it stops, spun it climbs, and on its tail it gives up the fight and sits. It only really
 // sits in one place: the cardboard box. This file is the conductor: the fixed-step clock, the two-way turn, the
 // screens, each room's intro (the leap and the tape), the title's attract loop, the landing, sharing, QA entry points.
